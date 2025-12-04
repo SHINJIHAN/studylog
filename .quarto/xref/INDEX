@@ -1,0 +1,182 @@
+{
+  "about.qmd": {
+    "about.html": "68eb2674"
+  },
+  "index.qmd": {
+    "index.html": "16b7b304"
+  },
+  "category.qmd": {
+    "category.html": "3bd6647c"
+  },
+  "About.qmd": {
+    "About.html": "12ea5957"
+  },
+  "data-analysis.qmd": {
+    "data-analysis.html": "97deae7f"
+  },
+  "DAI02.qmd": {
+    "DAI02.html": "49c58d92"
+  },
+  "DAI/DAI02.qmd": {
+    "DAI02.html": "2e2fceae"
+  },
+  "DAI/DAI03.qmd": {
+    "DAI03.html": "98a4b2e7"
+  },
+  "DAI/DAI04.qmd": {
+    "DAI04.html": "9c4990f6"
+  },
+  "DAI/DAI05.qmd": {
+    "DAI05.html": "7660ead8"
+  },
+  "DAI/DAI06.qmd": {
+    "DAI06.html": "3fda1f1c"
+  },
+  "DAI/DAI07.qmd": {
+    "DAI07.html": "dea9a4d9"
+  },
+  "DAI/DAI08.qmd": {
+    "DAI08.html": "f35229d6"
+  },
+  "DAI/DAI09.qmd": {
+    "DAI09.html": "27473a82"
+  },
+  "DAI/DAI10.qmd": {
+    "DAI10.html": "26b110e1"
+  },
+  "DAI/DAI11.qmd": {
+    "DAI11.html": "ecf75afa"
+  },
+  "DAI/DAI12.qmd": {
+    "DAI12.html": "88eced4f"
+  },
+  "DAI/DAI13.qmd": {
+    "DAI13.html": "dcb4572b"
+  },
+  "DAI/DAI14.qmd": {
+    "DAI14.html": "7db0c276"
+  },
+  "DAI/DAI15.qmd": {
+    "DAI15.html": "62f72be2"
+  },
+  "DAD/DAD6.qmd": {
+    "DAD6.html": "bc96a5c6"
+  },
+  "DAD/DAD7.qmd": {
+    "DAD7.html": "5270064e"
+  },
+  "DAD/DAD8.qmd": {
+    "DAD8.html": "e7e42473"
+  },
+  "DAD/DAD8.1.qmd": {
+    "DAD8.1.html": "4fef5003"
+  },
+  "DAD/DAD8.2.qmd": {
+    "DAD8.2.html": "513c460e"
+  },
+  "DAD/DAD9.qmd": {
+    "DAD9.html": "98ee68f1"
+  },
+  "DAD/DAD06.0.qmd": {
+    "DAD06.0.html": "b0ec24ed"
+  },
+  "DAD/DAD07.0.qmd": {
+    "DAD07.0.html": "d0179742"
+  },
+  "DAD/DAD08.0.qmd": {
+    "DAD08.0.html": "14c43e3b"
+  },
+  "DAD/DAD08.1.qmd": {
+    "DAD08.1.html": "d9aa1a0f"
+  },
+  "DAD/DAD08.2.qmd": {
+    "DAD08.2.html": "1145fdb7"
+  },
+  "DAD/DAD09.0.qmd": {
+    "DAD09.0.html": "9c83baa6"
+  },
+  "DAD/DAD09.1.qmd": {
+    "DAD09.1.html": "beb5c60a"
+  },
+  "DAD/DAD10.0.qmd": {
+    "DAD10.0.html": "db9db366"
+  },
+  "ADA/ADA06.0.qmd": {
+    "ADA06.0.html": "596d2cdc"
+  },
+  "ADA/ADA07.0.qmd": {
+    "ADA07.0.html": "43facae9"
+  },
+  "ADA/ADA08.0.qmd": {
+    "ADA08.0.html": "e4dda7cb"
+  },
+  "ADA/ADA08.1.qmd": {
+    "ADA08.1.html": "a71860a7"
+  },
+  "ADA/ADA08.2.qmd": {
+    "ADA08.2.html": "c2a15653"
+  },
+  "ADA/ADA09.0.qmd": {
+    "ADA09.0.html": "8bc31991"
+  },
+  "ADA/ADA09.1.qmd": {
+    "ADA09.1.html": "8852f717"
+  },
+  "ADA/ADA10.0.qmd": {
+    "ADA10.0.html": "8929a6f8"
+  },
+  "ADA/ADA10.1.qmd": {
+    "ADA10.1.html": "6b42440b"
+  },
+  "ADA/ADA10.2.qmd": {
+    "ADA10.2.html": "43674bc5"
+  },
+  "ADA/ADA10.3.qmd": {
+    "ADA10.3.html": "5bb9b9cd"
+  },
+  "ADA/ADA11.0.qmd": {
+    "ADA11.0.html": "70eb64c6"
+  },
+  "IDA/IDA02.qmd": {
+    "IDA02.html": "e3d42703"
+  },
+  "IDA/IDA03.qmd": {
+    "IDA03.html": "520c5008"
+  },
+  "IDA/IDA04.qmd": {
+    "IDA04.html": "b485fcf6"
+  },
+  "IDA/IDA05.qmd": {
+    "IDA05.html": "cf4f09cc"
+  },
+  "IDA/IDA06.qmd": {
+    "IDA06.html": "c0b85f99"
+  },
+  "IDA/IDA07.qmd": {
+    "IDA07.html": "c4173932"
+  },
+  "IDA/IDA08.qmd": {
+    "IDA08.html": "2fd02ebc"
+  },
+  "IDA/IDA09.qmd": {
+    "IDA09.html": "ccddf0ac"
+  },
+  "IDA/IDA10.qmd": {
+    "IDA10.html": "86240129"
+  },
+  "IDA/IDA11.qmd": {
+    "IDA11.html": "d43dde9a"
+  },
+  "IDA/IDA12.qmd": {
+    "IDA12.html": "9622c6dc"
+  },
+  "IDA/IDA13.qmd": {
+    "IDA13.html": "d60c7735"
+  },
+  "IDA/IDA14.qmd": {
+    "IDA14.html": "fa8c2e00"
+  },
+  "IDA/IDA15.qmd": {
+    "IDA15.html": "ac98554d"
+  }
+}

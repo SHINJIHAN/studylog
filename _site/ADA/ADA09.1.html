@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>제 9장-다중 회귀 – StudyLog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">StudyLog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#다중-회귀분석" id="toc-다중-회귀분석" class="nav-link active" data-scroll-target="#다중-회귀분석">01 다중 회귀분석</a>
+  <ul class="collapse">
+  <li><a href="#오차항-가정" id="toc-오차항-가정" class="nav-link" data-scroll-target="#오차항-가정">1 . 오차항 가정</a></li>
+  <li><a href="#전체제곱합" id="toc-전체제곱합" class="nav-link" data-scroll-target="#전체제곱합">1 . 전체제곱합</a></li>
+  <li><a href="#회귀제곱합" id="toc-회귀제곱합" class="nav-link" data-scroll-target="#회귀제곱합">2 . 회귀제곱합</a></li>
+  <li><a href="#잔차제곱합" id="toc-잔차제곱합" class="nav-link" data-scroll-target="#잔차제곱합">3 . 잔차제곱합</a></li>
+  </ul></li>
+  <li><a href="#변수-선택" id="toc-변수-선택" class="nav-link" data-scroll-target="#변수-선택">02 변수 선택</a></li>
+  <li><a href="#다중공선성" id="toc-다중공선성" class="nav-link" data-scroll-target="#다중공선성">03 다중공선성</a>
+  <ul class="collapse">
+  <li><a href="#가변수" id="toc-가변수" class="nav-link" data-scroll-target="#가변수">04 가변수</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">제 9장-다중 회귀</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>Reporting Date: September. 07, 2025 다중 회귀분석에 대해 다루고자 한다.</p>
+</blockquote>
+<section id="다중-회귀분석" class="level2">
+<h2 class="anchored" data-anchor-id="다중-회귀분석">01 다중 회귀분석</h2>
+<p>현실의 사회적 또는 자연적 현상을 설명할 때, 반응 변수 (y) 의 변화를 단일 설명 변수만으로 충분히 설명할 수 있는 경우는 거의 없다.</p>
+<p>따라서 여러 개의 설명 변수를 적절히 선택하고, 이들의 함수로 반응 변수를 설명하면 보다 정확한 예측과 분석이 가능하다.</p>
+<p>이러한 상황을 다루기 위해 사용하는 방법이 다중 선형 회귀 모형이며, 일반적인 수식으로는 다음과 같이 표현된다:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_p x_{ip} + \varepsilon_i, \quad i = 1, 2, \dots, n
+\]</span></p>
+<p>여기서 추정해야 할 모수(parameters)는 p + 1개의 회귀계수 _0, _1, , _p​이며, _i​는 오차항을 나타낸다.</p>
+<section id="오차항-가정" class="level3">
+<h3 class="anchored" data-anchor-id="오차항-가정">1 . 오차항 가정</h3>
+<p>회귀분석의 타당성을 위해 오차항 ε 은 다음과 같은 가정을 만족해야 한다:</p>
+<p><span class="math display">\[
+{E}[\varepsilon] = 0, \quad \mathrm{Var}(\varepsilon) = \sigma^2
+\]</span></p>
+<p>기댓값은 0이며, 분산은 일정(등분산성) 서로 다른 관측치의 오차항은 서로 독립적 반응 변수 y의 전체 변동은 회귀모형과 오차항으로 분해 가능 이러한 변동 분해를 제곱합의 분할이라고 하며, 식으로 표현하면 다음과 같다:</p>
+<p><span class="math display">\[
+\text{SST} = \text{SSR} + \text{SSE}
+\]</span></p>
+</section>
+<section id="전체제곱합" class="level3">
+<h3 class="anchored" data-anchor-id="전체제곱합">1 . 전체제곱합</h3>
+<p>TSS, SST, Total Sum of Squares</p>
+<p>반응변수 y 의 총 변동을 나타낸다.</p>
+<p>이는 각 관측값이 전체 평균으로부터 얼마나 떨어져 있는지를 제곱하여 모두 합한 값이다. 따라서 y 의 전체 변동량을 측정하는 지표라고 할 수 있다. 전체제곱합의 자유도는 n − 1 이다.</p>
+</section>
+<section id="회귀제곱합" class="level3">
+<h3 class="anchored" data-anchor-id="회귀제곱합">2 . 회귀제곱합</h3>
+<p>SSR, Sum of Squares due to Regression SSM, Sum of Squares due to Model</p>
+<p>회귀모형에 포함된 설명변수들이 반응변수의 변동을 얼마나 설명하는지를 나타낸다. 즉, 평균으로부터의 변동 중에서 회귀모형이 설명할 수 있는 부분이다. 회귀제곱합의 자유도는 설명변수의 개수 p 이다.</p>
+</section>
+<section id="잔차제곱합" class="level3">
+<h3 class="anchored" data-anchor-id="잔차제곱합">3 . 잔차제곱합</h3>
+<p>SSE, Sum of Squares due to Error</p>
+<p>회귀모형이 설명하지 못하는 변동으로, 실제값과 회귀모형이 예측한 값 간의 차이를 제곱하여 합한 값이다.</p>
+<p>즉, 오차항에 의한 변동을 의미한다. 잔차제곱합의 자유도는 n − p − 1 이다.</p>
+<p>총제곱합(SST, Total Sum of Squares): 반응 변수 yyy의 전체 변동량을 나타내며, 각 관측값이 평균으로부터 얼마나 떨어져 있는지를 제곱하여 합한 값입니다. 자유도는 n−1n-1n−1입니다. 회귀제곱합(SSR, Sum of Squares due to Regression / SSM, Sum of Squares due to Model): 회귀모형이 반응 변수 변동 중 얼마를 설명할 수 있는지를 나타냅니다. 자유도는 설명 변수의 개수 p이다. 잔차제곱합(SSE, Sum of Squares due to Error): 회귀모형으로 설명되지 않는 변동으로, 실제값과 예측값 간의 차이를 제곱하여 합한 값입니다. 자유도는 n−p−1n - p - 1n−p−1입니다. 즉, 반응 변수 y의 총 편차는 회귀모형에 의해 설명된 편차와 오차항에 의한 편차로 나뉘게 되며, 이는 다음과 같이 해석할 수 있다:</p>
+<p><span class="math display">\[
+\underbrace{\text{총 편차}}_{\text{SST}} = \underbrace{\text{회귀로 설명된 편차}}_{\text{SSR}} + \underbrace{\text{잔차}}_{\text{SSE}}
+\]</span></p>
+<p>또한 각 제곱합을 자유도로 나눈 값을 평균제곱합(Mean Squares, MS)이라 하고, 이 값들을 요약한 표를 분산분석표(ANOVA table)라고 한다.</p>
+<p>ANOVA 테이블 변동 요인(Source) 제곱합(SS) 자유도(df) 평균제곱합(MS) F-값 회귀(Regression, 모형) SSR p = k-1 MSR = ​ F = ​ 오차(Error, 잔차) SSE n − p − 1 MSE = ​<br>
+전체(Total) TSS n − 1</p>
+<p>F 통계량은 회귀모형이나 분산분석에서 모형이 설명하는 변동(설명된 변동)과 잔차 변동(설명되지 않은 변동)을 비교하여, 모형이 데이터를 얼마나 잘 설명하는지를 나타내는 지표이다. 값이 클수록 모형의 설명력이 상대적으로 높다고 해석할 수 있다.</p>
+<p>이는 전체 변동 중 모형이 설명하는 비율인 결정계수와도 연결된다. 일반적으로 1에 가까울수록 모형이 데이터를 잘 설명한다고 본다.</p>
+<p>다만, 단순히 F 통계량이나 R2 값의 크기만으로는 모형의 유의성을 단정할 수 없다. 자유도와 표본 크기, 변동의 구조에 따라 “얼마나 크면 충분히 큰가”라는 절대적 기준이 달라지기 때문이다.</p>
+<p>따라서 F 통계량과 함께 p-값을 확인하는 것이 필수적이다. p-값이 유의수준(예: 0.05)보다 작으면, “모든 집단의 평균이 같다” 혹은 “회귀계수가 모두 0이다” 라는 귀무가설을 기각할 수 있으며, 모형이 통계적으로 유의함을 의미한다.</p>
+<p>반대로 p-값이 크면 귀무가설을 기각할 증거가 부족하다는 뜻이다. 이 경우 반드시 모형을 “처음부터 다시” 만들어야 한다는 것은 아니며, 변수 선택, 데이터 수집, 가정 검토 등의 추가 작업이 필요할 수 있다.</p>
+<p>다중회귀분석에서는 p 개의 설명변수가 반응변수 y 를 설명하는 데 유의하게 기여하는지를 확인할 필요가 있다.</p>
+<p>이를 위해 귀무가설 H₀ : β₁ = β₂ = ⋯ = βp = 0 를 세우고, 다음과 같은 검정통계량을 사용한다:</p>
+<p>이 검정통계량은 귀무가설이 참일 때 자유도 (p, n − p − 1)를 갖는 F − 분포를 따른다.</p>
+<p>일원 분산분석 One-way ANOVA table</p>
+<p>다중 회귀분석의 ANOVA 표와 일원 분산분석(One-way ANOVA) 표는 기본적으로 동일한 통계적 원리 위에서 구성된다.</p>
+<p>두 분석 모두 전체 변동(총제곱합, SST)을 설명 가능한 부분과 설명 불가능한 부분으로 분해하고, 이를 토대로 F-검정을 수행하여 모형 또는 집단 간 차이가 유의한지 판단한다는 점에서 연결된다.</p>
+<p>다중 회귀에서는 총제곱합을 회귀제곱합(SSR)과 잔차제곱합(SSE)으로 분해하며, 이는 설명변수가 종속변수를 얼마나 잘 설명하는지 평가하는 과정이다.</p>
+<p>일원 분산분석에서는 총제곱합을 집단 간 제곱합(SSB)과 집단 내 제곱합(SSE)으로 분해하는데,</p>
+<p>이는 집단 평균 간 차이가 통계적으로 유의한지 검정하는 과정이다. 이러한 연결점은 일원 분산분석이 다중 회귀분석의 특수한 형태라는 점에서 명확해진다.</p>
+<p>즉, 범주형 독립변수(집단)를 더미 변수로 변환하여 회귀 모형에 포함하면, 일원 분산분석은 다중 회귀분석으로 표현될 수 있다.</p>
+<p>따라서 두 분석을 나란히 이해하는 것은 회귀분석과 분산분석의 수학적·논리적 일관성을 보여주며, 분석자가 다양한 데이터 구조를 동일한 틀에서 해석할 수 있도록 돕는다.</p>
+<p>그럼에도 불구하고 두 분석은 활용 목적과 해석에서 차이를 가진다.</p>
+<p>다중 회귀분석은 여러 개의 독립변수가 종속변수에 미치는 개별적·동시적 효과를 추정하고, 각 회귀계수에 대한 유의성 검정을 통해 변수가 기여하는 정도를 해석한다.</p>
+<p>반면, 일원 분산분석은 주로 집단 평균 차이라는 단일한 질문에 초점을 두며, 개별 집단 간 차이를 사후검정(Post-hoc test)을 통해 추가적으로 분석한다.</p>
+<p>결과적으로 회귀분석의 ANOVA 표는 모형 전체의 설명력을 평가하는 과정에서 필요하고, 일원 ANOVA 표는 집단 간 평균 차이가 존재하는지를 평가하는 과정에서 필요하다.</p>
+<p>즉, 두 방법론은 수학적 구조를 공유하지만, 회귀는 예측과 변수 효과 추정에 강점이 있고, ANOVA는 집단 비교에 특화되어 있다는 점에서 차별화된다.</p>
+<p>따라서 연구자가 어떤 질문을 던지는지에 따라 적절한 분석 방법을 선택해야 하는 것이 중요하다.</p>
+<p>변동 요인(Source) 제곱합(SS) 자유도(df) 평균제곱합(MS) F-값 Between Groups (SSB, 집단 간) SSB k − 1 MSB = SSB / (k − 1) F = MSB / MSE Within Groups (SSE, 집단 내) SSE N − k MSE = SSE / (N − k) Total (SST) SST N − 1</p>
+<p>다중 회귀분석 사례 700명의 고객을 대상으로 어떤 제품에 대해 조사하려 얻은 것이다.</p>
+<div id="f2afb2a9" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/SHINJIHAN/advanced-bigdata/main/data/Satisfaction.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Satisfaction <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Satisfaction.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Y</th>
+<th data-quarto-table-cell-role="th">X1</th>
+<th data-quarto-table-cell-role="th">X2</th>
+<th data-quarto-table-cell-role="th">X3</th>
+<th data-quarto-table-cell-role="th">X4</th>
+<th data-quarto-table-cell-role="th">Gender</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Gender1</th>
+<th data-quarto-table-cell-role="th">Age1</th>
+<th data-quarto-table-cell-role="th">Age2</th>
+<th data-quarto-table-cell-role="th">Age3</th>
+<th data-quarto-table-cell-role="th">Age4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>6</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>6</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>6</td>
+<td>5</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>X1: 다자인 만족도 X2: 사용 편리성 만족도 X3: 성능 만족도 X4: 고장 및 견고성 만족도 Y: 구입 의향</p>
+<p>설문 데이터 분석에서의 접근 설문을 통해 얻은 만족도 및 구입 의향 데이터는 보통 순위형(ordinal) 데이터로 수집된다.</p>
+<p>예를 들어 ” 매우 만족 ~ 매우 불만족 ” 과 같은 리커트 척도는 순서가 존재하지만, 각 항목 간 간격이 동일하다고 보장되지 않는 특성이 있다.</p>
+<p>가전제품과 같은 대기업의 고객 만족 조사에서는 위과 같은 변수를 설정할 수 있다.</p>
+<p>이때 연구의 초점은 Y(구입 의향)을 종속변수로 두고, 네 가지 만족도 요인이 이에 얼마나 영향을 미치는지를 분석하는 것이다.</p>
+<p>분석 절차는 보통 다음과 같이 진행된다.</p>
+<p>① 상관계수 확인 각 독립변수(X1 ~ X4)와 종속변수(Y) 간의 관계를 파악한다. 데이터가 순위형일 경우 피어슨 상관계수보다는 스피어만 상관계수 같은 방법이 더 적절할 수 있다.</p>
+<div id="0af849f3" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 피어슨의 상관계수</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Satisfaction.iloc[:, <span class="dv">1</span>:<span class="dv">6</span>].corr()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>pearsonr(Satisfaction.Y, Satisfaction.X1)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>pearsonr(Satisfaction.Y, Satisfaction.X2)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>pearsonr(Satisfaction.Y, Satisfaction.X3)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>pearsonr(Satisfaction.Y, Satisfaction.X4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>PearsonRResult(statistic=np.float64(0.20687830951579425), pvalue=np.float64(3.321873797880896e-08))</code></pre>
+</div>
+</div>
+<section id="결정계수-확인" class="level5">
+<h5 class="anchored" data-anchor-id="결정계수-확인">② 결정계수 확인</h5>
+<p>단순 상관관계에서는 상관계수 r 의 제곱값 r² 이 결정계수로 해석될 수 있으며, 이는 종속변수의 변동 중 독립변수가 설명하는 비율을 의미한다.</p>
+<p>여러 독립변수가 있을 경우에는 다중회귀분석을 통해 전체 결정계수 R² 를 산출한다.</p>
+<div id="9ab4f9ab" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>SatisfactionFit <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Y~X1+X2+X3+X4'</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                         data<span class="op">=</span>Satisfaction).fit()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(SatisfactionFit.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.141
+Model:                            OLS   Adj. R-squared:                  0.136
+Method:                 Least Squares   F-statistic:                     28.56
+Date:                Thu, 04 Dec 2025   Prob (F-statistic):           5.38e-22
+Time:                        17:45:44   Log-Likelihood:                -1174.4
+No. Observations:                 700   AIC:                             2359.
+Df Residuals:                     695   BIC:                             2382.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.2918      0.347      3.719      0.000       0.610       1.974
+X1             0.2352      0.058      4.077      0.000       0.122       0.349
+X2             0.1666      0.066      2.543      0.011       0.038       0.295
+X3             0.2309      0.068      3.421      0.001       0.098       0.363
+X4             0.0585      0.050      1.168      0.243      -0.040       0.157
+==============================================================================
+Omnibus:                      147.199   Durbin-Watson:                   1.804
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              482.307
+Skew:                           0.987   Prob(JB):                    1.86e-105
+Kurtosis:                       6.556   Cond. No.                         75.1
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<p>회귀분석 결과에서는 결정계수 R² = 0.141로, 전체 독립변수들이 구입 의향(Y)의 변동 중 약 14.1%만 설명하고 있다. 즉, 설명력이 높지는 않지만 전혀 의미 없는 수준도 아니다.</p>
+<p>전체 모형의 F 통계량 (F ≈ 28.56, p &lt; 0.001)은 “모형이 유의미하다”는 것을 보여준다.</p>
+<p>— 무작위로 요인들을 넣은 것보다, 적어도 일부 독립변수가 종속변수에 영향을 준다는 증거가 있음.</p>
+<p>개별 계수 검정에서는 X1, X2, X3이 유의하였고(X1, X3 특히 강함), X4는 유의하지 않음 (p ≈ 0.243)</p>
+<p>— 현재 모형 하에서는 고장·견고성 만족도가 구입 의향에 통계적으로 유의한 영향을 미친다고 보기 어렵다.</p>
+<p>결정계수가 낮은 원인으로는 가격 요소 등 중요한 변수가 빠져 있을 가능성, 또는 구입 의향과 관련된 여타 요인(브랜드 신뢰도, 마케팅, 사회적 영향 등)을 포함하지 않았을 가능성 등을 고려해야 한다.</p>
+</section>
+<section id="표준화-회귀계수" class="level5">
+<h5 class="anchored" data-anchor-id="표준화-회귀계수">③ 표준화 회귀계수</h5>
+<p>변수들이 서로 다른 단위를 가지고 있으므로, 회귀분석에서 비표준화 회귀계수만 보면 어떤 변수가 Y(구입 의향)에 더 큰 영향을 주는지 절대비교가 어렵다.</p>
+<p>따라서 표준화 회귀계수를 사용하면, 각 변수의 변화가 “자신의 표준편차 단위 하나 증가”했을 때 Y가 얼마나 표준편차 단위로 바뀌는지를 보여주므로, 변수들 간의 상대적 영향력 비교가 가능해진다.</p>
+<div id="866bc090" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 표준화 회귀계수</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Satisfaction_z <span class="op">=</span> Satisfaction.iloc[:,<span class="dv">1</span>:<span class="dv">6</span>].<span class="bu">apply</span>(stats.zscore)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>SatisfactionFit <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Y~X1+X2+X3+X4'</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                         data<span class="op">=</span>Satisfaction_z).fit()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>SatisfactionFit.params.<span class="bu">round</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>Intercept    0.00000
+X1           0.16435
+X2           0.11285
+X3           0.15935
+X4           0.04635
+dtype: float64</code></pre>
+</div>
+</div>
+<p>예를 들어, 표준화 계수가 라면, X1과 X3이 구입 의향에 가장 큰 영향을 미치고, X4는 가장 영향이 작다는 해석이 가능하다.</p>
+<p>다만 표준화하면 절편은 일반적으로 의미가 0 근처가 되며, 변수의 원 단위 변화에 대한 실질적인 의미(예: 점수 1점의 변화)가 사라지므로, 연구 목적이 “영향력의 비교”인지 “실질적 예측”인지에 따라 비표준화 계수도 함께 살펴야 한다.</p>
+<p>편회귀계수(partial regression coefficient)</p>
+<p>다중회귀분석에서 각 독립변수가 종속변수에 미치는 순수한 영향력을 평가하기 위해 사용된다. 이는 다른 독립변수들의 영향을 고정한 상태에서 특정 독립변수의 기여도를 나타낸다.</p>
+<p>회귀계수는 모든 독립변수의 영향을 고려한 상태에서 특정 독립변수의 영향을 나타내며, 편회귀계수는 이러한 회귀계수의 일종으로 볼 수 있다.</p>
+<p>따라서 회귀계수와 유사하나 동일하지 않으며, 다중회귀분석에서 각 독립변수의 개별적인 영향을 평가할 때 중요한 지표로 활용된다.</p>
+</section>
+</section>
+</section>
+<section id="변수-선택" class="level2">
+<h2 class="anchored" data-anchor-id="변수-선택">02 변수 선택</h2>
+<p>풀모델(완전모델)은 모든 독립변수를 포함하여 종속변수에 영향을 줄 수 있는 요인을 전부 반영한 모델이다.</p>
+<p>그러나 실제로는 변수 과다로 인해 과적합이 발생할 수 있으므로, 변수를 일부만 선택하여 축소모델을 사용하는 것이 바람직하다. 이러한 과정이 바로 변수선택법이다.</p>
+<div id="6ae40538" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>SatisfactionFit1 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Y~X1+X2+X3'</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                          data<span class="op">=</span>Satisfaction).fit()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(SatisfactionFit1.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.139
+Model:                            OLS   Adj. R-squared:                  0.136
+Method:                 Least Squares   F-statistic:                     37.61
+Date:                Thu, 04 Dec 2025   Prob (F-statistic):           1.56e-22
+Time:                        17:45:44   Log-Likelihood:                -1175.1
+No. Observations:                 700   AIC:                             2358.
+Df Residuals:                     696   BIC:                             2376.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.4020      0.334      4.193      0.000       0.746       2.059
+X1             0.2436      0.057      4.254      0.000       0.131       0.356
+X2             0.1763      0.065      2.712      0.007       0.049       0.304
+X3             0.2504      0.065      3.829      0.000       0.122       0.379
+==============================================================================
+Omnibus:                      140.914   Durbin-Watson:                   1.803
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              452.399
+Skew:                           0.951   Prob(JB):                     5.79e-99
+Kurtosis:                       6.449   Cond. No.                         62.8
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<p>X4를 제외하고 회귀분석을 다시 수행한 결과, 결정계수(R²)는 0.141에서 0.139로 약간 감소했다.</p>
+<p>이는 X4를 제거함으로써 모델의 전체 설명력이 조금 줄었음을 의미하며, X4가 종속변수에 미치는 직접적 영향은 미미하지만 다른 변수와의 상호작용 등을 통해 간접적 기여가 있을 수 있음을 시사한다.</p>
+<p>F-통계량은 37.61로 이전보다 증가했고, P-value는 매우 작아(1.56e-22) 모델 전체는 여전히 통계적으로 유의하다.</p>
+<p>개별 회귀계수 검정에서는 X1, X2, X3는 유의하지만, X4는 유의하지 않아 실질적인 영향력은 거의 없다고 볼 수 있다.</p>
+<p>변수선택법에는 크게 세 가지가 있다.</p>
+<p>① 전진선택법(Forward Selection) 가장 설명력이 높은 변수를 하나씩 추가하며, 선택된 변수는 이후 단계에서 제거되지 않는다.</p>
+<p>② 후진제거법(Backward Elimination) 모든 변수를 포함한 상태에서, 의미 없는 변수를 하나씩 제거하며, 제거 기준은 보통 p-value를 사용한다.</p>
+<p>③ 단계적 방법(Stepwise Selection) 전진선택법과 후진제거법을 혼합하여, 변수를 추가하면서 동시에 불필요한 변수가 없는지 검토하는 방식이다.</p>
+<p>모형 선택 시 결정계수(R²)만으로 평가해서는 안 되며, 조정된 결정계수(Adjusted R²), 평균제곱오차(MSE), AIC, BIC, 멜로우 C 등 여러 지표를 종합적으로 고려해야 한다.</p>
+<p>이러한 과정을 거친 후, 잔차 분석 등을 통해 모델 가정을 확인하는 것이 옳다.</p>
+<p>회귀분석에서 변수 선택 기능의 지원 정도 비교</p>
+<p>SAS PROC REG와 같은 절차를 통해 전진 선택법, 후진 제거법, 단계적 선택법을 지원한다. 예를 들어, SELECTION=STEPWISE 옵션을 사용하여 단계적 선택법을 수행할 수 있다.</p>
+<p>R step() 함수를 사용하여 전진 선택법, 후진 제거법, 단계적 선택법을 수행할 수 있다. 이 함수는 AIC를 기준으로 변수 선택을 수행한다.</p>
+<p>python mlxtend: SequentialFeatureSelector를 제공하여 전진 선택법, 후진 제거법, 단계적 선택법을 지원한다.</p>
+<p>abess: 고속 최적 부분집합 선택을 위한 라이브러리로, 선형 회귀 및 분류 문제에 적용할 수 있다.</p>
+</section>
+<section id="다중공선성" class="level1">
+<h1>03 다중공선성</h1>
+<p>회귀분석에서는 모든 독립변수가 서로 독립적이어야 하지만, 실제로는 변수들 간에 선형관계가 존재할 수 있다.</p>
+<p>이러한 경우, 어떤 변수들 사이에서 높은 상관성이 있는지 확인하고, 필요 시 일부 변수를 제거해야 한다.</p>
+<p>예를 들어, 겉보기에는 의미 있는 변수인데 통계적으로 유의하지 않게 나타나거나, 반대로 예상과 달리 유의하게 나타나는 경우가 있다.</p>
+<p>결정계수(R²), F-통계량, 회귀계수(베타) 값이 0 이 아니더라도, 개별 변수의 P-value가 유의하지 않다면 다중공선성을 의심하고 진단할 필요가 있다.</p>
+<p>다중공선성은 독립변수 간 높은 상관으로 인해 회귀계수 추정이 불안정해지고, 변수의 순수한 영향력을 평가하기 어렵게 만듭니다.</p>
+<p>이를 확인하기 위해 상관행렬이나 분산팽창지수(VIF)를 활용하며, 해결 방법으로는 상관이 높은 변수 제거, 주성분분석(PCA), 릿지 회귀(Ridge Regression) 등의 기법을 사용할 수 있다.</p>
+<p>다중 공선성 사례</p>
+<div id="5719fe76" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/SHINJIHAN/advanced-bigdata/main/data/Multico.csv"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Multico <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Multico.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Y</th>
+<th data-quarto-table-cell-role="th">X1</th>
+<th data-quarto-table-cell-role="th">X2</th>
+<th data-quarto-table-cell-role="th">X3</th>
+<th data-quarto-table-cell-role="th">X4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>3.5</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.5</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>3.5</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>4.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cb3b05e7" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>MulticoFit <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">'Y~X1+X2+X3+X4'</span>, data <span class="op">=</span> Multico).fit()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MulticoFit.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.540
+Model:                            OLS   Adj. R-squared:                  0.417
+Method:                 Least Squares   F-statistic:                     4.404
+Date:                Thu, 04 Dec 2025   Prob (F-statistic):             0.0149
+Time:                        17:45:44   Log-Likelihood:                -5.8055
+No. Observations:                  20   AIC:                             21.61
+Df Residuals:                      15   BIC:                             26.59
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.1511      0.858      1.341      0.200      -0.678       2.980
+X1             0.4306      0.504      0.854      0.407      -0.644       1.505
+X2            -0.1246      0.158     -0.786      0.444      -0.462       0.213
+X3             0.0118      0.491      0.024      0.981      -1.035       1.058
+X4             0.4448      0.966      0.460      0.652      -1.614       2.504
+==============================================================================
+Omnibus:                        8.376   Durbin-Watson:                   2.843
+Prob(Omnibus):                  0.015   Jarque-Bera (JB):                6.223
+Skew:                          -0.892   Prob(JB):                       0.0445
+Kurtosis:                       5.070   Cond. No.                         113.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<p>R² = 0.540, Adjusted R² = 0.417 → 모델이 종속변수 Y 변동의 약 54%를 설명하지만, 변수 수를 고려하면 조정된 R²는 41.7%로 다소 낮다.</p>
+<p>F-statistic = 4.404, P = 0.0149 → 전체 모델은 통계적으로 유의하며, 독립변수들이 종속변수에 영향을 미칠 가능성이 있음.</p>
+<p>모든 변수의 P-value &gt; 0.05 → 개별 변수는 통계적으로 유의하지 않아, 단독으로 Y에 영향을 준다고 보기 어렵다.</p>
+<p>회귀계수는 0이 아니지만 유의하지 않으므로 다중공선성 가능성을 확인할 필요가 있다. 진단 방법에는 두 가지가 있다.</p>
+<p>① 분산확대인자 (VIF)</p>
+<p>VIF 계산식 여기서 R_j^2는 j번째 독립변수를 다른 모든 독립변수들로 회귀한 결정계수이다.</p>
+<p>일반적으로 VIF가 10을 초과하면 심각한 다중공선성이 존재한다고 판단한다. 일부 연구에서는 VIF가 5를 초과하면 다중공선성의 가능성을 고려해야 한다고 권장한다.</p>
+<p>10.7 - Detecting Multicollinearity Using Variance Inflation Factors | STAT 462</p>
+<p>Okay, now that we know the effects that multicollinearity can have on our regression analyses and subsequent conclusions, how do we tell when it exists? That is, how can we tell if multicollinearity is present in our data? Some of the common methods used f</p>
+<div id="a94fb268" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>MulticoModel <span class="op">=</span> smf.ols(<span class="st">'Y~X1+X2+X3+X4'</span>, Multico)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span><span class="op">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>variance_inflation_factor</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(variance_inflation_factor(MulticoModel.exog,<span class="dv">1</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>vif_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X'</span>: MulticoModel.exog_names,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'VIE'</span>: [variance_inflation_factor(MulticoModel.exog, i) </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(MulticoModel.exog.shape[<span class="dv">1</span>])]</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>vif_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>6.927097111033764</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X</th>
+<th data-quarto-table-cell-role="th">VIE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Intercept</td>
+<td>105.596937</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>X1</td>
+<td>6.927097</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>X2</td>
+<td>1.440306</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>X3</td>
+<td>17.688462</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>X4</td>
+<td>31.442395</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>② 공차한계 (Tolerance)</p>
+<p>공차한계가 낮다는 것은 R_j^2​가 높다는 것을 의미하며, 이는 VIF가 높다는 것과 동일하다. 공차한계가 0.1 이하이면 VIF가 10 이상이므로, 다중공선성이 심각하다고 볼 수 있다.</p>
+<p>③ 상태지수 (Condition Number) 출력값이 100 이상이면 모델에 심각한 다중공선성이 존재할 가능성이 높다.</p>
+<div id="8ef1ff8c" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>MulticoFit <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Y~X1+X2+X3+X4'</span>, data<span class="op">=</span>Multico).fit()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>MulticoFit.condition_number</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>MulticoFit1 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Y~X1+X3'</span>, data<span class="op">=</span>Multico).fit()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(MulticoFit1.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.521
+Model:                            OLS   Adj. R-squared:                  0.464
+Method:                 Least Squares   F-statistic:                     9.231
+Date:                Thu, 04 Dec 2025   Prob (F-statistic):            0.00193
+Time:                        17:45:44   Log-Likelihood:                -6.2205
+No. Observations:                  20   AIC:                             18.44
+Df Residuals:                      17   BIC:                             21.43
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.9231      0.776      1.190      0.251      -0.714       2.560
+X1             0.5972      0.193      3.087      0.007       0.189       1.005
+X3             0.2208      0.118      1.873      0.078      -0.028       0.469
+==============================================================================
+Omnibus:                        7.800   Durbin-Watson:                   2.794
+Prob(Omnibus):                  0.020   Jarque-Bera (JB):                5.803
+Skew:                          -0.792   Prob(JB):                       0.0550
+Kurtosis:                       5.110   Cond. No.                         54.9
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<p>필요한 변수(X2, X4)를 제거하고 X1과 X3만 사용했더니 모델 설명력은 유지되거나 약간 개선되었다. X2, X4를 제거한 방식은 후진 제거법을 이용한 변수 선택이라고 할 수 있다.</p>
+<p>R² = 0.521, Adjusted R² = 0.464 → 모델이 종속변수 Y 변동의 약 52.1%를 설명하며, 변수 수를 고려하면 조정된 R²는 46.4%로 적당한 설명력을 보여준다.</p>
+<p>F-statistic = 9.231, P = 0.00193 → 전체 모델은 통계적으로 유의하며, 독립변수들이 종속변수 Y에 영향을 미칠 가능성이 높다. X1은 핵심 변수, X3는 보조 변수 정도로 해석할 수 있다.</p>
+<p>샘플 수가 적기 때문에 t-값과 P-value는 다소 변동 가능하며, 추가 자료 확보 시 모델 신뢰성이 높아질 수 있다.</p>
+<div id="fb99efff" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>MulticoFit1 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Y ~ X1 + X3'</span>, data<span class="op">=</span>Multico).fit()</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>vif_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X'</span>: MulticoFit1.model.exog_names,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'VIE'</span>: [variance_inflation_factor(MulticoFit1.model.exog, i)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(MulticoFit1.model.exog.shape[<span class="dv">1</span>])]</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>vif_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X</th>
+<th data-quarto-table-cell-role="th">VIE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Intercept</td>
+<td>93.846154</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>X1</td>
+<td>1.108333</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>X3</td>
+<td>1.108333</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>X1, X3 모두 VIF가 5 이하이므로 다중공선성이 없다. 절편의 VIF가 높게 나오는 것은 상수항 특성 때문이며, 모델 해석에 영향이 없다.</p>
+<p>따라서 이전에 제거했던 X2, X4가 다중공선성을 유발했을 가능성을 보여주는 간접적인 결과로 볼 수 있다.</p>
+<section id="가변수" class="level2">
+<h2 class="anchored" data-anchor-id="가변수">04 가변수</h2>
+<p>Dummy Variable</p>
+<p>범주형 변수는 회귀 분석에 직접 사용할 수 없으므로, 이를 수치형 변수로 변환해야 한다.</p>
+<p>일반적으로 k 개의 범주를 가진 변수는 k - 1 개의 더미 변수로 변환하여 사용한다.</p>
+<p>이때, k - 1 개의 더미 변수 중 하나는 기준(reference) 범주로 설정되며, 나머지 범주들은 이 기준 범주와의 차이를 나타내는 변수로 해석된다.</p>
+<p>나이별 사는 지역 변수 처리</p>
+<div id="847d4474" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/SHINJIHAN/advanced-bigdata/main/data/Dummy.csv"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>Dummy <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>Dummy.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Y</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>46</td>
+<td>21</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>39</td>
+<td>21</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>62</td>
+<td>21</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>38</td>
+<td>21</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>39</td>
+<td>21</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>주어진 데이터에서 ‘Region’ 변수는 3개의 범주를 가집니다:</p>
+<p>Region 1 Region 2 Region 3 이때, Region 3이 기준 범주(reference category)가 되며, 회귀식은 다음과 같이 표현된다:</p>
+<p>여기서:</p>
+<p>β₁: Region 1에 해당하는 경우, Region 3과 비교하여 Y값의 차이 β₂: Region 2에 해당하는 경우, Region 3과 비교하여 Y값의 차이 β₀: Region 3에 해당하는 경우의 Y값 (기준 범주) 따라서, 회귀 계수 β₁과 β₂는 각각 Region 1와 Region 2이 Region 3에 비해 Y에 미치는 영향을 나타낸다.</p>
+<p>import pandas as pd Dummy[‘D1’] = 0 Dummy.loc[Dummy[‘Region’]==1, ‘D1’]=1 Dummy[‘D2’] = 0 Dummy.loc[Dummy[‘Region’]==2, ‘D2’]=1 Dummy.head()</p>
+<p>import statsmodels.formula.api as smf DummyFit = smf.ols(formula=‘Y~Age+D1+D2’, data=Dummy).fit() print(DummyFit.summary())</p>
+<p>import statsmodels.formula.api as smf DummyFit1 = smf.ols(formula=‘Y~Age+C(Region)’, data=Dummy).fit() print(DummyFit1.summary())</p>
+<p>import statsmodels.api as sm sm.stats.anova_lm(DummyFit1, typ=3)</p>
+<p>05 변수변환과 비선형 회귀분석 선형되지 않을 때 선형으로 바꿔주는 것. 예를 들면 로지스틱 회귀.</p>
+<hr>
+<p>교제: 파이썬을 활용한 데이터 분석과 응용</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

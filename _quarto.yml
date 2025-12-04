@@ -1,0 +1,30 @@
+execute:
+  python: "C:/Users/sinji/anaconda3/envs/py310/python.exe"
+
+project:
+  type: website
+
+website:
+  title: "StudyLog"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme:
+      - zephyr
+      - cosmo
+      - brand
+    css: ../styles.css
+    toc: true
+
+preview:
+  host: 0.0.0.0
+  port: 7809
+  watch-inputs: true
+  navigate: true
+  browser: true

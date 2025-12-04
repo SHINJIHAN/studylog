@@ -1,0 +1,203 @@
+---
+title: "Data Analysis"
+format: html
+---
+
+<div class="accordion" id="accordionExample">
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" 
+data-bs-toggle="collapse" data-bs-target="#collapse1"
+aria-expanded="false" aria-controls="collapse1">
+데이터분석입문 - 2024학년 1학기
+</button>
+
+<div id="collapse1" class="accordion-collapse collapse" 
+aria-labelledby="heading1" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA02.html'">
+    02장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA03.html'">
+    03장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA04.html'">
+    04장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA05.html'">
+    05장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA06.html'">
+    06장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA07.html'">
+    07장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA08.html'">
+    08장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA09.html'">
+    09장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA10.html'">
+    10장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA11.html'">
+    11장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA12.html'">
+    12장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA13.html'">
+    13장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA14.html'">
+    14장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='IDA/IDA15.html'">
+    15장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" 
+data-bs-toggle="collapse" data-bs-target="#collapse2"
+aria-expanded="false" aria-controls="collapse2">
+데이터분석심화 - 2024학년 2학기
+</button>
+
+<div id="collapse2" class="accordion-collapse collapse" 
+aria-labelledby="heading2" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'">
+   06장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA07.0.html'">
+   07장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA08.0.html'">
+   08장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA08.1.html'">
+   08장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA08.2.html'">
+   08장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA09.0.html'">
+   09장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA09.1.html'">
+   09장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA10.0.html'">
+   10장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA10.1.html'">
+   10장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA10.2.html'">
+   10장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA10.3.html'">
+   10장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA11.0.html'">
+   11장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+텍스트마이닝 이해 및 실습
+</button>
+
+<div id="collapse3" class="accordion-collapse collapse" 
+aria-labelledby="heading3" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'">
+   06장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+고급빅데이터분석실무
+</button>
+
+<div id="collapse4" class="accordion-collapse collapse" 
+aria-labelledby="heading4" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'">
+   06장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
