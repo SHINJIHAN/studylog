@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>제 6장-두 모집단에 대한 비교 – StudyLog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">StudyLog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">제 6장-두 모집단에 대한 비교</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>Reporting Date: Septemger. 28, 2024</p>
+</blockquote>
+<p>두 연속형 변수들 간의 연관성을 측정하는 데 사용되는 상관계수에 대해 다루고자 한다. (4장 두 변수 자료의 요약과 이어지는 내용이다.)</p>
+<p>두 변수의 공분산 구하는 과정</p>
+<ol type="1">
+<li>각 데이터에서 평균을 빼서, 두 변수의 편차를 각각 구한다.</li>
+</ol>
+<p>각각의 편차 계산 과정</p>
+<ol start="2" type="1">
+<li>두 변수 각각의 편차를 곱한 후 합산하는 방식이다.</li>
+</ol>
+<p>표준 공분산 계산 과정 더한 값에서 데이터 개수 n – 1 로 나눈 값이 표준 공분산이 된다.</p>
+<ol start="3" type="1">
+<li>공분산의 값은 – ∞ ~ + ∞ 사이에 존재한다.</li>
+</ol>
+<p>공분산은 두 변수 간의 선형 관계를 나타내기 때문에, 그 값은 음의 무한대에서 양의 무한대까지의 범위를 가질 수 있다.</p>
+<p>공분산이 양수이면 두 변수는 같은 방향으로 움직이고, 음수이면 반대 방향으로 움직인다. 두 값의 편차를 구하고, 이를 공분산으로 계산하는 과정은 Z–분포와 일부 유사할 수 있다. Z–분포는 표준화를 기반으로 하고, 상관계수도 공분산을 표준화하는 과정이 있기 때문에 연결이 가능하다. 다만, Z–분포는 정규 분포의 표준화 개념을 나타내고, 상관계수는 두 변수 간의 관계를 표준화하여 설명하는 것이므로 서로 다른 개념이라는 점을 주의해야 한다. 공분산은 단위가 포함된 값이다.</p>
+<p>서로 다른 단위를 가진 변수들 간의 공분산은 크기나 해석에서 어려움이 있을 수 있다.</p>
+<p>예를 들어, 키와 몸무게의 공분산은 그 자체로 의미를 이해하기 어렵다. 이를 보다 쉽게 해석하기 위해, 공분산을 표준화하여 단위를 제거한 새로운 값인 상관계수를 사용한다.</p>
+<p>단위를 제거하기 위해 공분산을 각각의 표준편차로 나눈다.</p>
+<p>이 과정에서 각 변수의 단위가 없어지고, –1 ~ +1 사이의 범위를 갖는다. 결과적으로 이것을 피어슨 적률상관계수라고 한다.</p>
+<p>피어슨의 적률상관계수 (Pearson correlation coefficient)</p>
+<p>둘 다 피어슨 상관계수를 나타내지만, 일반적으로 상관계수는 피어슨의 적률상관계수를 뜻한다. 왼쪽은 표본을 통해 추정한 상관계수이고,오른쪽은 모집단의 상관계수를 의미한다. 표본상관계수 r을 이용하여,모상관계수 ρ에 대한 가설검증을 할 수 있다.</p>
+<p>귀무가설에 대한 검정통계량은 아래와 같은 통계량으로서 이는 귀무가설 하에서 자유도 n – 2인 T–분포를 따른다. 더 일반적인 상관계수에 대한 귀무가설 검정을 수행하려면, 피셔의 Z–변환을 이용할 수 있다.</p>
+<p>스피어만의 순위상관계수 (Spearman’s Rank Correlation Coefficient)</p>
+<p>두 변수 간의 비선형 관계를 측정하는 방법으로, 각 데이터의 순위를 사용하여 상관관계를 계산한다.</p>
+<p>이는 데이터가 서열형(순위) 혹은 비모수적일 때 유용하며, 피어슨 상관계수와 달리 데이터의 분포에 대해 가정하지 않는다.</p>
+<p>이 공식은 순위 차이의 크기가 클수록 상관관계가 약해진다는 점을 반영한다.</p>
+<p>두 순위 간 차이를 나타내므로 양수, 음수, 0 모두 가질 수 있다.</p>
+<p>사례: 소득과 지출 사이에는 상관관계가 있는가?</p>
+<div id="56724e21" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/SHINJIHAN/advanced-bigdata/main/data/Student.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Student <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Student.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Income</th>
+<th data-quarto-table-cell-role="th">Expense</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>25</td>
+<td>170</td>
+<td>67</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>28</td>
+<td>177</td>
+<td>62</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>20</td>
+<td>165</td>
+<td>53</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>16</td>
+<td>150</td>
+<td>48</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>19</td>
+<td>160</td>
+<td>58</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>4개의 변수 중 Age(나이), Income(소득), Expense(지출) 변수를 사용하기로 한다.</p>
+<p>먼저, 산점도를 통해 데이터 분포의 전체적인 형태를 시각화한다.</p>
+<div id="d2b90557" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="st">'Income'</span>, <span class="st">'Expense'</span>, <span class="co"># 소득, 지출</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">'o'</span>, <span class="co"># 점의 형태: 원형</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         color <span class="op">=</span> <span class="st">'black'</span>, data <span class="op">=</span> Student)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Income'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expense'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>Text(0, 0.5, 'Expense')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-3-output-2.png" width="586" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>plot 버전</p>
+<div id="a84b52ca" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="st">'Income'</span>, <span class="st">'Expense'</span>, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> Student)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Income'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expense'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>Text(0, 0.5, 'Expense')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-4-output-2.png" width="586" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>scatter 버전 위 산점도는 전반적으로 상승하는 경향을 보이며, 타원형 분포를 통해 양의 상관관계를 나타낸다. 신뢰구간, 회귀직선, 히스토그램이 추가된 산점도를 그린다</p>
+<div id="a15109c8" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x <span class="op">=</span> <span class="st">'Income'</span>, y <span class="op">=</span> <span class="st">'Expense'</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              data <span class="op">=</span> Student, kind <span class="op">=</span> <span class="st">"reg"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-5-output-1.png" width="562" height="566" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>하늘색 영역은 신뢰구간이다.</p>
+<p>산점도 행렬 출력하기</p>
+<div id="096edd9e" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(Student.iloc[:,<span class="dv">1</span>:<span class="dv">4</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.PairGrid(Student.iloc[:,<span class="dv">1</span>:<span class="dv">4</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>g.map_upper(sns.scatterplot)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>g.map_lower(sns.kdeplot)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>g.map_diag(sns.kdeplot, lw <span class="op">=</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-6-output-1.png" width="711" height="711" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-6-output-2.png" width="712" height="706" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>정방행렬의 형태로 피어슨의 상관계수 출력</p>
+<p>Student.iloc[:,1:4].corr(method=‘pearson’)</p>
+<p>같은 행렬에서 상관계수가 1로 나오는 이유: 완벽한 양의 선형관계가 존재하기 때문이다. 전반적으로, 모든 변수들 간의 상관계수가 0.5 이상으로 비교적 높다.</p>
+<p>두 변수 수입과 지출 간의 모상관계수가 0인지를 검정한다.</p>
+<div id="0709f492" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pearsonr(Student.Income, Student.Expense)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>PearsonRResult(statistic=np.float64(0.6812956535794542), pvalue=np.float64(0.0026006496946941993))</code></pre>
+</div>
+</div>
+<p>사회과학 분야에서는 상관계수가 0.4 정도만 되어도 높은 값으로 간주된다. 표본 상관계수는 0.681로 비교적 높게 나타났으며, p–값은 0.002(0.2%)로 매우 낮아 귀무가설을 기각할 수 있다.</p>
+<p>따라서, 모상관계수가 0이 아니라고 결론지을 수 있다.</p>
+<p>상관계수와 p–값을 함께 출력한다.</p>
+<div id="339d4bc6" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install pingouin</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Student.iloc[:,<span class="dv">1</span>:<span class="dv">4</span>].pairwise_corr(method<span class="op">=</span><span class="st">'pearson'</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X</th>
+<th data-quarto-table-cell-role="th">Y</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">alternative</th>
+<th data-quarto-table-cell-role="th">n</th>
+<th data-quarto-table-cell-role="th">r</th>
+<th data-quarto-table-cell-role="th">CI95%</th>
+<th data-quarto-table-cell-role="th">p-unc</th>
+<th data-quarto-table-cell-role="th">BF10</th>
+<th data-quarto-table-cell-role="th">power</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Age</td>
+<td>Income</td>
+<td>pearson</td>
+<td>two-sided</td>
+<td>17</td>
+<td>0.547</td>
+<td>[0.09, 0.81]</td>
+<td>0.023</td>
+<td>3.255</td>
+<td>0.653</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Age</td>
+<td>Expense</td>
+<td>pearson</td>
+<td>two-sided</td>
+<td>17</td>
+<td>0.530</td>
+<td>[0.07, 0.81]</td>
+<td>0.029</td>
+<td>2.735</td>
+<td>0.619</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Income</td>
+<td>Expense</td>
+<td>pearson</td>
+<td>two-sided</td>
+<td>17</td>
+<td>0.681</td>
+<td>[0.3, 0.88]</td>
+<td>0.003</td>
+<td>19.505</td>
+<td>0.889</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>상관계수행렬을 그래프로 그린다</p>
+<div id="333a31bb" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>corrMatrix <span class="op">=</span> Student.iloc[:,<span class="dv">1</span>:<span class="dv">4</span>].corr(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    method <span class="op">=</span> <span class="st">'pearson'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corrMatrix, </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            annot <span class="op">=</span> <span class="va">True</span>) <span class="co"># 그림 위 수치 표시</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-9-output-1.png" width="533" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>편상관계수 (Partial Correlation Coefficient)</p>
+<p>두 변수 간의 상관관계를 분석할 때,특정 다른 변수의 영향을 통제(고정)한 후의 상관관계를 나타내는 지표. 이를 통해 변수들 간의 순수한 연관성을 파악할 수 있다.</p>
+<p>사례: 변수인 나이를 통제했을 때, 기능과 디자인에 대한 만족도 간에 상관관계가 있는가?</p>
+<div id="55508dee" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/SHINJIHAN/advanced-bigdata/main/data/Satis.csv"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Satis <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Satis.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Satis1</th>
+<th data-quarto-table-cell-role="th">Satis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>28</td>
+<td>0</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>23</td>
+<td>0</td>
+<td>55</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>26</td>
+<td>5</td>
+<td>65</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>27</td>
+<td>5</td>
+<td>65</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>25</td>
+<td>10</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>4개의 변수 중 ID를 제외한 나머지 변수를 사용하기로 한다.</p>
+<p>1 ~ 3번째 열까지의 상관계수를 구하고, 그 값을 소수점 셋째 자리로 반올림하여 출력</p>
+<div id="63ed08ba" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Satis.iloc[:,<span class="dv">1</span>:<span class="dv">4</span>].corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Satis1</th>
+<th data-quarto-table-cell-role="th">Satis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Age</th>
+<td>1.000</td>
+<td>0.698</td>
+<td>0.993</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Satis1</th>
+<td>0.698</td>
+<td>1.000</td>
+<td>0.703</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Satis2</th>
+<td>0.993</td>
+<td>0.703</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>모든 상관계수들이 0.6보다 큰 값을 가지고 있다.</p>
+<p>두 변수 간의 피어슨 상관계수와 p–값 출력</p>
+<div id="d365b6d8" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pearsonr(Satis.Satis1, Satis.Satis2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>PearsonRResult(statistic=np.float64(0.7030501468749641), pvalue=np.float64(0.0005449862495058279))</code></pre>
+</div>
+</div>
+<p>p–값이 0.0005(0.05%)이므로, 귀무가설을 기각할 수 있다.</p>
+<p>1 ~ 3열까지의 데이터에 대해 편상관계수 출력</p>
+<div id="47f11082" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Satis.iloc[:,<span class="dv">1</span>:<span class="dv">4</span>].pcorr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Satis1</th>
+<th data-quarto-table-cell-role="th">Satis2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Age</th>
+<td>1.000</td>
+<td>-0.003</td>
+<td>0.987</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Satis1</th>
+<td>-0.003</td>
+<td>1.000</td>
+<td>0.115</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Satis2</th>
+<td>0.987</td>
+<td>0.115</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Age – Satis2 (0.9): 매우 강한 양의 상관관계가 있으며, Age – Satis1 (-0.0): 0에 가까우므로, 거의 상관관계가 없다.</p>
+<p>Satis1 – Satis2 (0.1): 약한 양의 상관관계를 가지고 있다.</p>
+<p>Age를 공변량(covariate)으로 통제한 뒤, Satis1과 Satis2의 순수한 상관관계를 측정한다.</p>
+<div id="eaa32305" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Satis.partial_corr(x<span class="op">=</span><span class="st">'Satis1'</span>, y<span class="op">=</span><span class="st">'Satis2'</span>, covar<span class="op">=</span><span class="st">'Age'</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">n</th>
+<th data-quarto-table-cell-role="th">r</th>
+<th data-quarto-table-cell-role="th">CI95%</th>
+<th data-quarto-table-cell-role="th">p-val</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">pearson</th>
+<td>20</td>
+<td>0.115</td>
+<td>[-0.36, 0.54]</td>
+<td>0.639</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>CI95%는 상관계수 r에 대한 95% 신뢰구간이다. 즉, 실제 상관계수가 -0.36 ~ 0.54 사이에 있을 가능성이 95%라는 의미이다.</p>
+<p>상관계수가 음수와 양수일 가능성을 모두 포함하는 넓은 범위는 상관관계가 약하다는 것을 의미한다.</p>
+<p>p–값은 0.6(60%)이므로, 두 변수 사이의 상관관계는 유의하지 않다고 결론지을 수 있다. 결론적으로, 나이가 많을수록 제품의 기능과 디자인에 대한 만족도가 모두 증가하는 경향이 있다. 앞서 나이가 중요한 요인으로 확인되었으므로, 이번에는 나이를 30세 이하와 30세 초과로 나누어 산점도를 그려보았다.</p>
+<div id="c1144f01" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Satis.loc[Satis.Age <span class="op">&lt;</span> <span class="dv">30</span>,<span class="st">"AgeGroup"</span>] <span class="op">=</span> <span class="st">"Under30"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Satis.loc[Satis.Age <span class="op">&gt;=</span> <span class="dv">30</span>,<span class="st">"AgeGroup"</span>] <span class="op">=</span> <span class="st">"Over30"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x <span class="op">=</span> <span class="st">'Satis1'</span>, y <span class="op">=</span> <span class="st">'Satis2'</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>              data <span class="op">=</span> Satis, hue <span class="op">=</span> <span class="st">"AgeGroup"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>              <span class="co"># hue: 집단 변수(색을 구분하는 변수)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ADA07.0_files/figure-html/cell-15-output-1.png" width="570" height="566" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>연령대별로 구분할 경우, 두 변수의 상관성이 상당히 낮아짐을 볼 수 있다. 두 변수로 구분된 산점도가 전혀 겹치지 않고, 비선형적인 분포를 보이므로, 이들은 서로 연관성이 없다고 판단할 수 있다.</p>
+<p>연령대별에 대한 상관계수를 출력해본다.</p>
+<div id="2111595d" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SatisUnder30 <span class="op">=</span> Satis.loc[Satis.AgeGroup <span class="op">==</span> <span class="st">"Under30"</span>,]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>SatisOver30 <span class="op">=</span> Satis.loc[Satis.AgeGroup <span class="op">==</span><span class="st">"Over30"</span>,]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pearsonr(SatisUnder30.Satis1, SatisUnder30.Satis2))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pearsonr(SatisOver30.Satis1, SatisOver30.Satis2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PearsonRResult(statistic=np.float64(0.38797014489949266), pvalue=np.float64(0.38979066100659016))
+PearsonRResult(statistic=np.float64(0.17182016983164788), pvalue=np.float64(0.5746020827503785))</code></pre>
+</div>
+</div>
+<p>상관계수의 값은 모두 낮고, 유의수준보다 p–값이 더 크므로, 두 변수 사이의 상관관계는 유의하지 않다고 결론지을 수 있다.</p>
+<p>신뢰도 분석 측정 도구가 일관되게 측정하고 있는지를 평가하는 과정.</p>
+<p>t와 e는 서로 독립(두 변수가 서로 대응되지 않는 것)이다.</p>
+<p>분산을 기반으로 두 변수 간의 관계 강도를 나타낸다.</p>
+<p>이 식은 피어슨 상관계수의 정의에서 유도된 것이며, 상관계수의 제곱을 나타내는 공식이다.</p>
+<p>식은 다음과 같이 분리된 형태로 표현된다.</p>
+<p>오차 e와 진정한 값 t가 독립적이라고 가정하면 Cov( e, t ) = 0이다.</p>
+<p>위 식을 대입한 뒤, 정리한다.</p>
+<p>따라서, 신뢰도는 참점수 t와 관측점수 X의 분산비(ratio of variance)로 해석할 수 있다.</p>
+<p>크론바흐의 알파 (Cronbach’s alpha)</p>
+<p>내적일치도(internal consistency)을 측정하기 위한 통계 지표. 여러 문항이 동일한 개념을 얼마나 잘 측정하는지를 나타낸다.</p>
+<p>위 계수는 0 ~ 1 사이의 값을 가지며, 값이 클수록 측정 도구의 신뢰도가 높다는 것을 의미한다.</p>
+<p>사례: 알파 계수 사용하여, 기업 구성원의 의식을 알아보기</p>
+<div id="65b3aa47" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/SHINJIHAN/advanced-bigdata/main/data/Ability.csv"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Ability <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>Ability.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Q01</th>
+<th data-quarto-table-cell-role="th">Q02</th>
+<th data-quarto-table-cell-role="th">Q03</th>
+<th data-quarto-table-cell-role="th">Q04</th>
+<th data-quarto-table-cell-role="th">Q05</th>
+<th data-quarto-table-cell-role="th">Q06</th>
+<th data-quarto-table-cell-role="th">Q07</th>
+<th data-quarto-table-cell-role="th">Q08</th>
+<th data-quarto-table-cell-role="th">Q09</th>
+<th data-quarto-table-cell-role="th">Q10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4</td>
+<td>3</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>4</td>
+<td>2</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>5</td>
+<td>2</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4</td>
+<td>2</td>
+<td>4.0</td>
+<td>2.0</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>3</td>
+<td>2</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>위 설문조사는 10개의 문항이 존재하며, 대상자는 각 문항에 대해 1 ~ 5점까지의 값을 매길 수 있다.</p>
+<p>상사의 업무수행능력에 대한 신뢰도를 분석한다.</p>
+<div id="f5945759" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Ability[[<span class="st">"Q01"</span>, <span class="st">"Q02"</span>, <span class="st">"Q03"</span>]].corr()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>pg.cronbach_alpha(data <span class="op">=</span> Ability[[<span class="st">"Q01"</span>, <span class="st">"Q02"</span>, <span class="st">"Q03"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>(np.float64(0.7351921832148215), array([0.697, 0.769]))</code></pre>
+</div>
+</div>
+<p>알파 계수의 값이 0.735로서 내적일관성 신뢰도가 높다는 것을 알 수 있다. 상사와의 공적/사적 긴밀함에 대한 신뢰도 분석하기.</p>
+<div id="f1410300" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Ability[[<span class="st">"Q04"</span>, <span class="st">"Q05"</span>, <span class="st">"Q06"</span>, <span class="st">"Q07"</span>]].corr()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Q04</th>
+<th data-quarto-table-cell-role="th">Q05</th>
+<th data-quarto-table-cell-role="th">Q06</th>
+<th data-quarto-table-cell-role="th">Q07</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Q04</th>
+<td>1.000000</td>
+<td>0.100787</td>
+<td>0.307348</td>
+<td>-0.351547</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Q05</th>
+<td>0.100787</td>
+<td>1.000000</td>
+<td>0.241432</td>
+<td>-0.273088</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Q06</th>
+<td>0.307348</td>
+<td>0.241432</td>
+<td>1.000000</td>
+<td>-0.350307</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Q07</th>
+<td>-0.351547</td>
+<td>-0.273088</td>
+<td>-0.350307</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>4개의 문항에 대해 알파 계수를 계산하였다.</p>
+<div id="2036957e" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pg.cronbach_alpha(data <span class="op">=</span> Ability[[<span class="st">"Q04"</span>, <span class="st">"Q05"</span>, <span class="st">"Q06"</span>, <span class="st">"Q07"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>(np.float64(-0.2224494957901865), array([-0.386, -0.073]))</code></pre>
+</div>
+</div>
+<p>알파 계수의 값이 –0.222로 계산되었으며, 이 값은 신뢰도가 음수라는 것을 나타낸다. 일반적으로 알파가 음수값을 가질 경우, 문항들이 서로 일관성이 없음을 의미한다. 이는 측정 도구가 잘못 설계되었거나, 각 문항이 서로 다른 개념을 측정하고 있음을 나타낼 수 있다.</p>
+<p>특히 문항 Q07이 나머지 문항들의 점수와 음의 상관을 가진다는 것을 알 수 있다.</p>
+<p>이 신뢰구간은 크론바흐의 알파 값의 신뢰성을 보여준다. 신뢰구간의 하한이 –0.386이고 상한이 –0.073인 것으로, 신뢰구간 내에 음수가 포함되어 있다.</p>
+<p>이는 크론바흐의 알파가 신뢰할 수 없는 상태임을 더욱 확증한다. 이 결과를 바탕으로 측정 도구의 문항을 재검토하거나 수정하는 것이 필요할 것으로 보인다.</p>
+<p>Q07 문항의 값을 6에서 빼는 방식으로 역전환을 시도한다.</p>
+<div id="888478b7" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Ability[<span class="st">"Q07_R"</span>] <span class="op">=</span> <span class="dv">6</span> <span class="op">-</span> Ability.Q07</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Ability[[<span class="st">"Q04"</span>, <span class="st">"Q05"</span>, <span class="st">"Q06"</span>, <span class="st">"Q07"</span>]].corr()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Q04</th>
+<th data-quarto-table-cell-role="th">Q05</th>
+<th data-quarto-table-cell-role="th">Q06</th>
+<th data-quarto-table-cell-role="th">Q07</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Q04</th>
+<td>1.000000</td>
+<td>0.100787</td>
+<td>0.307348</td>
+<td>-0.351547</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Q05</th>
+<td>0.100787</td>
+<td>1.000000</td>
+<td>0.241432</td>
+<td>-0.273088</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Q06</th>
+<td>0.307348</td>
+<td>0.241432</td>
+<td>1.000000</td>
+<td>-0.350307</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Q07</th>
+<td>-0.351547</td>
+<td>-0.273088</td>
+<td>-0.350307</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>긍정적인 답변을 가진 경우, 다른 문항들과 반대되는 경향을 보여주기 때문이다.</p>
+<div id="17a1c78b" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pg.cronbach_alpha(data <span class="op">=</span> Ability[[<span class="st">"Q04"</span>, <span class="st">"Q05"</span>, <span class="st">"Q06"</span>, <span class="st">"Q07_R"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>(np.float64(0.5876937990663734), array([0.532, 0.638]))</code></pre>
+</div>
+</div>
+<p>알파 계수의 값이 0.587로서 비교적 만족스럽고, 각 문항들과 다음 문항들의 점수와의 상관계수도 모두 양의 부호를 가진다는 것을 알 수 있다.</p>
+<p>업무추진의 독자성에 대한 신뢰도 분석하기.</p>
+<div id="0496eba6" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Ability[[<span class="st">"Q08"</span>, <span class="st">"Q09"</span>, <span class="st">"Q10"</span>]].corr()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Q08</th>
+<th data-quarto-table-cell-role="th">Q09</th>
+<th data-quarto-table-cell-role="th">Q10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Q08</th>
+<td>1.000000</td>
+<td>0.22047</td>
+<td>0.067734</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Q09</th>
+<td>0.220470</td>
+<td>1.00000</td>
+<td>-0.001290</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Q10</th>
+<td>0.067734</td>
+<td>-0.00129</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>3개의 문항에 대해 알파계수를 계산한 것이다.</p>
+<div id="fff000bf" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pg.cronbach_alpha(data <span class="op">=</span> Ability[[<span class="st">"Q08"</span>, <span class="st">"Q09"</span>, <span class="st">"Q10"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>(np.float64(0.25112573908813685), array([0.144, 0.347]))</code></pre>
+</div>
+</div>
+<p>알파 계수의 값이 0.251로 매우 낮게 나타나고 있다.</p>
+<p>따라서, 이들 문항이 하나의 동질적인 개념을 측정한다는 것을 신뢰할 수 없으며 세 문항의 합점수를 사용하는 것은 문제가 된다는 것을 알 수 있다. 사용자 정의 함수를 이용하여, 표준화 크론바흐 알파의 계산식을 구현하였다.</p>
+<div id="cb9429f1" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> CronbachAlpha(df):</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    df_corr <span class="op">=</span> df.corr()</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> df.shape[<span class="dv">1</span>]</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    rs <span class="op">=</span> np.array([])</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i,col <span class="kw">in</span> <span class="bu">enumerate</span>(df_corr.columns):</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        sum_ <span class="op">=</span> df_corr[col][i<span class="op">+</span><span class="dv">1</span>:].values</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        rs <span class="op">=</span> np.append(sum_, rs)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    mean_r <span class="op">=</span> np.mean(rs)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    cronbach_alpha <span class="op">=</span> (N <span class="op">*</span> mean_r) <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> (N<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> mean_r)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cronbach_alpha</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>CronbachAlpha(Ability[[<span class="st">"Q01"</span>, <span class="st">"Q02"</span>, <span class="st">"Q03"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>np.float64(0.7340559223240841)</code></pre>
+</div>
+</div>
+<p>일반적으로 크론바흐의 알파가 0.7 이상이면 문항들 간의 일관성이 적절하다고 평가된다.</p>
+<div id="97879114" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>CronbachAlpha(Ability[[<span class="st">"Q04"</span>, <span class="st">"Q05"</span>, <span class="st">"Q06"</span>, <span class="st">"Q07"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>np.float64(-0.25906347398614543)</code></pre>
+</div>
+</div>
+<p>음수가 나온 경우, 문항들 간에 부정적인 상관관계가 있을 가능성이 높으며, 문항들이 제대로 된 일관성을 가지지 못하고 있음을 나타낸다.</p>
+<div id="0bed0099" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>CronbachAlpha(Ability[[<span class="st">"Q08"</span>, <span class="st">"Q09"</span>, <span class="st">"Q10"</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>np.float64(0.24084556669287197)</code></pre>
+</div>
+</div>
+<p>이 값은 상대적으로 낮은 문항들 간의 상관성을 나타낼 수 있으며, 이는 문항들이 일관성이 부족하다는 것을 의미한다.</p>
+<p>결과적으로 의미있는 신뢰도를 가진 문항은 Q01 ~ Q03 사이이다.</p>
+<hr>
+<p>교제: 파이썬을 활용한 데이터 분석과 응용</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

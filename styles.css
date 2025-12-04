@@ -1,0 +1,81 @@
+/* css styles */
+.navbar {
+  background-color: #4A6FA5 !important;
+}
+
+/* 헤더 글자 항상 흰색 */
+.navbar, .navbar a, .navbar a:visited, .navbar a:hover {
+    color: #ffffff !important;
+}
+
+body {
+    font-size: 20px; /* 기본은 16px 정도, 필요하면 더 키움 */
+    line-height: 2;
+}
+
+.btn-custom {
+  background-color: #5ea3a0;
+  color: #fff;
+  border-radius: 12px; /* 둥근 정도 조절 가능 */
+  font-weight: bold;   /* 글씨 굵게 */
+  margin-right: 5px;   /* 버튼 간 간격 */
+  font-size: 20px;  /* 글씨 크기 조절 */
+  white-space: nowrap; /* 글자가 줄바꿈되지 않도록 */
+}
+
+.button-container button {
+  flex: 1 1 auto;       /* 화면 크기에 따라 버튼 너비 자동 조절 */
+  min-width: 150px;     /* 최소 너비 지정 */
+  margin: 5px 0;        /* 위아래 5px 공백 추가 */
+  padding: 10px 15px;   /* 버튼 내부 위아래 패딩 확대 */
+}
+
+
+.tab-pane-fixed {
+  height: 500px;
+  overflow-y: auto;
+}
+
+body .page-columns {
+    max-width: 1350px;
+    margin: 0 auto;
+    grid-template-columns:
+        [screen-start] 1.5em 
+        [body-content-start] minmax(600px, 1fr)
+        [body-content-end] 1.5em 
+        [screen-end];
+}
+
+.aa-SubmitIcon {
+  fill: white;
+}
+
+.navbar-toggler-icon {
+  background-image: none; /* 기본 햄버거 제거 */
+}
+
+.navbar-toggler-icon::before {
+  content: "\2630"; /* ☰ 유니코드 햄버거 아이콘 */
+  color: white;
+  font-size: 1.8rem;
+}
+
+/* 본문이 너무 좁아지지 않도록 여백 조정 */
+.page-columns {
+    grid-template-columns:
+        1fr  /* 본문 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#toc-title {
+  font-size: 0; /* 기존 텍스트 숨기기 */
+}
+
+#toc-title::after {
+  content: "목차"; /* 여기만 수정하면 됨 */
+  font-size: 1.5rem; /* 원하는 크기 */
+  font-weight: 600;  /* 굵기 조절 */
+}
