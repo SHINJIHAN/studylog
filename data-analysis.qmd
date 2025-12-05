@@ -204,7 +204,7 @@ aria-labelledby="heading3" data-bs-parent="#accordionExample">
 
 <div class="accordion-item">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-고급빅데이터분석실무
+ 고급빅데이터분석실무
 </button>
 
 <div id="collapse4" class="accordion-collapse collapse" 
@@ -214,9 +214,26 @@ aria-labelledby="heading4" data-bs-parent="#accordionExample">
 
 <div class="button-container d-flex flex-wrap gap-2">
 
-  <button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'">
-   06장
+  <button class="btn btn-custom" onclick="location.href='DAP/DAP01.0.html'">
+   분석1
   </button>
+
+  <button class="btn btn-custom" onclick="location.href='DAP/DAP01.1.html'">
+   분석2
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='DAP/DAP02.html'">
+   이론1
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='DAP/DAP03.html'">
+   이론2
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='DAP/DAP04.html'">
+   이론3
+  </button>
+
 
 </div>
 
