@@ -169,7 +169,11 @@ aria-labelledby="heading3" data-bs-parent="#accordionExample">
    02장
   </button>
 
-  <button class="btn btn-custom" onclick="location.href='TM/TM03.html'">
+  <button class="btn btn-custom" onclick="location.href='TM/TM03.0.html'">
+   03장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='TM/TM03.1.html'">
    03장
   </button>
 
@@ -181,16 +185,12 @@ aria-labelledby="heading3" data-bs-parent="#accordionExample">
    05장
   </button>
 
-  <button class="btn btn-custom" onclick="location.href='TM/TM06.html'">
+  <button class="btn btn-custom" onclick="location.href='TM/TM06.0.html'">
    06장
   </button>
 
-  <button class="btn btn-custom" onclick="location.href='TM/TM07.html'">
-   07장
-  </button>
-
-  <button class="btn btn-custom" onclick="location.href='TM/TM08.html'">
-   08장
+  <button class="btn btn-custom" onclick="location.href='TM/TM06.1.html'">
+   06장
   </button>
 
 </div>

@@ -1,0 +1,127 @@
+---
+title: "6장: 감성 분석"
+format: html
+---
+
+> Reporting Date: May. 13, 2025
+
+감성분석에 대해 다루고자 한다.
+
+01 제목1 [ID 사용하기]
+감성 사전, 말에는 감성이 있다.
+단어에 관한 감성 분석, 태도, 성향, 의견
+한 개인의 감정이라도 이것도 많아지면 사람들이 생각하는 한 방향이 됨
+
+극성, 과학에서 말하는 극성
+
+어휘 기반은 수동으로 구축, 도메인(산업군, 어떤 카테고리 또는 영역인가?)
+같은 언어, 단어가 도메인에 따라 다른 감성을 가질 수 있다.
+
+사전 기반은 이미 누군가가 만들어 놓은 감성 사전을 사용하는 것
+
+한국어 사전, 한국어, 국문학을 전공한 사람들이 참여했을 것이다.
+리커트 척도? 보통이라는 의미를 담는 3점을 고른 생각이 같지 않을 것이라는 것이다.
+정량적인 분석이 가능해야 리커트 척도라고 볼 수 있다.
+즉, 각 등간 간격이 모두 동일해야 한다는 것이다.
+
+디테일하게 보고 싶으면 에뮬렉스를 사용.
+
+
+
+ 1 .  제목2
+감성 분석을 위해 군산대학교 감성사전 웹사이트를 참고한다.
+
+
+KNU 한국어 감성사전
+
+
+
+dilab.kunsan.ac.kr
+
+
+또는 깃허브로 바로 이동해도 된다.
+
+
+GitHub - park1200656/KnuSentiLex: KNU(케이앤유) 한국어 감성사전
+
+KNU(케이앤유) 한국어 감성사전. Contribute to park1200656/KnuSentiLex development by creating an account on GitHub.
+
+github.com
+
+
+이 사이트는 다음과 같은 이유로 감성 분석에 유용하다.
+
+KNUSL 감성 사전의 특징
+국내에서 구축한 한글 감성 어휘 사전으로, 한국어 감성 분석에 특화되어 있다.
+각 단어에 감성 점수(긍정/부정/중립 등급)를 부여할 수 있다.
+다양한 도메인(예: 리뷰, 뉴스 등)에 맞춘 감성 어휘 제공한다.
+데이터는 연구 및 학습 목적으로 자유롭게 다운로드 가능 (단, 출처 명시 필요)
+
+
+
+Download ZIP 클릭.
+
+
+
+다운로드 된 파일 압축 풀기.
+
+
+
+data 폴더로 들어간 다음 SentiWord_info 파일 경로 복사하기
+
+
+감성 사전 JSON 파일을 읽어서 단어만 추출해보기.
+
+import json
+
+file_path = r'C:\Users\jkl12\Downloads\KnuSentiLex-master\KnuSentiLex-master\data\SentiWord_info.json'
+
+with open(file_path, 'r', encoding='utf-8') as f:
+    json_data = json.load(f)
+
+# 단어 리스트 생성
+word_list = []
+for item in json_data:  # 리스트 반복
+    word_txt = item['word']
+    word_list.append(word_txt)
+
+# 결과 출력 (앞 10개만 보기)
+print(word_list[:10])
+
+
+
+KOSAC 감성사전 다운로드
+
+
+
+GitHub - mrlee23/KoreanSentimentAnalyzer: 한국어 감성 분석기
+
+한국어 감성 분석기. Contribute to mrlee23/KoreanSentimentAnalyzer development by creating an account on GitHub.
+
+github.com
+
+
+
+
+# values 긍정부정중립
+
+
+
+
+
+01 제목1 [ID 사용하기]
+
+
+ 1 .  제목2
+
+
+
+NRC Emotion Lexicon
+
+Impact Some notable ways in which the NRC Emotion Lexicon has made impact include: First of its kind: It was the first word-emotion association lexicon, with entries for eight basic emotions as well as positive and negative sentiment. It still remains the
+
+saifmohammad.com
+
+---
+
+[출처] 파이썬기반 SNS텍스트 데이터마이닝 개정판

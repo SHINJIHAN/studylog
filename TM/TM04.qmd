@@ -1,0 +1,419 @@
+---
+title: "4장: 크롤링 데이터 전처리"
+format: html
+---
+
+> Reporting Date: April. 01, 2025
+
+크롤링 데이터의 통합 및 전처리에 대해 다루고자 한다.
+
+너저문한 데이터를 정리
+
+개행문자는 스페이스바를 눌렸기에 생기는 것임.
+이를 처리하는 것이 전처리 과정임.
+
+의미있는 인사이트를 얻기 위해서 정리
+
+원데이터, 쿠팡에서 들어오는 데이터는 트랜젝션데이터(거래 데이터)
+어떤 고객이 가입, 비가입, 어떤 카드로 결제, 회원가입 정보(최소한의 정보), 
+배송을 위한 성명, 휴대폰 번호, 본인인증 정도, - 고객의 프로파일링, 또는 데모그래픽 데이터
+품목명, 가격명, 시간대, 카드 정보 -- 정형데이터
+이러한 필드로 저장됨, 댓글 정보 -- 비정형 데이터, 사람마다 쓰는 댓글 양이 다름
+고객의 반응을 보기 위해 전처리를 시도함, 이는 IT팀, 마케팅팀, MD가 사용
+
+성별을 구별하는 방법
+
+룰세팅을 하여 전처리 필요 없이 데이터를 뽑아서 써야 됨
+여기선 가공 변수를 만드는 것이 필요함(예: 특정한 시간대에서 발생되는 매출)
+
+품목별 페이지에 대한 로그분석, 리뷰 데이터, 댓글의 패턴, 쿠키로 데이터 가져오기
+SKT 전화요금제,만 있을 경우, 전화거래량 패턴 분석 정도 밖에 할 수 없음.
+이름으로 성별을 판별 --
+
+추정을 하는 것임
+
+
+
+02 정규표현식
+
+
+import re
+text = 'core core883core'
+re.findall(r'\bcore\b', text)
+
+
+# 단어 중간에 있는디
+re.findall(r'\B1', text)
+
+
+re.findall(r'1\B', text)
+
+
+text = '12 month 365 days 2023?'
+re.findall(r'\d', text)
+
+
+text = '12 month 365 days 2023?'
+re.findall(r'\d+', text) # 숫자에 해당되는 걸 다 가져와
+
+
+re.findall(r'\D+', text) # 숫자를 제외한 모든 것
+
+
+text = 'Wow! 999. This is a wonderful place.'
+w_text = re.findall(r'\w+', text)
+w_text # 특수문자를 제외한 모든 문자출력
+
+
+text = 'Wow! 999. This is a wonderful place.'
+w_text = re.findall(r'\W+', text)
+w_text
+
+
+text = 'Wow! 999. This is a wonderful place.'
+w_text = re.findall(r'\s+', text)
+w_text
+
+
+text = 'Wow! 999. This is a wonderful place.'
+w_text = re.findall(r'\S+', text)
+w_text # 특수문자까지 포함하여 출력
+
+
+03 데이터 합치기
+
+
+1. 라이브러리 불러오기
+
+import pandas as pd
+import pickle
+import os
+import re
+
+
+2. 데이터 병합하기
+
+# 파일 저장 위치
+file_path = r'C:\Users\jkl12\텍스트마이닝\\'
+
+# pkl 파일 로드 함수
+def pklopen(text):
+    f = open(file_path + '{}.pkl'.format(text),"rb")
+    a = pickle.load(f)
+    f.close()
+    return a
+    
+# 수집된 데이터
+data1 = pklopen('노인부양blog')
+data2 = pklopen('노인부양cafe')
+data3 = pklopen('노인부양cafe2')
+
+
+# 데이터 결합
+
+# 행(row) 방향으로 데이터를 
+# 밑으로 합치는(concatenate) 방식
+data = pd.concat([data1, data2, data3])
+
+# 수집된 데이터가 모두 같은 컬럼 구조를 갖는다면,
+# 위에서 아래로 이어붙이는 방식으로 결합된다.
+
+
+# 각 채널 사이즈 확인
+data.groupby(['ch', 'ch2']).size()
+
+
+
+3. 인덱스 재설정하기
+
+# 인덱스를 0, 1, 2, ...로 초기화하고,
+# 기존 인덱스는 새로운 열로 남기지 않도록 하는 명령어.
+
+# 주로 데이터 정제 후 인덱스를 깔끔하게 맞출 때 사용된다.
+data = data.reset_index(drop=True)
+data
+
+
+
+채널별 수집한 데이터의 병합 결과
+
+
+04 데이터 전처리
+
+
+4. 한글화
+
+정제, 정규화, 토큰화의 3단계를 거친다.
+비정형 데이터일 경우, 
+
+문서 날리기
+
+100 정열
+
+f = open(file_path + '노인부양병합', 'wb')
+pickle.dump(data, f)
+f.close()
+
+f = open(file_path + '노인부양병합', 'rb')
+docs = pickle.load(f)
+f.close()
+docs
+
+# 병합된 데이터를 피클 파일로 저장 및 출력한 것으로
+# 아래와 같이 파일이 저장된 것을 확인할 수 있다.
+
+
+
+
+
+# 제목, 본문, 댓글의 한글화 및 특수문자 제거
+
+for i in range(len(docs)):
+    docs.loc[i, 'title'] = re.sub(
+        r"[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]", "", str(data.loc[i, 'title']))
+    
+    docs.loc[i, 'doc'] = re.sub(
+        r"[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]", "", str(data.loc[i, 'doc']))
+    
+    docs.loc[i, 'comment_cnt'] = re.sub(
+        r"[^0-9]", "", str(docs.loc[i, 'comment_cnt']))
+    
+    docs.loc[i, 'comment_list'] = re.sub(
+        r"[^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]", "", str(data.loc[i, 'comment_list']))
+
+docs
+
+
+
+
+
+
+
+# 조건에 맞는 row만 남기기
+
+docs = docs[
+    ~(
+        (docs['doc'].str.len() < 2) |
+        (docs['doc'].str.isspace())
+    )
+].reset_index(drop=True)
+안에 ^를 넣을 때 한글만 가져오기
+
+
+
+5. 문자형으로는 카우트 할 수 없으므로
+
+# like, comment_cnt, img, div의 데이터 타입을 숫자로 변환
+# 변환 중 에러 발생 시 NaN으로 처리
+
+docs['like'] = pd.to_numeric(docs['like'], errors='coerce').astype('Int64')
+docs['comment_cnt'] = pd.to_numeric(docs['comment_cnt'], errors='coerce').astype('Int64')
+docs['img'] = pd.to_numeric(docs['img'], errors='coerce').astype('Int64')
+docs['div'] = pd.to_numeric(docs['div'], errors='coerce').astype('Int64')
+
+docs
+
+
+원데이터와 값이 일치하는 지 확인하기.
+
+6. 숫자형 결측치로 단어, 또는 문장, 형태소 분석
+어간, 어근 어조 어미, 단순 띄어쓰기만으로는 힘듦, 형태소 분석을 쓰는 것임
+
+자립 형태소, 의존형태소
+
+Okt, 메캅, 코모란, 한나눔, 꼬꼬마
+
+from tqdm import tqdm  # 진행상황 시각화
+from konlpy.tag import Komoran
+
+# Komoran 형태소 분석기 초기화
+komoran = Komoran() # 클래스의 인스턴스 지정
+# 이는 형태소 분석기 하나를 준비해서 계속 쓰기 위함이다.
+
+
+7. 형태소 분석을 하고 명사들을 리스트로 저장
+
+이름은 단순하게 지정해도 상관없지만
+너무 이름이 단순하면 이를 구별하거나 변수를 이해하기 어려으므로
+다른 사람도 알아볼 수 있도록 객관적으로 판단하여 룰 세팅을 하는 것이 좋음
+
+title_token_list = []  # 제목의 형태소를 담아낼 리스트
+title_token_noun = []  # 제목의 명사를 담아낼 리스트
+
+for i in tqdm(range(len(docs))): # for문 - :
+    
+    # komoran.pos() 메서드를 사용하여 형태소 분석 실시
+    pos = komoran.pos(str(docs['title'][i]))
+    
+    # komoran.nouns() 메서드를 사용하여 추출하고 리스트에 저장
+    noun = [term for term in komoran.nouns( # 명사만 추출하며,
+        str(docs['title'][i])) if len(term) > 1] # 명사의 길이는 2 이상이어야 한다.
+    
+    title_token_list.append(pos)
+    title_token_noun.append(noun)
+
+
+리스트 이름구조 형태내용
+
+title_token_list	[[('단어', '품사'), ...], ...]	모든 형태소와 품사 정보
+title_token_noun	[['명사', '명사'], ...]	2글자 이상 명사만
+
+
+
+
+8. 본문 토큰화
+# 본문 형태소 및 명사 리스트
+doc_token_list = []
+doc_token_noun = []
+
+for i in tqdm(range(len(docs))):
+    
+    pos = komoran.pos(u'{}'.format(docs['doc'][i]))
+    
+    noun = [term for term in komoran.nouns(
+        u'{}'.format(docs['doc'][i])) if len(term) > 1]
+    
+    doc_token_list.append(pos)
+    doc_token_noun.append(noun)
+
+# 댓글 형태소 및 명사 리스트
+comment_token_list = []
+comment_token_noun = []
+
+for i in tqdm(range(len(docs))):
+    
+    pos = komoran.pos(u'{}'.format(docs['comment_list'][i]))
+    
+    noun = [term for term in komoran.nouns(
+        u'{}'.format(docs['comment_list'][i])) if len(term) > 1]
+    
+    comment_token_list.append(pos)
+    comment_token_noun.append(noun)
+
+
+형태소 분석만으로는 전처리가 끝났다고 볼 수 없다
+아래 쓸대없는 불용어 때문에 찾고자 하는 문맥을 못 볼 수 있다.
+
+예를 들면, 광고글이 있는데 이는 광고글을 쓴 자가 
+정성스럽게 알맞은 단어 (의미없는 개행 문자 등만을 나열하지 않는)
+말 그대로의 정돈된 글이기 떄문에 이를 제거하려면 일일이 광고글을 제거해야 한다.
+
+그러므로, 불용어 처리까지 해야 한다.
+
+다만, 불용어 처리에도 의미가 있는 명사를 제거하지 않도록 주의해야 한다.
+예를 들어, 'la' 라는 문자만 본다면 의미없는 불용어라고 착각할 수 있다.
+그러나 이는 LA를 의미하며, 미국 현지에서는 la, La, lA, LA와 같이 
+다양하게 사용되는 것으로 나타났다.
+
+따라서 이러한 불용어 처리 전에는 혹은 처리 중에 이러한
+용어들이 나온다면 즉시 문서나 원데이터를 들여다봐서
+실제로 그 값이 어떤 문맥상에서 어떤 의미를 지니는지를 확인해야 한다. 
+
+어휘에 대한 이해를 할 수 있어야 한다.
+
+
+
+9. 불용어 사전 다운받기
+
+stopwords-ko/stopwords-ko.txt at master · stopwords-iso/stopwords-ko
+
+Korean stopwords collection. Contribute to stopwords-iso/stopwords-ko development by creating an account on GitHub.
+
+github.com
+# 불용어 사전 기반 불용어 리스트 정리
+f = open(
+    file_path + "stopwords-ko.txt", "r", 
+    encoding="UTF-8")  # UTF-8 인코딩으로 불용어 파일 열기
+
+st = f.readlines()  # 한 줄씩 읽어서 리스트에 저장
+f.close()
+
+# 줄 끝 개행 문자 제거
+st = [word.strip() for word in st]
+st
+
+
+10. 불용어 사전 깔끔하게 만들기
+stw = [word.strip() for word in st if word.strip() != '']
+stw
+
+
+11. 나만의 불용어 사전 만들기
+# 사용자가 정의한 불용어 추가
+# 목적: 순수한 노인부양과 관련된 이야기 수집
+# 광고글을 제외하기 위한 사용자 지정 불용어 사전
+# 사용자가 정의한 불용어 추가
+user_stopwords = [
+    '노인', '부양', '무자', '양의', '기초', '노인학', '계급', '보험', '고령', 
+    '경제', '바탕', '국가', '어르신','지역', '생각', '포함', '사업', '한부모', 
+    '일상생활', '국민', '확인', '우리나라', '적용', '위해', '기본', '수준',
+    '예방', '방법', '주택', '가능', '방안', '진행', '행위', '등의', '대한민국', 
+    '내년', '개념', '모집', '개선', '자격증', '대상자', '자격', '과제', '토론', 
+    '청주', '감소', '증가', '대의', '추천', '자부', '경우', '게시판', '자금', 
+    '본인', '사람', '연령', '등급', '활동', '정부', '평균', '일반', '파일', 
+    '자의', '더보', '주간', '기대', '결과', '통해', '인가', '자료', '두레', 
+    '포트', '사이트', '회원', '다운', '추가', '완성', '포인트', '다운로드', 
+    '충전', '신규', '제휴', '작성', '이벤트', '저도', '바우', '해주', '아래', 
+    '링크', '자가', '해주시', '등록', '특례', '네이버', '구부', '다이', '이얼', 
+    '마나', '한일', '서로', '이다', '현재', '해서', '댓글', '하기', '니다', 
+    '이하', '안녕하세요', '해도', '오늘', '하면', '키메', '고맙습니다', '이고', 
+    '제가', '내세', '가요', '만세', '이노', '때문', '블로그', '블로거', '카페', 
+    '만원', '보내기', '질문', '재가', '한국', '세계', '사회', '가족', '기준', 
+    '서비스', '장기'
+]
+
+# 불용어 리스트 확장
+stw.extend(user_stopwords)
+
+# 불용어 리스트 CSV 파일로 저장
+import csv
+
+with open('불용어 리스트', "w") as file:
+    writer = csv.writer(file)
+    writer.writerow(stw)
+
+
+12. 정리된 불용어를 각문서의 제목, 본문, 댓글에서 제거
+for word in stw:
+    for i in range(len(title_token_noun)):
+        # 제목에서 불용어 제거
+        while word in title_token_noun[i]:
+            title_token_noun[i].remove(word)
+
+        # 본문에서 불용어 제거
+        while word in doc_token_noun[i]:
+            doc_token_noun[i].remove(word)
+
+        # 댓글에서 불용어 제거
+        while word in comment_token_noun[i]:
+            comment_token_noun[i].remove(word)
+
+
+
+
+# 문서파일 docs에 적용
+docs['title_token_noun'] = title_token_noun           # 제목 명사 리스트
+docs['title_token_list_pos'] = title_token_list       # 형태소+품사 리스트
+
+docs['doc_token_noun'] = doc_token_noun               # 본문 명사 리스트
+docs['doc_token_list_pos'] = doc_token_list           # 형태소+품사 리스트
+
+docs['comment_token_noun'] = comment_token_noun       # 본문 명사 리스트
+docs['comment_token_list_pos'] = comment_token_list   # 형태소+품사 리스트
+
+
+13. 불용어를 제거한 최종 파일 저장 및 불러오기
+# pickle로 저장 (최초 1회만 실시)
+import pickle
+with open(file_path + "total_doc.pkl", "wb") as f:
+    pickle.dump(docs, f)
+
+# pickle로 다시 불러오기
+with open(file_path + "total_doc.pkl", "rb") as f:
+    data = pickle.load(f)
+    
+
+
+---
+
+[출처] 파이썬기반 SNS텍스트 데이터마이닝 개정판
