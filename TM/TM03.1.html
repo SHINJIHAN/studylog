@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analysis – StudyLog</title>
+<title>3장: 네이버 카페 크롤링 – StudyLog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">StudyLog</span>
     </a>
   </div>
@@ -91,11 +91,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -109,15 +109,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#검색-결과에서-모든-제목-링크-요소-가져오기-스크롤-다운-포함" id="toc-검색-결과에서-모든-제목-링크-요소-가져오기-스크롤-다운-포함" class="nav-link active" data-scroll-target="#검색-결과에서-모든-제목-링크-요소-가져오기-스크롤-다운-포함">검색 결과에서 모든 제목 링크 요소 가져오기 (스크롤 다운 포함)</a></li>
+  <li><a href="#본문-좋아요-수-댓글-수-댓글-이미지-수-영상-수를-저장할-리스트-초기화" id="toc-본문-좋아요-수-댓글-수-댓글-이미지-수-영상-수를-저장할-리스트-초기화" class="nav-link" data-scroll-target="#본문-좋아요-수-댓글-수-댓글-이미지-수-영상-수를-저장할-리스트-초기화">본문, 좋아요 수, 댓글 수, 댓글, 이미지 수, 영상 수를 저장할 리스트 초기화</a></li>
+  <li><a href="#카페-글-크롤링" id="toc-카페-글-크롤링" class="nav-link" data-scroll-target="#카페-글-크롤링">카페 글 크롤링</a></li>
+  <li><a href="#크롤링-데이터를-데이터프레임으로-변환" id="toc-크롤링-데이터를-데이터프레임으로-변환" class="nav-link" data-scroll-target="#크롤링-데이터를-데이터프레임으로-변환">크롤링 데이터를 데이터프레임으로 변환</a></li>
+  <li><a href="#데이터프레임을-pickle-파일로-저장" id="toc-데이터프레임을-pickle-파일로-저장" class="nav-link" data-scroll-target="#데이터프레임을-pickle-파일로-저장">데이터프레임을 pickle 파일로 저장</a></li>
+  <li><a href="#크롬-드라이버-종료" id="toc-크롬-드라이버-종료" class="nav-link" data-scroll-target="#크롬-드라이버-종료">크롬 드라이버 종료</a></li>
+  <li><a href="#저장된-pickle-파일을-불러오기" id="toc-저장된-pickle-파일을-불러오기" class="nav-link" data-scroll-target="#저장된-pickle-파일을-불러오기">저장된 pickle 파일을 불러오기</a></li>
+  <li><a href="#데이터프레임을-csv-파일로-저장" id="toc-데이터프레임을-csv-파일로-저장" class="nav-link" data-scroll-target="#데이터프레임을-csv-파일로-저장">데이터프레임을 CSV 파일로 저장</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Analysis</h1>
+<h1 class="title">3장: 네이버 카페 크롤링</h1>
 </div>
 
 
@@ -134,88 +147,150 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="accordionExample" class="accordion">
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-데이터분석입문 - 2024학년 1학기
-</button>
-<div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA02.html'"> 02장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA03.html'"> 03장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA04.html'"> 04장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA05.html'"> 05장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA06.html'"> 06장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA07.html'"> 07장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA08.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA09.html'"> 09장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA10.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA11.html'"> 11장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA12.html'"> 12장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA13.html'"> 13장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA14.html'"> 14장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA15.html'"> 15장 </button></p>
-</div>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-데이터분석심화 - 2024학년 2학기
-</button>
-<div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'"> 06장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA07.0.html'"> 07장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA08.0.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA08.1.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA08.2.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA09.0.html'"> 09장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA09.1.html'"> 09장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.0.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.1.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.2.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.3.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA11.0.html'"> 11장 </button></p>
-</div>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-텍스트마이닝 이해 및 실습
-</button>
-<div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='TM/TM02.html'"> 02장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM03.0.html'"> 03장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM03.1.html'"> 03장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM04.html'"> 04장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM05.html'"> 05장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM06.0.html'"> 06장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM06.1.html'"> 06장 </button></p>
-</div>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-고급빅데이터분석실무
-</button>
-<div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'"> 06장 </button></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<blockquote class="blockquote">
+<p>Reporting Date: April. 01, 2025</p>
+</blockquote>
+<p>네이버 카페 크롤랑에 대해 다루고자 한다.</p>
+<p>합칠려면 모든 변수가 동일하게 들어가야 한다.</p>
+<p>from selenium import webdriver # 브라우저 자동화 from bs4 import BeautifulSoup as BS # html 내용 파싱 from selenium.webdriver.common.by import By # 다양한 방법으로 엘리먼트를 찾기 from selenium.webdriver.common.keys import Keys # Keys 클래스 가져오기(키보드 입력 제어)</p>
+<p>import pandas as pd # 데이터 조작 및 분석 import datetime # 날짜와 시간 연산 import requests # Http 요청을 보내기 import pickle # 파이썬 객체 직렬화 import time # 코드 실행 속도 조절 import re # 정규 표현식 사용</p>
+<ol type="1">
+<li></li>
+</ol>
+<p>driver = webdriver.Chrome() driver.get(‘https://search.naver.com/search.naver?ssc=tab.cafe.all&amp;sm=tab_jum&amp;query=%EB%85%B8%EC%9D%B8+%EB%B6%80%EC%96%91&amp;nso=so%3Ar%2Cp%3Afrom20240301to20240325’)</p>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p>title_list = [] url_list = []</p>
+<section id="검색-결과에서-모든-제목-링크-요소-가져오기-스크롤-다운-포함" class="level1">
+<h1>검색 결과에서 모든 제목 링크 요소 가져오기 (스크롤 다운 포함)</h1>
+<p>for _ in range(2): # 5번 스크롤 내리기 (필요에 따라 조절 가능) driver.execute_script(“window.scrollTo(0, document.body.scrollHeight);”) # 스크롤 맨 아래로 이동 time.sleep(1) # 데이터 로딩을 기다리기 위해 1초 대기</p>
+<p>titles = driver.find_elements(By.XPATH, “//*<span class="citation" data-cites="id">[@id='main_pack']</span>/section/div[1]/ul/li/div/div[2]/div[2]/a”)</p>
+<p>for i, title_element in enumerate(titles, start=1): # 1부터 카운트 시작 try: title_list.append(title_element.text) # 제목 추가 url_list.append(title_element.get_attribute(“href”)) # URL 추가</p>
+<pre><code>except Exception as e:
+    print(f"오류 발생: {e}")  # 오류 메시지 출력
+
+if i % 10 == 0:  # 진행 상황 출력 (10개 단위)
+    print(f"진행 중: {i}개 완료")</code></pre>
+<p>print(“데이터 수집 완료!”) # 최종 완료 메시지 출력</p>
+<ol start="4" type="1">
+<li></li>
+</ol>
+</section>
+<section id="본문-좋아요-수-댓글-수-댓글-이미지-수-영상-수를-저장할-리스트-초기화" class="level1">
+<h1>본문, 좋아요 수, 댓글 수, 댓글, 이미지 수, 영상 수를 저장할 리스트 초기화</h1>
+<p>new_doc = []<br>
+like_cnt = []<br>
+comment_cnt = []<br>
+comment_list = []<br>
+img_cnt = []<br>
+div_cnt = []</p>
+</section>
+<section id="카페-글-크롤링" class="level1">
+<h1>카페 글 크롤링</h1>
+<p>for i in range(len(url_list)): url_path = url_list[i] # URL 불러오기 driver.switch_to.window(driver.window_handles[0]) # 첫 번째 탭으로 이동 driver.execute_script(f”window.open(‘{url_path}’)“) # 새 탭에서 URL 실행 driver.switch_to.window(driver.window_handles[1]) # 두 번째 탭으로 이동</p>
+<pre><code>time.sleep(2)  # 2초 대기
+
+try:
+    iframes = driver.find_elements(By.TAG_NAME, 'iframe')  # 카페 iframe 찾기
+    
+    if len(iframes) &gt; 0:
+        # iframe 전환
+        driver.switch_to.frame('cafe_main') # ifame의 첫부분
+        html = driver.page_source           # html 가져오고
+        soup = BS(html, 'html.parser')      # html 파싱하라
+
+        # 본문 추출
+        try:
+            a = soup.find('div', class_='article_viewer').get_text() # 값을 가져와라
+        except:
+            # 본문을 찾지 못할 경우
+            a = 'null'
+
+        # 좋아요 수 추출
+        try:
+            b = soup.find('em', class_='u_cnt _count').get_text()
+        except:
+            b = 'null'
+
+        # 댓글 수 추출
+        try:
+            c = soup.find('strong', class_='num').get_text()
+        except:
+            c = 'null'
+
+        # 댓글 추출
+        try:
+            d = "\n".join([t.get_text() for t in soup.find_all('span', class_='text_comment')])
+        except:
+            d = 'null'
+
+        # 이미지 수 추출
+        e = len(soup.find_all('img', class_='se-image-resource'))
+
+        # 영상 수 추출
+        f = len(soup.find_all('div', class_='pzp-ui-dimmed pzp-dimmed pzp-pc_dimmed'))
+
+        # iframe에서 기본 컨텐츠로 전환
+        driver.switch_to.default_content()
+    else:
+        a, b, c, d, e, f = 'null', 'null', 'null', 'null', 0, 0  # iframe이 없을 경우 기본값
+
+    # 데이터 저장
+    new_doc.append(a)
+    like_cnt.append(b)
+    comment_cnt.append(c)
+    comment_list.append(d)
+    img_cnt.append(e)
+    div_cnt.append(f)
+
+except Exception as e:
+    # 오류 발생 시 기본값 저장
+    new_doc.append('null')
+    like_cnt.append('null')
+    comment_cnt.append('null')
+    comment_list.append('null')
+    img_cnt.append(0)
+    div_cnt.append(0)
+    print(f"Error occurred at index {i}")
+
+finally:
+    # 현재 열린 탭 닫기
+    driver.close()
+    time.sleep(0.3)  # 0.3초 대기
+    driver.switch_to.window(driver.window_handles[0])  # 첫 번째 탭으로 복귀
+
+# 매 10번째 URL마다 진행 상황 출력
+if (i + 1) % 10 == 0:
+    print(f"진행 상황: {i + 1}/{len(url_list)}")</code></pre>
+<ol start="5" type="1">
+<li></li>
+</ol>
+</section>
+<section id="크롤링-데이터를-데이터프레임으로-변환" class="level1">
+<h1>크롤링 데이터를 데이터프레임으로 변환</h1>
+<p>raw_data = pd.DataFrame() # 초기화 raw_data[‘title’] = title_list # 제목 리스트 raw_data[‘doc’] = new_doc # 본문 리스트 raw_data[‘like’] = like_cnt # 좋아요 수 리스트 raw_data[‘comment_cnt’] = comment_cnt # 댓글 수 리스트 raw_data[‘comment_list’] = comment_list # 댓글 리스트 raw_data[‘img’] = img_cnt # 이미지 수 리스트 raw_data[‘div’] = div_cnt # 영상 수 리스트 raw_data[‘ch’] = ‘naver’ # 채널 정보 raw_data[‘ch2’] = ‘cafe’ # 채널 정보 (세부)</p>
+</section>
+<section id="데이터프레임을-pickle-파일로-저장" class="level1">
+<h1>데이터프레임을 pickle 파일로 저장</h1>
+<p>file_path = “C:/Users/jkl12/텍스트마이닝/” # 슬래시 사용 with open(file_path + “노인부양cafe.pkl”, “wb”) as f: pickle.dump(raw_data, f)</p>
+</section>
+<section id="크롬-드라이버-종료" class="level1">
+<h1>크롬 드라이버 종료</h1>
+<p>driver.quit()</p>
+</section>
+<section id="저장된-pickle-파일을-불러오기" class="level1">
+<h1>저장된 pickle 파일을 불러오기</h1>
+<p>with open(file_path + “노인부양cafe.pkl”, “rb”) as f: temp_file = pickle.load(f)</p>
+</section>
+<section id="데이터프레임을-csv-파일로-저장" class="level1">
+<h1>데이터프레임을 CSV 파일로 저장</h1>
+<p>temp_file.to_csv(file_path + “노인부양cafe.csv”, index=False, encoding=“utf-8-sig”)</p>
+<hr>
+<p>[출처] 파이썬기반 SNS텍스트 데이터마이닝 개정판</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

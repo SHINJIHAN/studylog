@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analysis – StudyLog</title>
+<title>5장: 텍스트 데이터 마이닝 – StudyLog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">StudyLog</span>
     </a>
   </div>
@@ -91,11 +91,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -109,15 +109,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#텍스트-데이터-마이닝" id="toc-텍스트-데이터-마이닝" class="nav-link active" data-scroll-target="#텍스트-데이터-마이닝">01 텍스트 데이터 마이닝</a></li>
+  <li><a href="#파일-저장-위치" id="toc-파일-저장-위치" class="nav-link" data-scroll-target="#파일-저장-위치">파일 저장 위치</a></li>
+  <li><a href="#제목-리스트-언패킹" id="toc-제목-리스트-언패킹" class="nav-link" data-scroll-target="#제목-리스트-언패킹">제목 리스트 언패킹</a></li>
+  <li><a href="#본문-리스트-언패킹" id="toc-본문-리스트-언패킹" class="nav-link" data-scroll-target="#본문-리스트-언패킹">본문 리스트 언패킹</a></li>
+  <li><a href="#댓글-리스트-언패킹" id="toc-댓글-리스트-언패킹" class="nav-link" data-scroll-target="#댓글-리스트-언패킹">댓글 리스트 언패킹</a></li>
+  <li><a href="#빈도를-카운트하는-라이브러리" id="toc-빈도를-카운트하는-라이브러리" class="nav-link" data-scroll-target="#빈도를-카운트하는-라이브러리">빈도를 카운트하는 라이브러리</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">—</a></li>
+  <li><a href="#제목별-빈도수-저장" id="toc-제목별-빈도수-저장" class="nav-link" data-scroll-target="#제목별-빈도수-저장">제목별 빈도수 저장</a></li>
+  <li><a href="#본문별-빈도수-저장" id="toc-본문별-빈도수-저장" class="nav-link" data-scroll-target="#본문별-빈도수-저장">본문별 빈도수 저장</a></li>
+  <li><a href="#댓글별-빈도수-저장" id="toc-댓글별-빈도수-저장" class="nav-link" data-scroll-target="#댓글별-빈도수-저장">댓글별 빈도수 저장</a></li>
+  <li><a href="#워드클라우드-생성" id="toc-워드클라우드-생성" class="nav-link" data-scroll-target="#워드클라우드-생성">워드클라우드 생성</a></li>
+  <li><a href="#명사들의-문자열-구성" id="toc-명사들의-문자열-구성" class="nav-link" data-scroll-target="#명사들의-문자열-구성">명사들의 문자열 구성</a></li>
+  <li><a href="#텍스트-문서-모음을-단어-tf-idf-행렬로-변환" id="toc-텍스트-문서-모음을-단어-tf-idf-행렬로-변환" class="nav-link" data-scroll-target="#텍스트-문서-모음을-단어-tf-idf-행렬로-변환">텍스트 문서 모음을 단어 tf-idf 행렬로 변환</a></li>
+  <li><a href="#문서의-1-95로-나타나는-단어들을-고려" id="toc-문서의-1-95로-나타나는-단어들을-고려" class="nav-link" data-scroll-target="#문서의-1-95로-나타나는-단어들을-고려">문서의 1% ~ 95%로 나타나는 단어들을 고려</a></li>
+  <li><a href="#클러스터-중심에서-가장-중요한-단어-인덱스-정렬" id="toc-클러스터-중심에서-가장-중요한-단어-인덱스-정렬" class="nav-link" data-scroll-target="#클러스터-중심에서-가장-중요한-단어-인덱스-정렬">클러스터 중심에서 가장 중요한 단어 인덱스 정렬</a></li>
+  <li><a href="#각-클러스터의-상위-50개-단어-수집" id="toc-각-클러스터의-상위-50개-단어-수집" class="nav-link" data-scroll-target="#각-클러스터의-상위-50개-단어-수집">각 클러스터의 상위 50개 단어 수집</a></li>
+  <li><a href="#dataframe으로-변환" id="toc-dataframe으로-변환" class="nav-link" data-scroll-target="#dataframe으로-변환">DataFrame으로 변환</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Analysis</h1>
+<h1 class="title">5장: 텍스트 데이터 마이닝</h1>
 </div>
 
 
@@ -134,88 +156,169 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="accordionExample" class="accordion">
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-데이터분석입문 - 2024학년 1학기
-</button>
-<div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA02.html'"> 02장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA03.html'"> 03장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA04.html'"> 04장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA05.html'"> 05장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA06.html'"> 06장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA07.html'"> 07장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA08.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA09.html'"> 09장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA10.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA11.html'"> 11장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA12.html'"> 12장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA13.html'"> 13장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA14.html'"> 14장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='IDA/IDA15.html'"> 15장 </button></p>
-</div>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-데이터분석심화 - 2024학년 2학기
-</button>
-<div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'"> 06장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA07.0.html'"> 07장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA08.0.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA08.1.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA08.2.html'"> 08장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA09.0.html'"> 09장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA09.1.html'"> 09장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.0.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.1.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.2.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA10.3.html'"> 10장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA11.0.html'"> 11장 </button></p>
-</div>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-텍스트마이닝 이해 및 실습
-</button>
-<div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='TM/TM02.html'"> 02장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM03.0.html'"> 03장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM03.1.html'"> 03장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM04.html'"> 04장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM05.html'"> 05장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM06.0.html'"> 06장 </button></p>
-<p><button class="btn btn-custom" onclick="location.href='TM/TM06.1.html'"> 06장 </button></p>
-</div>
-</div>
-</div>
-</div>
-<div class="accordion-item">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-고급빅데이터분석실무
-</button>
-<div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
-<div class="accordion-body">
-<div class="button-container d-flex flex-wrap gap-2">
-<p><button class="btn btn-custom" onclick="location.href='ADA/ADA06.0.html'"> 06장 </button></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+<blockquote class="blockquote">
+<p>Reporting Date: April. 15, 2025</p>
+</blockquote>
+<p>텍스트 데이터 마이닝에 대해 다루고자 한다.</p>
+<section id="텍스트-데이터-마이닝" class="level1">
+<h1>01 텍스트 데이터 마이닝</h1>
+<p>광도들이 보석을 캐는 과정.</p>
+<p>노인 부양에 관한 가설 세우기.</p>
+<p>텍스트 데이터 전처리</p>
+<p>텍스트 마이닝의 핵심적인 시작 단계로, 데이터의 품질을 높이기 위한 여러 과정으로 구성된다.</p>
+<p>먼저, 데이터 수집 후에는 한글화, 결측치 처리, 단어 및 형태소 분석 등의 전처리를 진행합니다.</p>
+<p>한글화는 텍스트에서 한글 이외의 문자를 제거하거나 블랭크 처리하여 분석에 적합한 형태로 만드는 과정입니다.</p>
+<p>이때 특수기호는 유지하며 한글만 남기는 방식으로 필터링한다.</p>
+<p>이렇게 정제된 데이터는 피클(pickle) 파일 형태로 저장하며, 작업 시에는 파일 경로와 파일명을 명확히 지정해야 한다.</p>
+<p>예를 들어, 보험연수원에서 제공한 연금 관련 텍스트 데이터를 수년간 6개 채널에서 크롤링해 5개의 피클 파일로 저장한 사례가 있다.</p>
+<p>이 파일들은 병합한 후 인덱스를 지정해 다시 저장하며, 저장 경로는 작업 환경에 맞춰 지정해야 한다.</p>
+<p>import pickle import pandas as pd import itertools import os import re</p>
+</section>
+<section id="파일-저장-위치" class="level1">
+<h1>파일 저장 위치</h1>
+<p>file_path = r’C:\’</p>
+<p>이후 분석을 위해 저장된 피클 파일을 다시 로드하여 활용한다.</p>
+<p>f = open(file_path + ‘total_doc.pkl’, “rb”) # 데이터 불러오기 data = pickle.load(f) f.close()</p>
+<p>data # 문서 전체의 명사 리스트 확보</p>
+<ol type="1">
+<li>단어들의 빈도 데이터 정제 과정에서는 불필요한 기호나 단어를 제거하고, 결측값은 일괄 삭제하며 인덱스를 재정비합니다. 예컨대 ‘샵’, ’펀드’와 같은 특정 요소는 정제 대상이 되며, 본문 일부 삭제 시 데이터의 일관성을 유지하기 위해 인덱스를 재조정합니다. 정제는 원본을 복사한 후 진행하는 것이 안전합니다.</li>
+</ol>
+<p>형태소 분석은 한글 데이터 분석에 필수적인 과정이며, 이는 텍스트를 의미 단위로 나누어주는 작업입니다. 형태소 분석을 위해서는 Java 설치와 버전 확인, 인터넷 환경 설정이 필요하며, 대표적으로 사용하는 라이브러리는 코모란(Komoran)입니다. 코모란은 GitHub에서 설치 가능하며, 설치 후 환경 변수 설정 및 보안 설정 등을 완료한 후 사용합니다.</p>
+<p>형태소 분석을 통해 본문에서 추출된 단어들은 토큰화 과정을 거쳐 리스트 형태로 정리됩니다. 이때 불용어(의미 없는 단어)를 제거하기 위해 스탑워드 리스트를 활용하며, 불용어와 일치하는 형태소는 제외합니다. 최종적으로 정제된 단어 리스트와 형태소 리스트는 데이터프레임 형태로 저장하고, 이를 다시 파일로 변환하여 보관합니다.</p>
+<p>import itertools</p>
+</section>
+<section id="제목-리스트-언패킹" class="level1">
+<h1>제목 리스트 언패킹</h1>
+<p>title_noun = list(itertools.chain(*data[‘title_token_noun’])) print(title_noun[:15]) # 앞에서 5개 요소 출력</p>
+</section>
+<section id="본문-리스트-언패킹" class="level1">
+<h1>본문 리스트 언패킹</h1>
+<p>doc_noun = list(itertools.chain(*data[‘doc_token_noun’])) print(doc_noun[:15])</p>
+</section>
+<section id="댓글-리스트-언패킹" class="level1">
+<h1>댓글 리스트 언패킹</h1>
+<p>comment_noun = list(itertools.chain(*data[‘comment_token_noun’])) print(comment_noun[:15])</p>
+<ol start="2" type="1">
+<li>제목, 본문, 댓글 데이터 빈도</li>
+</ol>
+</section>
+<section id="빈도를-카운트하는-라이브러리" class="level1">
+<h1>빈도를 카운트하는 라이브러리</h1>
+<p>from collections import Counter</p>
+<p>title_count = Counter(title_noun) # 리스트 원소의 개수가 계산됨 title_top = dict(title_count.most_common(100)) # 상위 100개 출력하기 title_top</p>
+<p>#—</p>
+<p>doc_count = Counter(doc_noun) # 리스트 원소의 개수가 계산됨 doc_top = dict(doc_count.most_common(100)) # 상위 100개 출력하기 doc_top</p>
+</section>
+<section id="section" class="level1">
+<h1>—</h1>
+<p>comment_count = Counter(comment_noun) # 리스트 원소의 개수가 계산됨 comment_top = dict(comment_count.most_common(100)) # 상위 100개 출력하기 comment_top</p>
+<ol start="3" type="1">
+<li>import csv</li>
+</ol>
+</section>
+<section id="제목별-빈도수-저장" class="level1">
+<h1>제목별 빈도수 저장</h1>
+<p>with open(file_path + ‘\title_top.csv’, ‘w’) as f: w = csv.writer(f) for k, v in title_top.items(): w.writerow([k, v]) # k, v -&gt; 딕셔너리의 key, value # 즉, 단어와 빈도</p>
+</section>
+<section id="본문별-빈도수-저장" class="level1">
+<h1>본문별 빈도수 저장</h1>
+<p>with open(file_path + ‘\doc_top.csv’, ‘w’) as f: w = csv.writer(f) for k, v in doc_top.items(): w.writerow([k, v])</p>
+</section>
+<section id="댓글별-빈도수-저장" class="level1">
+<h1>댓글별 빈도수 저장</h1>
+<p>with open(file_path + ‘\comment_top.csv’, ‘w’) as f: w = csv.writer(f) for k, v in comment_top.items(): w.writerow([k, v])</p>
+<p>4 . 워드 클라우드 정제된 단어들을 기반으로 워드 클라우드를 그릴 수 있다.</p>
+<p>워드 클라우드는 단어의 빈도를 시각적으로 표현하는 기법으로, 가장 자주 등장한 단어를 강조하는 방식으로 표현된다.</p>
+<p>이때 Counter의 most_common 함수를 이용해 빈도를 계산하고, 원하는 형태의 마스크 이미지(예: 사람 모양, 네모형 등)를 적용해 시각화할 수 있다.</p>
+<p>백그라운드 설정, 폰트 다운로드, 컬러 맵 지정 등 세부 설정도 가능하며, 정보 전달력이 높은 네모 형태를 권장한다.</p>
+<p>import matplotlib.pyplot as plt from wordcloud import WordCloud</p>
+<p>font_path = r”C:.otf”</p>
+</section>
+<section id="워드클라우드-생성" class="level1">
+<h1>워드클라우드 생성</h1>
+<p>wordcloud = WordCloud( font_path=font_path, background_color=‘white’, colormap=“Accent”, width=600, height=400 ).generate_from_frequencies(doc_top)</p>
+<p>plt.figure(figsize=(8, 10)) plt.imshow(wordcloud) plt.axis(‘off’) plt.show()</p>
+<p>TF - IDF 결과 텀은 단어, 단어들의 빈도, 워드클라우드도 사용 이것이 결합된 형태가 TF - IDF임</p>
+<p>단어 뿐만아니라 문서 전체도 고려 한다.</p>
+<ol type="1">
+<li>워드 클라우드의 문제점, 본문에서 자주 등장하는 것이 높은 가중치를 문맥에 따라서는 다른 의미(완전히 다른 단어)를 가질 수 있음 또한, 그 단어는 낮은 가중치일 수도 있음</li>
+</ol>
+<p>즉, 데이터가 진짜 말하고자 하는 것을 찾는 인사이트에서는 부적합할 수 있음.</p>
+<p>단순한 빈도만으로는 판별하기 애매하다.</p>
+<ol start="2" type="1">
+<li>문서의 길이의 따라 사용 어휘의 중요도가 바뀔 수 있다.</li>
+</ol>
+<p>특정 단어가 포함된 문서가 몇 개가 되느냐? d=문서, t=단어, 특정 단어가 나타나는 문서수의 역수(역수의 로그를 취해준 개념)</p>
+<p>각 문서에 포함된 단어 카운트 - DTM 행렬</p>
+<p>이는 특정 문서에서만 많이 나오지만 전체 문서에서는 적은 단어와 전체적으로 많이 나오게 분포하지만 개별 문서에서는 적게 나오는 단어 2가지가 존재하고 그 중 후자가 더 중요한 가중치를 가진다.</p>
+<p>로그를 취해서 소수점으로 나오고 TF-IDF를 곱한다. 이떄 여기저기 많이 나오면 상대적인 가중치가 비슷하고 낮게 나옴</p>
+<p>먼저, 단어들을 문자열로 만들어 주어야 한다. 명사들의 문자열 리스트 만들고, sklearn 가져오기.</p>
+</section>
+<section id="명사들의-문자열-구성" class="level1">
+<h1>명사들의 문자열 구성</h1>
+<p>doc_noun = [] for i in range(0, len(data[“doc_token_noun”])): doc_noun.append(’ ’.join(data[‘doc_token_noun’][i])) # 각 문서의 명사들을 str로 연결</p>
+<p>너무 희박한 것들은 제외할 수도 있다.(최소치, 최대치)</p>
+</section>
+<section id="텍스트-문서-모음을-단어-tf-idf-행렬로-변환" class="level1">
+<h1>텍스트 문서 모음을 단어 tf-idf 행렬로 변환</h1>
+<p>from sklearn.feature_extraction.text import TfidfVectorizer vec_y = TfidfVectorizer(min_df=0.01, max_df=0.95)</p>
+</section>
+<section id="문서의-1-95로-나타나는-단어들을-고려" class="level1">
+<h1>문서의 1% ~ 95%로 나타나는 단어들을 고려</h1>
+<p>Y = vec_y.fit_transform(doc_noun) print(Y)</p>
+<p>10번째 문서 21번째 단어이다. +1</p>
+<p>k개의 평균을 갖는다는 것. 비지도, 타겟X 타겟이 있어, 예측을 시도하는 지도학습과는 달리 어떤 패턴을 가진 그룹이 있는지를 보려는 것.</p>
+<p>구조화, 군집 분석을 시도하는 것.</p>
+<p>임의의 k개의 중심점을 지정, 각각의 개별 데이터를 가장 가까운 곳으로 할당시킴 이 거리를 유클리드의 거리를 한다.</p>
+<p>그 그룹이 생성되면 그 그룹 안에서 새로운 중심점을 찾음 그 중심점을 가지고 위의 일련의 과정을 더 이상 중심점이 움직이지 않을 때까지 반복한다.</p>
+<p>합리적인 k를 찾는 방법 - 대표적으로 엘보우 기법 팔굽치 처럼 꺾이는 지점을 k값으로 정하는 것.</p>
+<p>2개에서 6개 정도가 타당하다 너무 적거나 많으면 의미가 없음.</p>
+<p>거리에 대한 SSE 손실함수 구하는 과정 10번 반복</p>
+<p>import os os.environ[“OMP_NUM_THREADS”] = “2” # 선택 사항</p>
+<p>import matplotlib.pyplot as plt from sklearn.cluster import KMeans</p>
+<p>def elbow(X): sse = []</p>
+<pre><code>for i in range(1, 10):
+    km = KMeans(n_clusters=i, n_init=10, 
+                algorithm='lloyd', random_state=0)
+    km.fit(X)
+    sse.append(km.inertia_)
+    print(i)
+
+plt.plot(range(1, 10), sse, marker='o')
+plt.xlabel('K')
+plt.ylabel('SSE')
+plt.xticks(range(1, 10))
+plt.show()</code></pre>
+<p>elbow(X)</p>
+<p>conda install -c conda-forge pyldavis</p>
+<p>model_y = KMeans(n_clusters=2, algorithm=‘lloyd’, random_state=0) # 모델 정의 model_y.fit(Y) # 모델 학습</p>
+<p>print(“Doc Top terms for each cluster”) order_centroids = model_y.cluster_centers_.argsort()[:, ::-1] # 클러스터 중심 정렬 terms_y = vec_y.get_feature_names_out() # 단어 목록</p>
+<p>for i in range(2): # 두 개의 클러스터에 대해 반복 print(“Cluster %d:” % i) for ind in order_centroids[i, :50]: # 각 클러스터의 상위 50개 단어 출력 print(‘%s’ % terms_y[ind]) print(‘’)</p>
+<p>데이터 프레임의 형식</p>
+<p>import pandas as pd</p>
+</section>
+<section id="클러스터-중심에서-가장-중요한-단어-인덱스-정렬" class="level1">
+<h1>클러스터 중심에서 가장 중요한 단어 인덱스 정렬</h1>
+<p>order_centroids = model_y.cluster_centers_.argsort()[:, ::-1] terms_y = vec_y.get_feature_names_out()</p>
+</section>
+<section id="각-클러스터의-상위-50개-단어-수집" class="level1">
+<h1>각 클러스터의 상위 50개 단어 수집</h1>
+<p>top_terms = {}</p>
+<p>for i in range(2): # 클러스터 수만큼 반복 top_terms[f’Cluster {i}’] = [terms_y[ind] for ind in order_centroids[i, :50]]</p>
+</section>
+<section id="dataframe으로-변환" class="level1">
+<h1>DataFrame으로 변환</h1>
+<p>df_top_terms = pd.DataFrame(top_terms) df_top_terms</p>
+<p>1 . 제목2 더 나아가 워드 클러스터링과 토픽 모델링을 통해 텍스트의 의미 구조를 분석할 수 있다.</p>
+<p>워드 클러스터링은 문서 내 단어 빈도를 기반으로 단어들을 군집화하는 방법으로, TF (Term Frequency) 및 IDF (Inverse Document Frequency) 값을 활용해 중요 단어를 판단합니다.</p>
+<p>이후 유클리디안 거리 기반의 K-means와 같은 알고리즘으로 최적의 군집을 형성합니다.</p>
+<p>토픽 모델링은 문서 집합에서 주제를 추출하는 기법으로, LDA(Latent Dirichlet Allocation) 같은 확률 기반 모델을 활용합니다.</p>
+<p>혼잡도 그래프와 일관성 지표 등을 통해 토픽 수를 결정하고, 각 토픽의 특징을 평가합니다. 이를 통해 시스템화된 분석 체계를 구축할 수 있습니다.</p>
+<hr>
+<p>[출처] 파이썬기반 SNS텍스트 데이터마이닝 개정판</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
