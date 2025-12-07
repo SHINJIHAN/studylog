@@ -196,6 +196,73 @@ window.Quarto = {
   <li><a href="#알고리즘-관점" id="toc-알고리즘-관점" class="nav-link" data-scroll-target="#알고리즘-관점">3.6 알고리즘 관점</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#protein.csv" id="toc-protein.csv" class="nav-link" data-scroll-target="#protein.csv">03 protein.csv</a></li>
+  <li><a href="#k-평균-군집-분석" id="toc-k-평균-군집-분석" class="nav-link" data-scroll-target="#k-평균-군집-분석">04 K-평균 군집 분석</a>
+  <ul class="collapse">
+  <li><a href="#k-평균-군집의-목적-함수" id="toc-k-평균-군집의-목적-함수" class="nav-link" data-scroll-target="#k-평균-군집의-목적-함수">1. K-평균 군집의 목적 함수</a></li>
+  <li><a href="#k-평균-알고리즘-절차" id="toc-k-평균-알고리즘-절차" class="nav-link" data-scroll-target="#k-평균-알고리즘-절차">2. K-평균 알고리즘 절차</a>
+  <ul class="collapse">
+  <li><a href="#군집-수k의-결정" id="toc-군집-수k의-결정" class="nav-link" data-scroll-target="#군집-수k의-결정">2.1 군집 수(K)의 결정</a></li>
+  <li><a href="#초기-중심-선택" id="toc-초기-중심-선택" class="nav-link" data-scroll-target="#초기-중심-선택">2.2 초기 중심 선택</a></li>
+  <li><a href="#개체의-군집-할당" id="toc-개체의-군집-할당" class="nav-link" data-scroll-target="#개체의-군집-할당">2.3 개체의 군집 할당</a></li>
+  <li><a href="#군집-중심-재계산" id="toc-군집-중심-재계산" class="nav-link" data-scroll-target="#군집-중심-재계산">2.4 군집 중심 재계산</a></li>
+  <li><a href="#수렴-조건-충족-시까지-반복" id="toc-수렴-조건-충족-시까지-반복" class="nav-link" data-scroll-target="#수렴-조건-충족-시까지-반복">2.5 수렴 조건 충족 시까지 반복</a></li>
+  </ul></li>
+  <li><a href="#엘보우-기법-1" id="toc-엘보우-기법-1" class="nav-link" data-scroll-target="#엘보우-기법-1">3. 엘보우 기법</a>
+  <ul class="collapse">
+  <li><a href="#wss-정의" id="toc-wss-정의" class="nav-link" data-scroll-target="#wss-정의">3.1 WSS 정의</a></li>
+  <li><a href="#엘보우의-해석" id="toc-엘보우의-해석" class="nav-link" data-scroll-target="#엘보우의-해석">3.2 엘보우의 해석</a></li>
+  </ul></li>
+  <li><a href="#데이터-전처리와-표준화" id="toc-데이터-전처리와-표준화" class="nav-link" data-scroll-target="#데이터-전처리와-표준화">4. 데이터 전처리와 표준화</a></li>
+  <li><a href="#고차원-데이터의-군집-시각화를-위한-차원-축소" id="toc-고차원-데이터의-군집-시각화를-위한-차원-축소" class="nav-link" data-scroll-target="#고차원-데이터의-군집-시각화를-위한-차원-축소">5. 고차원 데이터의 군집 시각화를 위한 차원 축소</a></li>
+  <li><a href="#k-평균의-실무적-장점과-제약" id="toc-k-평균의-실무적-장점과-제약" class="nav-link" data-scroll-target="#k-평균의-실무적-장점과-제약">6. K-평균의 실무적 장점과 제약</a>
+  <ul class="collapse">
+  <li><a href="#장점" id="toc-장점" class="nav-link" data-scroll-target="#장점">6.1 장점</a></li>
+  <li><a href="#제약" id="toc-제약" class="nav-link" data-scroll-target="#제약">6.2 제약</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#군집수-결정-지표" id="toc-군집수-결정-지표" class="nav-link" data-scroll-target="#군집수-결정-지표">05 군집수 결정 지표</a>
+  <ul class="collapse">
+  <li><a href="#실루엣-계수-1" id="toc-실루엣-계수-1" class="nav-link" data-scroll-target="#실루엣-계수-1">1. 실루엣 계수</a>
+  <ul class="collapse">
+  <li><a href="#수학적-정의" id="toc-수학적-정의" class="nav-link" data-scroll-target="#수학적-정의">1.1 수학적 정의</a></li>
+  <li><a href="#해석-기준" id="toc-해석-기준" class="nav-link" data-scroll-target="#해석-기준">1.2 해석 기준</a></li>
+  </ul></li>
+  <li><a href="#실무-적용성과-한계" id="toc-실무-적용성과-한계" class="nav-link" data-scroll-target="#실무-적용성과-한계">1.3 실무 적용성과 한계</a></li>
+  <li><a href="#엘보우-기법-2" id="toc-엘보우-기법-2" class="nav-link" data-scroll-target="#엘보우-기법-2">2. 엘보우 기법</a>
+  <ul class="collapse">
+  <li><a href="#해석-기준-1" id="toc-해석-기준-1" class="nav-link" data-scroll-target="#해석-기준-1">2.1 해석 기준</a></li>
+  <li><a href="#한계" id="toc-한계" class="nav-link" data-scroll-target="#한계">2.3 한계</a></li>
+  </ul></li>
+  <li><a href="#갭-통계량" id="toc-갭-통계량" class="nav-link" data-scroll-target="#갭-통계량">3. 갭 통계량</a>
+  <ul class="collapse">
+  <li><a href="#최적-k-선택-규칙" id="toc-최적-k-선택-규칙" class="nav-link" data-scroll-target="#최적-k-선택-규칙">3.1 최적 k 선택 규칙</a></li>
+  <li><a href="#실무적-특징" id="toc-실무적-특징" class="nav-link" data-scroll-target="#실무적-특징">3.2 실무적 특징</a></li>
+  </ul></li>
+  <li><a href="#실무-관점의-종합적-의사결정" id="toc-실무-관점의-종합적-의사결정" class="nav-link" data-scroll-target="#실무-관점의-종합적-의사결정">4. 실무 관점의 종합적 의사결정</a>
+  <ul class="collapse">
+  <li><a href="#지표-간-결과-차이의-존재" id="toc-지표-간-결과-차이의-존재" class="nav-link" data-scroll-target="#지표-간-결과-차이의-존재">4.1 지표 간 결과 차이의 존재</a></li>
+  <li><a href="#산업-현장에서의-실제-의사결정-방식" id="toc-산업-현장에서의-실제-의사결정-방식" class="nav-link" data-scroll-target="#산업-현장에서의-실제-의사결정-방식">4.2 산업 현장에서의 실제 의사결정 방식</a></li>
+  </ul></li>
+  <li><a href="#학문성과-해석의-주관성" id="toc-학문성과-해석의-주관성" class="nav-link" data-scroll-target="#학문성과-해석의-주관성">5. 학문성과 해석의 주관성</a></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">06</a></li>
+  <li><a href="#베이지안-gaussian-혼합-모델" id="toc-베이지안-gaussian-혼합-모델" class="nav-link" data-scroll-target="#베이지안-gaussian-혼합-모델">07 베이지안 Gaussian 혼합 모델</a>
+  <ul class="collapse">
+  <li><a href="#gaussian-혼합-모델gmm" id="toc-gaussian-혼합-모델gmm" class="nav-link" data-scroll-target="#gaussian-혼합-모델gmm">1. Gaussian 혼합 모델(GMM)</a>
+  <ul class="collapse">
+  <li><a href="#모델-정의" id="toc-모델-정의" class="nav-link" data-scroll-target="#모델-정의">1.1 모델 정의</a></li>
+  <li><a href="#베이지안-gmm" id="toc-베이지안-gmm" class="nav-link" data-scroll-target="#베이지안-gmm">1.2 베이지안 GMM</a></li>
+  <li><a href="#특징" id="toc-특징" class="nav-link" data-scroll-target="#특징">1.3 특징</a></li>
+  </ul></li>
+  <li><a href="#군집-안정성-검증" id="toc-군집-안정성-검증" class="nav-link" data-scroll-target="#군집-안정성-검증">2. 군집 안정성 검증</a>
+  <ul class="collapse">
+  <li><a href="#동일-자료에-다양한-군집-기법-적용" id="toc-동일-자료에-다양한-군집-기법-적용" class="nav-link" data-scroll-target="#동일-자료에-다양한-군집-기법-적용">2.1 동일 자료에 다양한 군집 기법 적용</a></li>
+  <li><a href="#데이터-분할" id="toc-데이터-분할" class="nav-link" data-scroll-target="#데이터-분할">2.2 데이터 분할</a></li>
+  <li><a href="#변수-제거추가" id="toc-변수-제거추가" class="nav-link" data-scroll-target="#변수-제거추가">2.3 변수 제거/추가</a></li>
+  </ul></li>
+  <li><a href="#실무-적용" id="toc-실무-적용" class="nav-link" data-scroll-target="#실무-적용">3. 실무 적용</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -540,37 +607,357 @@ x'=\frac{x-\mu}{\sigma}
 <li>최단, 최장, 평균, 중심 연결법 결과는 병합 순서나 군집 모양에서 차이가 발생하지만, 최종 그룹화 자체는 모두 유사</li>
 <li>관점 차이일 뿐, 전체적인 군집 구조 탐색에는 유용함</li>
 </ul>
+</section>
+</section>
+</section>
+<section id="protein.csv" class="level1">
+<h1>03 protein.csv</h1>
+</section>
+<section id="k-평균-군집-분석" class="level1">
+<h1>04 K-평균 군집 분석</h1>
+<p>K-means clustering<br> 비지도 학습(Unsupervised Learning)의 대표적 알고리즘으로,<br> 관측값들을 K개의 군집으로 분류하는 프로토타입 기반(Prototype-based) 군집화 방법이다.<br></p>
+<p>데이터의 유클리드 거리(Euclidean distance)를 활용하여 군집 중심(centroid)에<br> 가장 가까운 개체를 반복적으로 할당함으로써 군집 내 동질성을 최대화하고 군집 간 이질성을 극대화하는 것이 목적이다.<br></p>
+<p>K-평균은 계산 효율이 높고 구현이 간단하며 다양한 산업 분야에서 널리 적용되기 때문에 실무적 가치가 높다.<br> 그러나 초기 중심 선택, 이상치(outlier) 민감성, 군집형태 제약(구형 구조), 변수 단위 문제 등 여러 제약을 반드시 고려해야 한다.<br></p>
 <hr>
-<p>protein.csv</p>
+<section id="k-평균-군집의-목적-함수" class="level2">
+<h2 class="anchored" data-anchor-id="k-평균-군집의-목적-함수">1. K-평균 군집의 목적 함수</h2>
+<p>K-평균 알고리즘은 다음의 목적 함수(Objective Function)를 최소화하는 문제로 정의된다.</p>
+<p><span class="math display">\[
+\min_{C_1,\dots,C_K} \sum_{k=1}^{K} \sum_{x_i \in C_k} | x_i - \mu_k |^2
+\]</span></p>
+<p>여기서,</p>
+<ul>
+<li><span class="math inline">\(C_k\)</span>: k번째 군집</li>
+<li><span class="math inline">\(\mu_k\)</span>: k번째 군집의 중심(centroid)</li>
+<li><span class="math inline">\(x_i\)</span>: 군집에 속한 데이터 포인트</li>
+<li><span class="math inline">\(|x_i - \mu_k|^2\)</span>: 유클리드 거리의 제곱</li>
+<li>목적은 군집 내 제곱합(WSS, Within-Cluster Sum of Squares)의 최소화</li>
+</ul>
+<p>이 함수가 최소화될 때, 각 군집은 내부적으로 가장 조밀하며, 군집 간 분리는 상대적으로 크다.</p>
+</section>
+<section id="k-평균-알고리즘-절차" class="level2">
+<h2 class="anchored" data-anchor-id="k-평균-알고리즘-절차">2. K-평균 알고리즘 절차</h2>
+<p>K-평균 알고리즘의 표준 절차는 다음과 같다.</p>
+<section id="군집-수k의-결정" class="level3">
+<h3 class="anchored" data-anchor-id="군집-수k의-결정">2.1 군집 수(K)의 결정</h3>
+<p>K는 사전에 사용자가 결정해야 하는 <strong>하이퍼파라미터</strong>이다.<br> 일반적으로 엘보우 기법(Elbow method), 실루엣 계수(Silhouette coefficient), Gap Statistic 등으로 후보값을 선정한다.<br></p>
+<p>특히 엘보우 기법은 실무에서 가장 흔하게 사용된다.</p>
+</section>
+<section id="초기-중심-선택" class="level3">
+<h3 class="anchored" data-anchor-id="초기-중심-선택">2.2 초기 중심 선택</h3>
+<p>Initial Centroid<br> 초기 중심은 임의로 선택하거나, K-means++ 등 보다 안정적인 방법으로 선정할 수 있다.<br> 초기값에 따라 최종 군집 결과가 달라질 수 있어 초기 중심 선택은 중요한 단계이다.</p>
+</section>
+<section id="개체의-군집-할당" class="level3">
+<h3 class="anchored" data-anchor-id="개체의-군집-할당">2.3 개체의 군집 할당</h3>
+<p>Assignment Step<br> 각 데이터 포인트 <span class="math inline">\(x_i\)</span> 는 가장 가까운 중심 <span class="math inline">\(\mu_k\)</span> 에 할당된다.<br> 거리 계산은 일반적으로 유클리드 거리로 수행한다:</p>
+<p><span class="math display">\[
+d(x_i, \mu_k) = \sqrt{\sum_{j=1}^{p} (x_{ij} - \mu_{kj})^2}
+\]</span></p>
+<p>여기서 <span class="math inline">\(p\)</span> 는 변수의 개수이다.</p>
+</section>
+<section id="군집-중심-재계산" class="level3">
+<h3 class="anchored" data-anchor-id="군집-중심-재계산">2.4 군집 중심 재계산</h3>
+<p>Update Step<br> 각 군집에 속한 데이터의 평균 벡터를 이용해 새로운 중심을 계산한다:</p>
+<p><span class="math display">\[
+\mu_k = \frac{1}{|C_k|} \sum_{x_i \in C_k} x_i
+\]</span></p>
+<p>각 개체가 추가될 때마다(혹은 반복적 재계산 과정에서) 중심값이 변동한다.</p>
+</section>
+<section id="수렴-조건-충족-시까지-반복" class="level3">
+<h3 class="anchored" data-anchor-id="수렴-조건-충족-시까지-반복">2.5 수렴 조건 충족 시까지 반복</h3>
+<p>다음 중 하나의 조건이 충족하면 알고리즘은 종료된다.</p>
+<ul>
+<li>중심 벡터 변화량이 특정 임계값 이하일 때 <span class="math display">\[
+|\mu_k^{(t+1)} - \mu_k^{(t)}| &lt; \epsilon
+\]</span></li>
+<li>일정 횟수(T) 이상 반복 수행</li>
+<li>WSS 변화가 미미할 때</li>
+</ul>
+<p>이러한 반복 과정으로 K-means는 <strong>“군집 내 동질성이 가장 높은 상태”</strong>로 수렴한다.</p>
+</section>
+</section>
+<section id="엘보우-기법-1" class="level2">
+<h2 class="anchored" data-anchor-id="엘보우-기법-1">3. 엘보우 기법</h2>
+<p>Elbow<br> 엘보우 기법은 군집 수 K를 선택하기 위한 정형화된 방법이다.</p>
+<section id="wss-정의" class="level3">
+<h3 class="anchored" data-anchor-id="wss-정의">3.1 WSS 정의</h3>
+<p><span class="math display">\[
+WSS(K) = \sum_{k=1}^{K}\sum_{x_i\in C_k}|x_i - \mu_k|^2
+\]</span></p>
+<p>군집 수 K가 증가할수록 WSS는 감소한다. 이는 군집이 나뉠수록 각 군집이 더 조밀해지기 때문이다.</p>
+</section>
+<section id="엘보우의-해석" class="level3">
+<h3 class="anchored" data-anchor-id="엘보우의-해석">3.2 엘보우의 해석</h3>
+<ul>
+<li>WSS는 K가 증가할수록 급격히 감소하다가,</li>
+<li>어느 지점에서 감소 폭이 완만해지는 시점이 나타난다.</li>
+<li>이 지점이 “엘보우(elbow)”이며 적절한 K의 후보로 간주된다.</li>
+</ul>
+<p>단, 엘보우는 절대적인 정답이 아니며, 실루엣 계수 등 다른 지표와 병행해야 한다.</p>
+</section>
+</section>
+<section id="데이터-전처리와-표준화" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-전처리와-표준화">4. 데이터 전처리와 표준화</h2>
+<p>K-평균은 거리 기반 모델이므로 변수의 단위 차이가 큰 경우 오차가 발생한다.<br> 예를 들어, 나이(20 ~ 80)와 수입(1,000 ~ 1억)이 함께 있을 경우 수입 변수가 거리 계산을 압도한다.<br></p>
+<p>따라서 다음과 같은 표준화가 필요하다.</p>
+<p><span class="math display">\[
+x' = \frac{x - \mu}{\sigma}
+\]</span></p>
+<p>표준화는 거리 측정의 공정성을 확보하지만, “정보 손실”이 있는 것은 아니며 <strong>변수의 스케일 해석이 달라지는 것</strong>이 정확한 표현이다.</p>
+</section>
+<section id="고차원-데이터의-군집-시각화를-위한-차원-축소" class="level2">
+<h2 class="anchored" data-anchor-id="고차원-데이터의-군집-시각화를-위한-차원-축소">5. 고차원 데이터의 군집 시각화를 위한 차원 축소</h2>
+<p>대부분의 실무 데이터는 3차원 이상의 다변량 구조를 가진다.<br> K-평균으로 군집을 생성한 뒤, 결과를 2차원 또는 3차원 그래프로 시각화하기 위해 차원 축소 기법(PCA, t-SNE 등)을 사용한다.</p>
+<p>예: * PCA를 통해 고차원 공간의 분산을 보존하면서 차원을 축약 * 축약된 공간에서 각 군집을 색상(라벨)으로 표시 * 이는 군집 구조를 탐색하고 설명하는 데 유용</p>
+<p>군집 라벨은 비지도 학습의 결과이며 “예측값”이라기보다 <em>“모델이 발견한 데이터 구조에 대한 할당 결과”</em>에 가깝다.</p>
+</section>
+<section id="k-평균의-실무적-장점과-제약" class="level2">
+<h2 class="anchored" data-anchor-id="k-평균의-실무적-장점과-제약">6. K-평균의 실무적 장점과 제약</h2>
+<section id="장점" class="level3">
+<h3 class="anchored" data-anchor-id="장점">6.1 장점</h3>
+<ul>
+<li>계산 효율이 매우 높음</li>
+<li>대규모 데이터에 적합</li>
+<li>구현이 단순하고 결과가 직관적</li>
+<li>마케팅·고객 세그멘테이션·금융 데이터 분석에서 표준처럼 사용됨</li>
+</ul>
+</section>
+<section id="제약" class="level3">
+<h3 class="anchored" data-anchor-id="제약">6.2 제약</h3>
+<p>K-평균의 한계는 학술적 관점과 실무 관점 모두에서 매우 중요하다.</p>
+<ol type="1">
+<li><strong>군집 형태 제약</strong></li>
+</ol>
+<ul>
+<li>구형(spherical) 군집 가정</li>
+<li>비정형, 길쭉한 군집 구조에서는 부정확</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>초기값 민감성</strong></li>
+</ol>
+<ul>
+<li>K-means++ 등의 기법을 활용해야 안정적</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>이상치에 매우 취약</strong></li>
+</ol>
+<ul>
+<li>이상치는 중심값을 크게 왜곡시켜 전체 군집 구조를 변형시킨다.</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>군집 수 K 필요</strong></li>
+</ol>
+<ul>
+<li>사전에 K를 결정해야 하는 제약이 존재한다.</li>
+</ul>
 <hr>
-<p>k-평균 군집분석</p>
-<p>자주 사용하는 이유는 가장 효과적이고 대표적인 모델이기 때문에 그렇다.</p>
-<p>최적분리 군집 방법의 절차</p>
-<p>먼저 군집 초기값을 선택한다. 임의로 고르든 규칙적으로 고르든. 그 이후 초기 군집을 형성한다. 초기값들과의 거리를 계산된다. 이때 각 개체가 할당될 때마다 해당 군집의 중심이 그 군집에 속하는 걔체들의 평균 벡터로 다시 계산됨. 센터의 변동이 있음, 이제 별로 변동이 없어질 때까지 군집 중심들의 변화가 일정 수준 이하가 될 때까지 같은 과정을 반복한다. 시간은 많이 걸리나 가장 이상적인 군집분석이다. 각 군집과 구성원들을 묶는 그 방식을 조금씩 바꿔서 진행하는 것이다.</p>
-<p>그럼 먼저 군집의 수를 잡는 방식으로 엘보우 기법을 사용한다. 엘보우의 경사도가 의미하는 것은 군집내에 제곱합이다. 굽집내 변이의 합계를 의미한다. 그 값이 작을수록 좋음을 나타내며 이는 동질이다. WSS가 급격히 감소하다가 완만하게 되는 지점이 적절한 군집의 개수에 대한 후보이다.</p>
-<p>단위가 다를 수 있다. 데이터를 표준화시키고 다시 보는 방법도 가능하다. 다만, 유의할 것은 y축의 정보 손실이 발생할 가능성도 있다.</p>
-<p>군집 3가지를 보고 싶으나 3차원이야. 그래서 차원을 축약해서 간단하게 보는 방법이 차원 축소이다. 그리고 각 클러스터가 라벨로 표시된다. 사실상 각 군집을 예측한 것이다. 이 포인트는 이 군집 안에 들어갈 것이다라고.</p>
-<p>군집수 성능 지표(군집 결정 기중)</p>
-<p>실루엣 계수는 개별 데이터가 할당된 군집 내에 데이터와 얼마나 가깝게 군집화 되어 있는지, 그리고 다른 군집에 있는 데이터와는 얼마나 멀리 있는지를 보는 것.</p>
-<p>범위는 -1부터 1까지 마치 상관계수와 같다. 1에 가까울수록 좋은 것이다. 거리는 분산에 의해 결정된다.</p>
-<p>붓꽃 데이터는 이미 다 조사를 했는데. 3종이 이미 되어 있다. 그러나 다시 분석을 하는 것은 이 기법으로 정말로 실효성이 있는가 에대한 가설 실험인 것이다.</p>
-<p>엘보우 기법과 실루엣 계수간에 차이가 날 수 있다. 이것도 고민되는 이유이다. 갭 통계량, 약간 값을 벙튀기 하는 것. 관측된 군집간 변이와 균일 분포하에서의 군집간 변이의 기댓값을 비교하는 것으로 그 값이 클때 군집화가 잘 되었을 을 나타낸다.</p>
-<p>부스트랩 반복횟수 지정(반복횟수를 크게 하면 시간이 많이 걸리지만 더 좋은 결과를 얻을 수 있다.)</p>
-<p>값이 클수록 좋은 것이다. 그러나 만약 그보다 작은 값을 선택했다면? 과적합, 떄문에 그렇다. 이전에 엘보우과 실루엣 계수도 비교해서 결정해야 한다. 기울기도 보고 값의 크기를 더 많이 본다.</p>
-<p>즉 보여지는 이론적 배경과 수치보다 현업의 이해도와 융통성이 있어야 된다. 유연하다는 것과 거짓정보를 주는 것은 다른다. 전문가의 의견을 많이 들어서 다 포함해야 한다. 애초에 사람들에게 쓰기 위해서 이론 수학보다 유연하게 만든 학문이기에.</p>
+</section>
+</section>
+</section>
+<section id="군집수-결정-지표" class="level1">
+<h1>05 군집수 결정 지표</h1>
+<p>군집 분석에서는 “정답(ground truth)”이 존재하지 않기 때문에,<br> 군집 수(k)의 결정은 통계적 지표, 산술적 근거, 데이터의 특성, 실무 목적 등이 복합적으로 작용한다.<br></p>
+<p>본 장에서는 군집 수 결정에 사용되는 대표적 성능 지표로 <strong>실루엣 계수(Silhouette Coefficient)</strong>, <strong>엘보우 기법(Elbow Method)</strong>, <strong>갭 통계량(Gap Statistic)</strong>을 중심으로 그 이론적 배경, 계산 방식, 해석 기준, 실무적 의사결정 요소의 중요성을 체계적으로 기술한다.</p>
+<section id="실루엣-계수-1" class="level2">
+<h2 class="anchored" data-anchor-id="실루엣-계수-1">1. 실루엣 계수</h2>
+<p>Silhouette Coefficient<br></p>
+<section id="수학적-정의" class="level3">
+<h3 class="anchored" data-anchor-id="수학적-정의">1.1 수학적 정의</h3>
+<p>실루엣 계수는 개별 데이터 포인트가 <strong>자신이 속한 군집과 얼마나 응집(Cohesion)</strong> 되어 있으며,<br> 동시에 <strong>다른 군집과는 얼마나 분리(Separation)</strong> 되어 있는지를 정량적으로 측정하는 지표이다.</p>
+<p>특정 데이터 포인트 <span class="math inline">\(i\)</span> 에 대해 다음과 같이 정의한다.</p>
+<ol type="1">
+<li><p>동일 군집 내 거리 평균 <span class="math display">\[
+a(i) = \frac{1}{|C_i|-1}\sum_{j\in C_i, j\neq i} d(i,j)
+\]</span></p></li>
+<li><p>가장 가까운 외군집과의 평균거리 <span class="math display">\[
+b(i) = \min_{C_k \ne C_i} \left( \frac{1}{|C_k|} \sum_{j\in C_k} d(i,j) \right)
+\]</span></p></li>
+<li><p>실루엣 계수 공식 <span class="math display">\[
+s(i)=\frac{b(i)-a(i)}{\max(a(i),b(i))}, \quad \text{범위}: -1 \le s(i) \le 1
+\]</span></p></li>
+</ol>
+</section>
+<section id="해석-기준" class="level3">
+<h3 class="anchored" data-anchor-id="해석-기준">1.2 해석 기준</h3>
+<ul>
+<li><span class="math inline">\(s(i) \approx 1\)</span>: 군집이 매우 잘 형성됨 (높은 응집 + 높은 분리)</li>
+<li><span class="math inline">\(s(i) \approx 0\)</span>: 군집 간 경계에 위치</li>
+<li><span class="math inline">\(s(i) &lt; 0\)</span>: 잘못된 군집 배정 가능성이 높음</li>
+</ul>
+<p>군집 전체의 실루엣 계수는 다음과 같이 평균으로 계산한다.</p>
+<p><span class="math display">\[
+S(k) = \frac{1}{n}\sum_{i=1}^{n}s(i)
+\]</span></p>
+<p>이 값이 최대가 되는 k를 선택하는 것이 대표적 접근이다.</p>
+</section>
+</section>
+<section id="실무-적용성과-한계" class="level2">
+<h2 class="anchored" data-anchor-id="실무-적용성과-한계">1.3 실무 적용성과 한계</h2>
+<p><strong>장점</strong> * 개별 포인트 단위의 군집 품질 평가 가능 * 모델 비교 가능 (예: K=2~10)</p>
+<p><strong>한계</strong> * <strong>비선형 구조(예: 두 개의 링 모양)에서는 K-means와 함께 비적합</strong> * 고차원 데이터에서 거리 기반 접근의 신뢰도 저하 * 실루엣 계수가 높아도 실무 요구와 맞지 않을 수 있음(예: 비즈니스 세분화 목적이 다른 경우)</p>
+</section>
+<section id="엘보우-기법-2" class="level2">
+<h2 class="anchored" data-anchor-id="엘보우-기법-2">2. 엘보우 기법</h2>
+<p>Elbow Method<br> 엘보우 기법은 군집 내 응집도를 나타내는 <strong>군집 내 제곱합(WSS, Within-Cluster Sum of Squares)</strong>에 기반한다.<br></p>
+<p>WSS는 다음과 같이 정의한다.</p>
+<p><span class="math display">\[
+WSS(k)=\sum_{i=1}^{k}\sum_{x \in C_i} | x - \mu_i |^2
+\]</span></p>
+<p>여기서 * (C_i): i번째 군집 * (_i): 해당 군집의 중심(centroid)</p>
+<section id="해석-기준-1" class="level3">
+<h3 class="anchored" data-anchor-id="해석-기준-1">2.1 해석 기준</h3>
+<ul>
+<li>WSS(k)는 k가 증가할수록 항상 감소한다.</li>
+<li>감소 곡선에서 <strong>기울기 변화가 급격 → 완만</strong>으로 바뀌는 지점을 “팔꿈치(Elbow)”라고 한다.</li>
+<li>이 지점이 <strong>적절한 군집 수 후보</strong>가 된다.</li>
+</ul>
+</section>
+<section id="한계" class="level3">
+<h3 class="anchored" data-anchor-id="한계">2.3 한계</h3>
+<ul>
+<li>엘보우 지점이 명확히 보이지 않는 경우가 매우 많다.</li>
+<li>시각적 판단 의존도가 높아 <strong>객관성이 떨어진다</strong>.</li>
+<li>실무에서는 “엘보우처럼 보이는 두세 지점”이 나오는 경우가 흔하며, 이를 전문가가 해석해야 한다.</li>
+</ul>
+</section>
+</section>
+<section id="갭-통계량" class="level2">
+<h2 class="anchored" data-anchor-id="갭-통계량">3. 갭 통계량</h2>
+<p>Gap Statistic<br> 갭 통계량은 Tibshirani(2001)에 의해 제안되었으며,<br> “관측 데이터의 군집 응집도”와 “참조분포(보통 균일분포) 기반 기대치”를 비교하여 군집의 구조가 통계적으로 의미 있는지를 측정한다.</p>
+<p><span class="math display">\[
+Gap(k)=E^*[\log(W_k)] - \log(W_k)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(W_k\)</span>: k개의 군집으로 분할했을 때의 군집 내 분산</li>
+<li><span class="math inline">\(E^*[\cdot]\)</span>: 참조 분포에서의 몬테카를로(Monte Carlo) 기준 기대값</li>
+</ul>
+<p>값이 클수록 군집이 “랜덤한 분포보다 더 잘 분리되어 있다”는 의미이다.</p>
+<section id="최적-k-선택-규칙" class="level3">
+<h3 class="anchored" data-anchor-id="최적-k-선택-규칙">3.1 최적 k 선택 규칙</h3>
+<p>Tibshirani는 다음 조건을 만족하는 최초의 k를 선택하도록 제안하였다.</p>
+<p><span class="math display">\[
+Gap(k) \ge Gap(k+1) - s_{k+1}
+\]</span></p>
+<p>여기서 (s_{k+1})는 표준오차(SE)에 기반한 보정 항이다.</p>
+</section>
+<section id="실무적-특징" class="level3">
+<h3 class="anchored" data-anchor-id="실무적-특징">3.2 실무적 특징</h3>
+<p><strong>장점</strong> * 엘보우 기법보다 객관적 * 내재적 군집 구조를 통계적으로 검증 가능</p>
+<p><strong>단점</strong> * <strong>부트스트랩 반복수가 많을수록 시간 비용이 큼</strong> * 대규모 데이터에서는 사용되지 않는 경우가 많음</p>
+</section>
+</section>
+<section id="실무-관점의-종합적-의사결정" class="level2">
+<h2 class="anchored" data-anchor-id="실무-관점의-종합적-의사결정">4. 실무 관점의 종합적 의사결정</h2>
+<section id="지표-간-결과-차이의-존재" class="level3">
+<h3 class="anchored" data-anchor-id="지표-간-결과-차이의-존재">4.1 지표 간 결과 차이의 존재</h3>
+<ul>
+<li>엘보우 기법과 실루엣 계수는 서로 다른 관점에서 k를 선택하기 때문에 서로 다른 결과가 나오기 쉽다.</li>
+<li>갭 통계량까지 고려하면 결과는 더욱 다양해진다.</li>
+</ul>
+<p>따라서 <strong>한 가지 지표만으로 군집 수를 결정하는 것은 통계적으로 부적절</strong>하다.</p>
+</section>
+<section id="산업-현장에서의-실제-의사결정-방식" class="level3">
+<h3 class="anchored" data-anchor-id="산업-현장에서의-실제-의사결정-방식">4.2 산업 현장에서의 실제 의사결정 방식</h3>
+<p>기업의 고객군 세분화(마스터 세그멘테이션), 금융 리스크 분류, 구좌별 소비자 유형 분류 등에서는 다음의 요소가 함께 고려된다.</p>
+<ol type="1">
+<li>지표 값의 통계적 안정성</li>
+<li>군집의 해석 가능성(Interpretability)</li>
+<li>비즈니스 목적에 맞는 분류 구조</li>
+<li>실무 담당자 및 도메인 전문가의 판단</li>
+<li>추후 유지·갱신 가능성</li>
+<li>스케일링(표준화) 여부의 영향</li>
+</ol>
+<p>특히, * 변수 단위가 모두 다를 경우 표준화(Z-score normalization)는 필수적이다. * 표준화는 “정보 손실”이 아니라 “스케일 기반 의미가 소거된다는 문제”로 해석하는 것이 정확하다.</p>
+</section>
+</section>
+<section id="학문성과-해석의-주관성" class="level2">
+<h2 class="anchored" data-anchor-id="학문성과-해석의-주관성">5. 학문성과 해석의 주관성</h2>
+<p>군집 분석은 지도학습이 아니며, 통계적으로 “가장 좋은 군집”이라는 절대적 기준이 존재하지 않는다. 따라서 해석자, 전문가, 비즈니스 목적에 의해 결과가 달라진다.</p>
+<p>이것이 군집 분석을 최근 연구에서 <strong>Exploratory Data Analysis(EDA)</strong> 기반 기법으로 분류하는 이유이기도 하다.</p>
+<p>즉, * 이론적 수학 모델은 제공된다. * 그러나 최종 모델 선택은 <strong>이론+실무 목적+해석의 융통성</strong>이 결합된 의사결정이다.</p>
+<p>이는 통계·데이터 과학 등 학계에서도 널리 받아들여진 인식이다.</p>
+</section>
+</section>
+<section id="section" class="level1">
+<h1>06</h1>
 <p>분석사례 - NbClust (군집수를 결정하는 추가적인 통계량 제공) 왜 이 많은 걸 볼까? 그건 각 통계량마다 헛점들이 많기 때문이다. 만약에 2, 3가지로 봐서 명확하게 나오면 괜춘. 근데 애매하면 꼭 여러가지 기법을 총동원해서 최적의 군집을 찾고 그 성능과 신뢰도까지 보여줄 수 있어야 한다.</p>
-<p>가우시안 매트릭스 모델(거리가 아닌 확률로 구한다)</p>
-<p>베이지안 군집 분석: 여러개의 혼합된 모델일 경우에 좋다. 다변량 가우시안 모델이다.</p>
-<p>베이지안 GMM은 클래스를 사용해서 구현. 군집 수에 대한 불확실성을 반영</p>
-<p>검토하는 직관적인 방법 다른 통계적 방식에 비해 상대적으로 굉장히 복잡한 과정을 거친다.</p>
-<p>특이값에 민감하다, 이유는 거리 기반이기 때문에 디스턴스 기반이기 떄문에 그렇다.</p>
-<p>동일한 자료에 대해 다른 가정에 기초를 둔 여러 가지 군집 방법을 적용했을 때 대부분의 방법에서 제공된 결과가 유사한 결과가 나오는 가?</p>
-<p>주어진 자료를 임의적으로 두 부분으로 나누고 각 부분을 독립적으로 군집시키는 방법 이때 군집들이 안정되어 있다면 그 결과는 유사</p>
-<p>어떤 군집 분석 방법에 의하여 얻어지는 군집의 안정성을 알아보기 위해 몇 개의 일부 변수를 뺐다 꼈다해보기. 제거하여 군집의 구조에 어떤 영향을 미치게 될 것인가를 고찰하는 방법.</p>
+<hr>
+</section>
+<section id="베이지안-gaussian-혼합-모델" class="level1">
+<h1>07 베이지안 Gaussian 혼합 모델</h1>
+<p>Bayesian Gaussian Mixture Model, Bayesian GMM<br></p>
+<p>기존 거리 기반 방법(K-means 등)은 데이터 포인트 간의 거리 계산에 의존하지만,<br> Gaussian 혼합 모델(GMM)은 각 군집을 확률 분포로 가정하여 <strong>데이터가 각 군집에 속할 확률</strong>을 계산한다.<br></p>
+<p>Bayesian GMM은 이러한 GMM을 <strong>베이지안 관점에서 확장</strong>한 모델로,<br> 군집 수에 대한 불확실성을 고려하며 데이터 기반 사전(prior)을 적용할 수 있다.<br></p>
+<section id="gaussian-혼합-모델gmm" class="level2">
+<h2 class="anchored" data-anchor-id="gaussian-혼합-모델gmm">1. Gaussian 혼합 모델(GMM)</h2>
+<section id="모델-정의" class="level3">
+<h3 class="anchored" data-anchor-id="모델-정의">1.1 모델 정의</h3>
+<p>GMM은 다변량 정규분포(Multivariate Gaussian Distribution)의 혼합으로 데이터 분포를 나타낸다.<br> 각 데이터 포인트 <span class="math inline">\(x_i \in \mathbb{R}^d\)</span> 는 다음과 같이 확률적으로 군집에 속한다.<br></p>
+<p><span class="math display">\[
+p(x_i) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x_i \mid \mu_k, \Sigma_k)
+\]</span></p>
+<p>여기서 * <span class="math inline">\(K\)</span> : 군집 수 * <span class="math inline">\(\pi_k\)</span> : k번째 군집의 혼합 비율 ((_{k=1}^{K} _k = 1)) * <span class="math inline">\(\mu_k\)</span> : k번째 군집의 평균 벡터 * <span class="math inline">\(\Sigma_k\)</span> : k번째 군집의 공분산 행렬 * <span class="math inline">\(\mathcal{N}(x_i \mid \mu_k, \Sigma_k)\)</span> : 다변량 정규분포 확률밀도함수</p>
+<hr>
+</section>
+<section id="베이지안-gmm" class="level3">
+<h3 class="anchored" data-anchor-id="베이지안-gmm">1.2 베이지안 GMM</h3>
+<p>Bayesian GMM은 <strong>군집 수 K에 대한 불확실성을 모델링</strong>하며,<br> 사전 분포(prior)와 데이터로부터 얻은 우도(likelihood)를 결합하여 <strong>후행 분포(posterior)</strong>를 계산한다.<br></p>
+<ul>
+<li>혼합 비율 <span class="math inline">\(\pi_k\)</span> : Dirichlet 사전 분포</li>
+<li>평균 <span class="math inline">\(\mu_k\)</span> : Gaussian 사전 분포</li>
+<li>공분산 <span class="math inline">\(\Sigma_k\)</span> : Inverse-Wishart 사전 분포</li>
+</ul>
+<p><span class="math display">\[
+p(\pi, \mu, \Sigma \mid X) \propto p(X \mid \pi, \mu, \Sigma) , p(\pi) , p(\mu) , p(\Sigma)
+\]</span></p>
+<p>Bayesian 추정에서는 EM(Expectation-Maximization)과 유사한 반복적 최적화 또는 변분 추정(Variational Inference)을 사용한다.</p>
+</section>
+<section id="특징" class="level3">
+<h3 class="anchored" data-anchor-id="특징">1.3 특징</h3>
+<ol type="1">
+<li><p>데이터 포인트마다 <strong>군집 소속 확률</strong> 제공</p></li>
+<li><p>군집 수가 명확하지 않을 때 사전 분포를 통한 <strong>자동 결정 가능성</strong></p></li>
+<li><p><strong>특이값(outlier)에 민감</strong></p>
+<ul>
+<li>이유: 공분산 행렬 추정 시 이상치가 분산을 왜곡하기 때문</li>
+<li>단순 거리 기반이 아니며, 확률적 분포 추정 과정에서 민감</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="군집-안정성-검증" class="level2">
+<h2 class="anchored" data-anchor-id="군집-안정성-검증">2. 군집 안정성 검증</h2>
+<p>군집 결과가 신뢰할 수 있는지 평가하기 위해 여러 방법이 사용된다.</p>
+<section id="동일-자료에-다양한-군집-기법-적용" class="level3">
+<h3 class="anchored" data-anchor-id="동일-자료에-다양한-군집-기법-적용">2.1 동일 자료에 다양한 군집 기법 적용</h3>
+<ul>
+<li>같은 데이터셋에 K-means, GMM, 계층적 군집 분석 등 <strong>다양한 가정 기반 군집 방법</strong>을 적용</li>
+<li>결과 군집이 <strong>유사하게 나타나는지 비교</strong>하여 안정성을 검증</li>
+</ul>
+</section>
+<section id="데이터-분할" class="level3">
+<h3 class="anchored" data-anchor-id="데이터-분할">2.2 데이터 분할</h3>
+<p>Cross-validation<br> * 데이터셋을 임의로 두 부분으로 분할 * 각 부분을 독립적으로 군집 분석 수행 * <strong>군집 구조가 일관되게 나타나는지</strong> 확인</p>
+</section>
+<section id="변수-제거추가" class="level3">
+<h3 class="anchored" data-anchor-id="변수-제거추가">2.3 변수 제거/추가</h3>
+<p>Sensitivity Analysis<br> * 일부 변수를 제거하거나 추가하여 군집 분석 수행 * <strong>군집 구조가 어떻게 변화하는지</strong> 관찰 * 특정 변수에 과도하게 의존하는 군집인지 평가 가능</p>
+</section>
+</section>
+<section id="실무-적용" class="level2">
+<h2 class="anchored" data-anchor-id="실무-적용">3. 실무 적용</h2>
+<ul>
+<li><p>Bayesian GMM은 <strong>다중 패턴이 혼합된 데이터</strong>, 예: 고객 세분화, 금융 리스크 평가, 헬스케어 환자 그룹 분류에 적합</p></li>
+<li><p>안정성 검증 방법은 <strong>실무 데이터 분석에서 필수적</strong></p>
+<ul>
+<li>데이터 분할, 변수 제거/추가, 다른 알고리즘 비교를 통해 신뢰성 확보</li>
+</ul></li>
+<li><p>모델 복잡도가 높으므로, <strong>분석 목적, 데이터 특성, 해석 가능성</strong>을 함께 고려해야 함</p></li>
+</ul>
+<hr>
 <p>파셜 주성분 분석.(교수님 박사 논문)</p>
 
 
-</section>
 </section>
 </section>
 
