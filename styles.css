@@ -79,3 +79,33 @@ html {
   font-size: 1.5rem; /* 원하는 크기 */
   font-weight: 600;  /* 굵기 조절 */
 }
+
+
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.9em;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
