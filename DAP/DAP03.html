@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>PCA – StudyLog</title>
+<title>주성분 분석(PCA) – StudyLog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,31 +143,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#주성분-분석" id="toc-주성분-분석" class="nav-link active" data-scroll-target="#주성분-분석">01 주성분 분석</a>
+  <li><a href="#목표-및-원리" id="toc-목표-및-원리" class="nav-link active" data-scroll-target="#목표-및-원리">01 목표 및 원리</a>
   <ul class="collapse">
-  <li><a href="#pca의-목표-및-원리" id="toc-pca의-목표-및-원리" class="nav-link" data-scroll-target="#pca의-목표-및-원리">1. PCA의 목표 및 원리</a>
-  <ul class="collapse">
-  <li><a href="#주성분-생성" id="toc-주성분-생성" class="nav-link" data-scroll-target="#주성분-생성">1.1 주성분 생성</a></li>
-  <li><a href="#수학적-정의" id="toc-수학적-정의" class="nav-link" data-scroll-target="#수학적-정의">1.2 수학적 정의</a></li>
-  <li><a href="#공분산-행렬과-고유값-분해" id="toc-공분산-행렬과-고유값-분해" class="nav-link" data-scroll-target="#공분산-행렬과-고유값-분해">1.3 공분산 행렬과 고유값 분해</a></li>
-  </ul></li>
-  <li><a href="#차원-축소" id="toc-차원-축소" class="nav-link" data-scroll-target="#차원-축소">2. 차원 축소</a></li>
-  <li><a href="#주성분-해석" id="toc-주성분-해석" class="nav-link" data-scroll-target="#주성분-해석">3. 주성분 해석</a></li>
-  <li><a href="#실무-활용" id="toc-실무-활용" class="nav-link" data-scroll-target="#실무-활용">4. 실무 활용</a></li>
-  <li><a href="#데이터-및-목표" id="toc-데이터-및-목표" class="nav-link" data-scroll-target="#데이터-및-목표">5. 데이터 및 목표</a></li>
-  <li><a href="#주성분-생성-1" id="toc-주성분-생성-1" class="nav-link" data-scroll-target="#주성분-생성-1">6. 주성분 생성</a>
+  <li><a href="#주성분-생성" id="toc-주성분-생성" class="nav-link" data-scroll-target="#주성분-생성">1. 주성분 생성</a></li>
+  <li><a href="#주성분-생성-1" id="toc-주성분-생성-1" class="nav-link" data-scroll-target="#주성분-생성-1">1. 주성분 생성</a></li>
+  <li><a href="#수학적-공식" id="toc-수학적-공식" class="nav-link" data-scroll-target="#수학적-공식">2. 수학적 공식</a></li>
+  <li><a href="#공분산-행렬과-고유값-분해" id="toc-공분산-행렬과-고유값-분해" class="nav-link" data-scroll-target="#공분산-행렬과-고유값-분해">3. 공분산 행렬과 고유값 분해</a></li>
+  <li><a href="#차원-축소" id="toc-차원-축소" class="nav-link" data-scroll-target="#차원-축소">4. 차원 축소</a></li>
+  <li><a href="#주성분-생성-2" id="toc-주성분-생성-2" class="nav-link" data-scroll-target="#주성분-생성-2">6. 주성분 생성</a>
   <ul class="collapse">
   <li><a href="#선형-변환" id="toc-선형-변환" class="nav-link" data-scroll-target="#선형-변환">6.1 선형 변환</a></li>
   <li><a href="#분산-최대화" id="toc-분산-최대화" class="nav-link" data-scroll-target="#분산-최대화">6.2 분산 최대화</a></li>
   </ul></li>
   <li><a href="#공분산-행렬과-고유값-문제" id="toc-공분산-행렬과-고유값-문제" class="nav-link" data-scroll-target="#공분산-행렬과-고유값-문제">7. 공분산 행렬과 고유값 문제</a></li>
   <li><a href="#차원-축소-1" id="toc-차원-축소-1" class="nav-link" data-scroll-target="#차원-축소-1">8. 차원 축소</a></li>
-  <li><a href="#주성분-해석-1" id="toc-주성분-해석-1" class="nav-link" data-scroll-target="#주성분-해석-1">9. 주성분 해석</a></li>
+  <li><a href="#주성분-해석" id="toc-주성분-해석" class="nav-link" data-scroll-target="#주성분-해석">9. 주성분 해석</a></li>
   <li><a href="#실무-적용" id="toc-실무-적용" class="nav-link" data-scroll-target="#실무-적용">10. 실무 적용</a></li>
   </ul></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">02</a>
   <ul class="collapse">
-  <li><a href="#데이터-및-목표-1" id="toc-데이터-및-목표-1" class="nav-link" data-scroll-target="#데이터-및-목표-1">1. 데이터 및 목표</a></li>
+  <li><a href="#데이터-및-목표" id="toc-데이터-및-목표" class="nav-link" data-scroll-target="#데이터-및-목표">1. 데이터 및 목표</a></li>
   <li><a href="#표준화standardization" id="toc-표준화standardization" class="nav-link" data-scroll-target="#표준화standardization"><strong>2. 표준화(Standardization)</strong></a></li>
   <li><a href="#공분산-행렬-계산" id="toc-공분산-행렬-계산" class="nav-link" data-scroll-target="#공분산-행렬-계산"><strong>3. 공분산 행렬 계산</strong></a></li>
   <li><a href="#고유값eigenvalue과-고유벡터eigenvector-계산" id="toc-고유값eigenvalue과-고유벡터eigenvector-계산" class="nav-link" data-scroll-target="#고유값eigenvalue과-고유벡터eigenvector-계산"><strong>4. 고유값(Eigenvalue)과 고유벡터(Eigenvector) 계산</strong></a></li>
@@ -180,7 +175,7 @@ window.Quarto = {
   <li><a href="#데이터-설정" id="toc-데이터-설정" class="nav-link" data-scroll-target="#데이터-설정"><strong>1. 데이터 설정</strong></a></li>
   <li><a href="#주성분-좌표projection-계산" id="toc-주성분-좌표projection-계산" class="nav-link" data-scroll-target="#주성분-좌표projection-계산"><strong>2. 주성분 좌표(Projection) 계산</strong></a></li>
   <li><a href="#공분산-행렬-및-분산" id="toc-공분산-행렬-및-분산" class="nav-link" data-scroll-target="#공분산-행렬-및-분산"><strong>3. 공분산 행렬 및 분산</strong></a></li>
-  <li><a href="#주성분-해석-2" id="toc-주성분-해석-2" class="nav-link" data-scroll-target="#주성분-해석-2"><strong>4. 주성분 해석</strong></a></li>
+  <li><a href="#주성분-해석-1" id="toc-주성분-해석-1" class="nav-link" data-scroll-target="#주성분-해석-1"><strong>4. 주성분 해석</strong></a></li>
   <li><a href="#시각적-해석" id="toc-시각적-해석" class="nav-link" data-scroll-target="#시각적-해석"><strong>5. 시각적 해석</strong></a></li>
   <li><a href="#전처리-차원-축소-vs-pca-차원-축소" id="toc-전처리-차원-축소-vs-pca-차원-축소" class="nav-link" data-scroll-target="#전처리-차원-축소-vs-pca-차원-축소"><strong>6. 전처리 차원 축소 vs PCA 차원 축소</strong></a></li>
   <li><a href="#실무적-적용-1" id="toc-실무적-적용-1" class="nav-link" data-scroll-target="#실무적-적용-1"><strong>7. 실무적 적용</strong></a></li>
@@ -193,7 +188,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">PCA</h1>
+<h1 class="title">주성분 분석(PCA)</h1>
 </div>
 
 
@@ -214,39 +209,69 @@ window.Quarto = {
 <p>Reporting Date: December. 02, 2025</p>
 </blockquote>
 <hr>
-<section id="주성분-분석" class="level1">
-<h1>01 주성분 분석</h1>
-<p>Principal Component Analysis, PCA<br> 상관관계가 존재할 수 있는 (p)개의 관찰 변수를 <strong>선형 변환</strong>하여<br> 서로 상관관계가 없는 새로운 인공 변수(주성분, principal component)를 생성하는 통계적 기법이다.<br></p>
+<p><code>Principal Component Analysis, PCA</code><br> 상관관계가 존재할 수 있는 (p)개의 관찰 변수를 <strong>선형 변환</strong>하여<br> 서로 상관관계가 없는 새로운 인공 변수(주성분)를 생성하는 통계적 기법이다.<br></p>
 <p>고차원 데이터에서는 변수 간 상관 관계가 분석과 해석을 복잡하게 만들 수 있으므로,<br> PCA를 통해 데이터 구조를 단순화하고, <strong>차원 축소</strong>를 수행함으로써 데이터 시각화, 노이즈 제거, 변수 간 다중공선성 문제 해결이 가능하다.<br></p>
 <hr>
-<section id="pca의-목표-및-원리" class="level2">
-<h2 class="anchored" data-anchor-id="pca의-목표-및-원리">1. PCA의 목표 및 원리</h2>
-<section id="주성분-생성" class="level3">
-<h3 class="anchored" data-anchor-id="주성분-생성">1.1 주성분 생성</h3>
-<p>주성분 분석의 목적은 다음과 같이 정의할 수 있다: 1. <span class="math inline">\(p\)</span> 개의 원본 관찰 변수 <span class="math inline">\(X = [x_1, x_2, \dots, x_p]\)</span> 를 선형 변환하여 새로운 변수 <span class="math inline">\(Z = [z_1, z_2, \dots, z_p]\)</span> 를 생성한다. 2. 새로운 변수 <span class="math inline">\(Z\)</span> 는 서로 <strong>직교(orthogonal)</strong>하며, 즉 서로 상관관계가 없다. 3. 각 주성분 <span class="math inline">\(z_k\)</span> 는 원자료 분산(variance)을 최대한 유지하도록 선택된다.</p>
+<section id="목표-및-원리" class="level1">
+<h1>01 목표 및 원리</h1>
+<section id="주성분-생성" class="level2">
+<h2 class="anchored" data-anchor-id="주성분-생성">1. 주성분 생성</h2>
+<p>주성분 분석의 목적은 다음과 같이 정의할 수 있다:</p>
+<p>아래는 전체 문장을 더 유기적으로 연결하고, 통계적 용어를 명확히 하여 전문성을 보완한 첨삭 버전입니다.</p>
+<hr>
 </section>
-<section id="수학적-정의" class="level3">
-<h3 class="anchored" data-anchor-id="수학적-정의">1.2 수학적 정의</h3>
-<p>주성분 <span class="math inline">\(z_k\)</span> 는 원본 변수들의 선형 결합으로 정의된다:</p>
-<p><span class="math display">\[
-z_k = a_{1k}x_1 + a_{2k}x_2 + \dots + a_{pk}x_p = \mathbf{a}_k^T \mathbf{x}, \quad k=1,2,\dots,p
-\]</span></p>
-<p>여기서 * <span class="math inline">\(\mathbf{x} \in \mathbb{R}^p\)</span> : 원본 데이터 벡터 * <span class="math inline">\(\mathbf{a}_k \in \mathbb{R}^p\)</span> : k번째 주성분의 가중치 벡터(loading) * <span class="math inline">\(\mathbf{a}_k^T \mathbf{a}_j = 0 \quad (k \neq j)\)</span> : 주성분 간 직교성</p>
-<p>첫 번째 주성분 (z_1)는 <strong>원자료 분산의 최대치</strong>를 설명하도록 선택되며, 두 번째 주성분 (z_2)는 남은 분산을 최대한 설명하도록 설정한다.<br></p>
-<p>즉, (k)-번째 주성분은 다음 최적화 문제를 통해 구한다:<br></p>
-<p><span class="math display">\[
-\mathbf{a}*k = \arg\max*{\mathbf{a}} \mathrm{Var}(\mathbf{a}^T \mathbf{x}), \quad \text{subject to } \mathbf{a}^T \mathbf{a} = 1 \text{ and } \mathbf{a}^T \mathbf{a}_j = 0, j&lt;k
-\]</span></p>
+<section id="주성분-생성-1" class="level2">
+<h2 class="anchored" data-anchor-id="주성분-생성-1">1. 주성분 생성</h2>
+<p>PCA의 목적은 다음과 같이 정리할 수 있다.</p>
+<ol type="1">
+<li><p>상관관계가 존재할 수 있는 <span class="math inline">\(p\)</span> 개의 원본 관찰 변수 <span class="math inline">\(X = [x_1, x_2, \dots, x_p]\)</span> 를 <strong>선형 변환(linear transformation)</strong>하여, 서로 상관관계가 없는 새로운 변수 집합 <span class="math inline">\(Z = [z_1, z_2, \dots, z_p]\)</span> 를 생성한다.</p></li>
+<li><p>변환된 변수 <span class="math inline">\(Z\)</span> 는 서로 <strong>직교(orthogonal)</strong>하므로 상관성이 제거되며, 이를 통해 차원 축소와 데이터 구조 파악을 보다 효과적으로 수행할 수 있다.</p></li>
+<li><p>각 주성분 <span class="math inline">\(z_k\)</span> 는 <strong>원자료의 분산을 최대한 보존</strong>하도록 선택되며, 주성분의 순서는 설명하는 분산의 크기에 따라 결정된다.</p></li>
+</ol>
 </section>
-<section id="공분산-행렬과-고유값-분해" class="level3">
-<h3 class="anchored" data-anchor-id="공분산-행렬과-고유값-분해">1.3 공분산 행렬과 고유값 분해</h3>
+<section id="수학적-공식" class="level2">
+<h2 class="anchored" data-anchor-id="수학적-공식">2. 수학적 공식</h2>
+<p>데이터 행렬은 다음과 같이 표현한다.</p>
+<ul>
+<li><p><strong>데이터 행렬:</strong> <span class="math inline">\(X \in \mathbb{R}^{p \times n}\)</span></p>
+<ul>
+<li><span class="math inline">\(p\)</span>: 관찰 변수의 수</li>
+<li><span class="math inline">\(n\)</span>: 관측치의 수</li>
+</ul></li>
+</ul>
+<p>PCA의 목적은 고차원 데이터를 선형 변환하여 새로운 좌표계 <span class="math inline">\(\mathbf{u}\)</span> 로 사영(projection)하고, <strong>분산을 최대한 보존하면서 서로 직교하는 주성분 집합</strong> <span class="math inline">\(Z = [z_1, z_2, \dots, z_p]\)</span> 을 생성하는 데 있다.</p>
+<p>주성분 <span class="math inline">\(z_k\)</span> 는 원본 변수의 선형 결합으로 정의되며 다음과 같이 표현된다.</p>
+<p><span class="math display">\[
+z_k = a_{1k} x_1 + a_{2k} x_2 + \dots + a_{pk} x_p
+= \mathbf{a}_k^T \mathbf{x}, \quad k = 1, 2, \dots, p
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbf{x} \in \mathbb{R}^p\)</span>: 원본 데이터 벡터</li>
+<li><span class="math inline">\(\mathbf{a}_k \in \mathbb{R}^p\)</span>: k번째 주성분의 로딩(loading) 벡터</li>
+<li><span class="math inline">\(\mathbf{a}_k^T \mathbf{a}_j = 0 ( k \neq j )\)</span>: 주성분 간 직교성</li>
+</ul>
+<p>첫 번째 주성분 <span class="math inline">\(z_1\)</span>: <strong>전체 분산을 최대한 설명하는 방향</strong>이 되도록 선택. 두 번째 주성분 <span class="math inline">\(z_2\)</span>: <span class="math inline">\(z_1\)</span> 과 직교한다는 제약 아래 <strong>남아 있는 분산을 최대한 설명하는 방향</strong>으로 정의됨.<br> 이러한 방식으로 각 주성분은 계층적으로 결정된다.</p>
+<p>따라서 k번째 주성분의 로딩 벡터 <span class="math inline">\(\mathbf{a}_k\)</span> 는 다음 최적화 문제를 통해 구해진다.</p>
+<p><span class="math display">\[
+\mathbf{a}*k
+= \arg\max*{\mathbf{a}}
+\mathrm{Var}(\mathbf{a}^T \mathbf{x}),
+\quad
+\text{subject to }
+\mathbf{a}^T \mathbf{a} = 1,;
+\mathbf{a}^T \mathbf{a}_j = 0,; j &lt; k
+\]</span></p>
+<hr>
+</section>
+<section id="공분산-행렬과-고유값-분해" class="level2">
+<h2 class="anchored" data-anchor-id="공분산-행렬과-고유값-분해">3. 공분산 행렬과 고유값 분해</h2>
 <p>주성분은 데이터의 공분산 행렬 <span class="math inline">\(\Sigma = \mathrm{Cov}(X)\)</span> 의 고유값(eigenvalue) 분해를 통해 구할 수 있다.</p>
 <p><span class="math display">\[
 \Sigma \mathbf{a}_k = \lambda_k \mathbf{a}_k
 \]</span></p>
 <ul>
-<li>(_k) : k번째 고유값, 해당 주성분이 설명하는 분산의 크기</li>
-<li>(_k) : k번째 고유벡터, 주성분 로딩(loading)</li>
+<li><span class="math inline">\(\lambda_k\)</span> : k번째 고유값, 해당 주성분이 설명하는 분산의 크기</li>
+<li><span class="math inline">\(\mathbf{a}_k\)</span> : k번째 고유벡터, 주성분 로딩(loading)</li>
 </ul>
 <p><strong>설명되는 분산 비율(Explained Variance Ratio, EVR)</strong>은 다음과 같이 계산된다:</p>
 <p><span class="math display">\[
@@ -254,52 +279,30 @@ z_k = a_{1k}x_1 + a_{2k}x_2 + \dots + a_{pk}x_p = \mathbf{a}_k^T \mathbf{x}, \qu
 \]</span></p>
 <p>이를 기준으로 차원 축소를 위해 몇 개의 주성분을 선택할지 결정한다.</p>
 </section>
-</section>
 <section id="차원-축소" class="level2">
-<h2 class="anchored" data-anchor-id="차원-축소">2. 차원 축소</h2>
-<p>Dimensionality Reduction<br> PCA는 고차원 데이터에서 <strong>주요 성분만 선택</strong>하여 차원을 축소할 수 있다.</p>
+<h2 class="anchored" data-anchor-id="차원-축소">4. 차원 축소</h2>
+<p><code>Dimensionality Reduction</code><br> PCA는 고차원 데이터에서 <strong>주요 성분만 선택</strong>하여 차원을 축소할 수 있다.</p>
 <ul>
-<li><p>예: 10차원 데이터((p=10)) → 상위 2~3개의 주성분 선택</p></li>
+<li><p>예: 10차원 데이터(p=10) → 상위 2~3개의 주성분 선택</p></li>
 <li><p>선택 기준: <strong>설명되는 분산의 누적 비율(Cumulative Explained Variance Ratio)</strong> <span class="math display">\[
 \text{Cumulative EVR}*m = \sum*{k=1}^m \text{EVR}_k
 \]</span></p>
 <p>80~90% 이상의 분산을 설명하는 주성분을 선택하면 대부분의 정보 손실 없이 차원 축소 가능</p></li>
 </ul>
 <p>차원 축소 후에는 <strong>새로운 좌표계(new coordinate system)</strong>에서 데이터를 재배치하게 된다.<br> 각 주성분은 원자료의 분산을 최대한 유지하며, 상호 독립성을 가진 새로운 축 역할을 한다.</p>
-</section>
-<section id="주성분-해석" class="level2">
-<h2 class="anchored" data-anchor-id="주성분-해석">3. 주성분 해석</h2>
+<p><strong>해석</strong> * 각 주성분은 원본 변수들의 <strong>선형 결합</strong>으로 구성되므로,<br> 로딩 벡터 <span class="math inline">\(\mathbf{a}_k\)</span> 를 확인하면 해당 주성분이 어떤 변수에 의해 형성되었는지 해석 가능 * 예: <span class="math inline">\(\mathbf{a}_1 = [0.5, 0.5, -0.3, \dots]\)</span> → 첫 번째 주성분은 첫 두 변수의 기여도가 높음을 의미</p>
+<p><strong>실무 활용</strong> * PCA는 <strong>고차원 데이터 탐색</strong>, <strong>시각화</strong>, <strong>노이즈 제거</strong>, <strong>머신러닝 전처리</strong> 등 다양한 분야에서 활용됨</p>
 <ul>
-<li>각 주성분은 원본 변수들의 <strong>선형 결합</strong>으로 구성되므로,<br> 로딩 벡터 (_k)를 확인하면 해당 주성분이 어떤 변수에 의해 형성되었는지 해석 가능</li>
-<li>예: (_1 = [0.5, 0.5, -0.3, ]) → 첫 번째 주성분은 첫 두 변수의 기여도가 높음을 의미</li>
+<li>유의사항:</li>
 </ul>
-</section>
-<section id="실무-활용" class="level2">
-<h2 class="anchored" data-anchor-id="실무-활용">4. 실무 활용</h2>
-<ul>
-<li><p>PCA는 <strong>고차원 데이터 탐색</strong>, <strong>시각화</strong>, <strong>노이즈 제거</strong>, <strong>머신러닝 전처리</strong> 등 다양한 분야에서 활용됨</p></li>
-<li><p>유의사항:</p>
 <ol type="1">
 <li>원자료 변수 단위가 서로 다를 경우, <strong>표준화(Standardization)</strong> 필요</li>
 <li>PCA는 <strong>비지도 학습</strong>이므로 목적 변수 (y)를 고려하지 않음</li>
 <li>주성분 해석 시, 원본 변수와의 관계를 반드시 확인하여 의미 있는 인사이트를 확보</li>
-</ol></li>
-</ul>
+</ol>
 </section>
-<section id="데이터-및-목표" class="level2">
-<h2 class="anchored" data-anchor-id="데이터-및-목표">5. 데이터 및 목표</h2>
-<p>주성분 분석(PCA)은 상관관계가 존재할 수 있는 (p)개의 관찰 변수로 이루어진 데이터 (X)를, 서로 상관관계가 없는 새로운 변수(주성분)로 선형 변환하여 차원을 축소하거나 데이터 구조를 이해하는 통계적 기법이다.</p>
-<ul>
-<li>데이터 행렬: <span class="math inline">\(X \in \mathbb{R}^{p \times n}\)</span>, 여기서
-<ul>
-<li><span class="math inline">\(p\)</span> : 관찰 변수의 수</li>
-<li><span class="math inline">\(n\)</span> : 관측치 수</li>
-</ul></li>
-<li>목표: 고차원 데이터를 선형 변환하여 새로운 좌표계(u)로 사영(projection)하고, 분산을 최대한 유지하면서 직교하는 주성분 <span class="math inline">\(Z = [z_1, z_2, \dots, z_p]\)</span> 를 생성한다.</li>
-</ul>
-</section>
-<section id="주성분-생성-1" class="level2">
-<h2 class="anchored" data-anchor-id="주성분-생성-1">6. 주성분 생성</h2>
+<section id="주성분-생성-2" class="level2">
+<h2 class="anchored" data-anchor-id="주성분-생성-2">6. 주성분 생성</h2>
 <section id="선형-변환" class="level3">
 <h3 class="anchored" data-anchor-id="선형-변환">6.1 선형 변환</h3>
 <p>각 주성분 <span class="math inline">\(z_k\)</span> 는 원본 변수들의 선형 결합으로 정의된다.</p>
@@ -369,8 +372,8 @@ L(\mathbf{v}, \lambda) = \mathbf{v}^T \Sigma \mathbf{v} - \lambda (\mathbf{v}^T 
 <li>차원 축소 후, 데이터는 <strong>새로운 좌표계(u)로 사영(projection)</strong>되며, 이때의 좌표는 주성분 값 <span class="math inline">\(Z_m \in \mathbb{R}^{m \times n}\)</span> 로 표현된다.</li>
 </ul>
 </section>
-<section id="주성분-해석-1" class="level2">
-<h2 class="anchored" data-anchor-id="주성분-해석-1">9. 주성분 해석</h2>
+<section id="주성분-해석" class="level2">
+<h2 class="anchored" data-anchor-id="주성분-해석">9. 주성분 해석</h2>
 <ol type="1">
 <li>각 주성분은 원자료 변수의 선형 결합으로 구성되므로, 가중치 벡터 <span class="math inline">\(v_k\)</span> 를 통해 의미를 해석할 수 있다.</li>
 <li>예: <span class="math inline">\(\mathbf{v}_1 = [0.5, 0.4, -0.1, \dots]\)</span> → 첫 번째 주성분은 첫 두 변수가 주요 기여를 한다는 의미</li>
@@ -393,8 +396,8 @@ L(\mathbf{v}, \lambda) = \mathbf{v}^T \Sigma \mathbf{v} - \lambda (\mathbf{v}^T 
 </section>
 <section id="section" class="level1">
 <h1>02</h1>
-<section id="데이터-및-목표-1" class="level2">
-<h2 class="anchored" data-anchor-id="데이터-및-목표-1">1. 데이터 및 목표</h2>
+<section id="데이터-및-목표" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-및-목표">1. 데이터 및 목표</h2>
 <p>주성분 분석(PCA)은 여러 관찰 변수 간 상관관계가 존재하는 데이터를, 서로 상관관계가 없는 새로운 변수(주성분)로 선형 변환하여 차원을 축소하거나 데이터 구조를 이해하기 위한 통계적 기법이다.</p>
 <ul>
 <li><p>원본 데이터 행렬: (X ^{n p})</p>
@@ -527,8 +530,8 @@ L(\mathbf{v}, \lambda) = \mathbf{v}^T \Sigma \mathbf{v} - \lambda (\mathbf{v}^T 
 </ul>
 <hr>
 </section>
-<section id="주성분-해석-2" class="level2">
-<h2 class="anchored" data-anchor-id="주성분-해석-2"><strong>4. 주성분 해석</strong></h2>
+<section id="주성분-해석-1" class="level2">
+<h2 class="anchored" data-anchor-id="주성분-해석-1"><strong>4. 주성분 해석</strong></h2>
 <ol type="1">
 <li><p><strong>스칼라 값 의미</strong></p>
 <ul>
