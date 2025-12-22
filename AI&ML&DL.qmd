@@ -1,0 +1,140 @@
+---
+title: "AI & ML & DL"
+format: html
+---
+
+<div class="accordion" id="accordionExample">
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" 
+data-bs-toggle="collapse" data-bs-target="#collapse1"
+aria-expanded="false" aria-controls="collapse1">
+ 혼공 교제 - 2024학년 2학기
+</button>
+
+<div id="collapse1" class="accordion-collapse collapse" 
+aria-labelledby="heading1" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href=''">
+    02장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href=''">
+    03장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href=''">
+    04장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href=''">
+    05장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href=''">
+    06장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" 
+data-bs-toggle="collapse" data-bs-target="#collapse2"
+aria-expanded="false" aria-controls="collapse2">
+ ML - 2025학년 2학기
+</button>
+
+<div id="collapse2" class="accordion-collapse collapse" 
+aria-labelledby="heading2" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href='ML/ML01.html'">
+   01장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ML/ML02.html'">
+   02장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ML/ML03.html'">
+   03장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ML/ML04.html'">
+   04장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='ML/ML05.html'">
+   05장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+ 01
+</button>
+
+<div id="collapse3" class="accordion-collapse collapse" 
+aria-labelledby="heading3" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href=''">
+   02장
+  </button>
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+ 01
+</button>
+
+<div id="collapse4" class="accordion-collapse collapse" 
+aria-labelledby="heading4" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href=''">
+   0
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>

@@ -1,0 +1,46 @@
+---
+title: "Cyber Security"
+format: html
+---
+
+<div class="accordion" id="accordionExample">
+
+<div class="accordion-item">
+<button class="accordion-button collapsed" type="button" 
+data-bs-toggle="collapse" data-bs-target="#collapse1"
+aria-expanded="false" aria-controls="collapse1">
+ 백엔드네트워크 - 2025학년 2학기
+</button>
+
+<div id="collapse1" class="accordion-collapse collapse" 
+aria-labelledby="heading1" data-bs-parent="#accordionExample">
+<div class="accordion-body">
+
+
+<div class="button-container d-flex flex-wrap gap-2">
+
+  <button class="btn btn-custom" onclick="location.href='BE01'">
+    01장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='BE02'">
+    02장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='BE03'">
+    03장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='BE04'">
+    04장
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='BE05'">
+    05장
+  </button>
+
+</div>
+
+</div>
+</div>
+</div>

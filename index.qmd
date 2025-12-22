@@ -25,16 +25,33 @@ title: "Introduction"
 
 <div class="button-container d-flex flex-wrap gap-2 mb-3">
 
-  <button class="btn btn-custom" onclick="location.href='data-analysis.html'">
+  <button class="btn btn-custom" onclick="location.href='Data-Analysis.html'">
     Data Analysis
   </button>
 
-  <button type="button" class="btn btn-custom" data-bs-toggle="tab" href="#2">AI / ML / DL</button>
-  <button type="button" class="btn btn-custom" data-bs-toggle="tab" href="#3">프로그래밍 / 개발</button>
-  <button type="button" class="btn btn-custom" data-bs-toggle="tab" href="#4">컴퓨터 그래픽스 / 하드웨어</button>
-  <button type="button" class="btn btn-custom" data-bs-toggle="tab" href="#5">보안·네트워크</button>
-  <button type="button" class="btn btn-custom" data-bs-toggle="tab" href="#6">학업·연구</button>
-  <button type="button" class="btn btn-custom" data-bs-toggle="tab" href="#7">기타</button>
+  <button class="btn btn-custom" onclick="location.href='AI&ML&DL.html'">
+    AI·ML·DL
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='Prog&Dev.html'">
+    프로그래밍·개발
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='CG&HW.html'">
+    컴퓨터 그래픽스·하드웨어
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='CyberSec.html'">
+    보안·네트워크
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='R&D.html'">
+    학업·연구
+  </button>
+
+  <button class="btn btn-custom" onclick="location.href='Others.html'">
+    기타
+  </button>
 </div>
   
   <p>각 글은 학습 과정의 단계와 핵심 포인트를 구조화하여, 
