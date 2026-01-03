@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analysis – StudyLog</title>
+<title>data-analysis – StudyLog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -40,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7bb525a17dc475cd70bdc279c119312f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5c49dcdaa1dd0040e71953adad602abc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,15 +71,74 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="../styles.css">
-</head>
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      page: 25,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="alternate" type="application/rss+xml" title="StudyLog" href="Data-Analysis.xml" data-external="1"></head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -89,14 +151,19 @@ ul.task-list li input[type="checkbox"] {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SHINJIHAN"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://sinjihan71.tistory.com/"> 
+<span class="menu-text"><img src="images/Tstory.png" style="width:15px;height:17px;"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -106,32 +173,16 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(54)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Data Analysis</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <div id="accordionExample" class="accordion">
@@ -221,7 +272,1054 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1765263071961" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="thumbnail"><a href="./about.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./about.html" class="no-external">임시</a>
+</h3>
+<div class="delink listing-description"><a href="./about.html" class="no-external">
+마지막 최종 테스트
+</a></div>
+</div>
+<div class="metadata">
+<a href="./about.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1765416149118" data-listing-reading-time-sort="9" data-listing-word-count-sort="1649">
+<div class="thumbnail"><a href="./ADA/ADA06.0.html" class="no-external">
+
+<p class="card-img-top"><img src="ADA\ADA06.0_files\figure-html\cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA06.0.html" class="no-external">두 모집단에 대한 비교</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA06.0.html" class="no-external">
+Reporting Date: Setember. 18, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA06.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1765414282626" data-listing-reading-time-sort="7" data-listing-word-count-sort="1315">
+<div class="thumbnail"><a href="./ADA/ADA07.0.html" class="no-external">
+
+<p class="card-img-top"><img src="ADA\ADA07.0_files\figure-html\cell-3-output-2.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA07.0.html" class="no-external">상관분석</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA07.0.html" class="no-external">
+Reporting Date: Septemger. 28, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA07.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1765416159861" data-listing-reading-time-sort="8" data-listing-word-count-sort="1412">
+<div class="thumbnail"><a href="./ADA/ADA08.0.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA08.0.html" class="no-external">카이제곱 통계</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA08.0.html" class="no-external">
+Reporting Date: October. 5, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA08.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1765417453273" data-listing-reading-time-sort="4" data-listing-word-count-sort="634">
+<div class="thumbnail"><a href="./ADA/ADA08.1.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA08.1.html" class="no-external">연관성의 측도</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA08.1.html" class="no-external">
+Reporting Date: October, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA08.1.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-listing-file-modified-sort="1765417450602" data-listing-reading-time-sort="4" data-listing-word-count-sort="787">
+<div class="thumbnail"><a href="./ADA/ADA08.2.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA08.2.html" class="no-external">오즈비</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA08.2.html" class="no-external">
+Reporting Date: October, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA08.2.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1765419179779" data-listing-reading-time-sort="8" data-listing-word-count-sort="1561">
+<div class="thumbnail"><a href="./ADA/ADA09.0.html" class="no-external">
+
+<p class="card-img-top"><img src="ADA\ADA09.0_files\figure-html\cell-3-output-2.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA09.0.html" class="no-external">제 9장 회귀분석</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA09.0.html" class="no-external">
+Reporting Date: October. 15, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA09.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-listing-file-modified-sort="1765421254094" data-listing-reading-time-sort="11" data-listing-word-count-sort="2181">
+<div class="thumbnail"><a href="./ADA/ADA09.1.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA09.1.html" class="no-external">다중 회귀</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA09.1.html" class="no-external">
+Reporting Date: September. 07, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA09.1.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-listing-file-modified-sort="1765422893073" data-listing-reading-time-sort="10" data-listing-word-count-sort="1933">
+<div class="thumbnail"><a href="./ADA/ADA10.0.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA10.0.html" class="no-external">분산분석: 일원분류</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA10.0.html" class="no-external">
+Reporting Date: November. 5, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA10.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-listing-file-modified-sort="1765422927668" data-listing-reading-time-sort="7" data-listing-word-count-sort="1350">
+<div class="thumbnail"><a href="./ADA/ADA10.1.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA10.1.html" class="no-external">분산분석: 일원분류 실습</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA10.1.html" class="no-external">
+Reporting Date: August. 5, 2024 일원분류 분산분석에 대해 다루고자 한다.
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA10.1.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-listing-file-modified-sort="1765423631810" data-listing-reading-time-sort="6" data-listing-word-count-sort="1078">
+<div class="thumbnail"><a href="./ADA/ADA10.2.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA10.2.html" class="no-external">분산분석: 이원분류 실습</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA10.2.html" class="no-external">
+Reporting Date: August. 5, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA10.2.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-listing-file-modified-sort="1765424256591" data-listing-reading-time-sort="1" data-listing-word-count-sort="144">
+<div class="thumbnail"><a href="./ADA/ADA10.3.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA10.3.html" class="no-external">제 10장 공분산</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA10.3.html" class="no-external">
+Reporting Date: August. 5, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA10.3.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-listing-file-modified-sort="1765263071837" data-listing-reading-time-sort="2" data-listing-word-count-sort="296">
+<div class="thumbnail"><a href="./ADA/ADA11.0.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ADA/ADA11.0.html" class="no-external">제 11장 비모수</a>
+</h3>
+<div class="delink listing-description"><a href="./ADA/ADA11.0.html" class="no-external">
+Reporting Date: August. 5, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ADA/ADA11.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-listing-file-modified-sort="1765407086674" data-listing-reading-time-sort="2" data-listing-word-count-sort="209">
+<div class="thumbnail"><a href="./AI&amp;ML&amp;DL.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./AI&amp;ML&amp;DL.html" class="no-external">AI &amp; ML &amp; DL</a>
+</h3>
+<div class="delink listing-description"><a href="./AI&amp;ML&amp;DL.html" class="no-external">
+<button class="btn btn-custom" onclick="location.href=''"> 02장 </button>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./AI&amp;ML&amp;DL.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-listing-file-modified-sort="1765974208209" data-listing-reading-time-sort="7" data-listing-word-count-sort="1319">
+<div class="thumbnail"><a href="./BE/BE01.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./BE/BE01.html" class="no-external">라우팅(Routing)</a>
+</h3>
+<div class="delink listing-description"><a href="./BE/BE01.html" class="no-external">
+Reporting Date: November. 06, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./BE/BE01.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="15" data-listing-file-modified-sort="1766022056363" data-listing-reading-time-sort="4" data-listing-word-count-sort="702">
+<div class="thumbnail"><a href="./BE/BE02.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./BE/BE02.html" class="no-external">IP 프로토콜 및 QoS</a>
+</h3>
+<div class="delink listing-description"><a href="./BE/BE02.html" class="no-external">
+Reporting Date: November. 13, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./BE/BE02.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-listing-file-modified-sort="1766023128133" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
+<div class="thumbnail"><a href="./BE/BE03.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./BE/BE03.html" class="no-external">서브넷 마스크</a>
+</h3>
+<div class="delink listing-description"><a href="./BE/BE03.html" class="no-external">
+Reporting Date: November. 20, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./BE/BE03.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="17" data-listing-file-modified-sort="1766024076232" data-listing-reading-time-sort="2" data-listing-word-count-sort="330">
+<div class="thumbnail"><a href="./BE/BE04.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./BE/BE04.html" class="no-external">전송계층</a>
+</h3>
+<div class="delink listing-description"><a href="./BE/BE04.html" class="no-external">
+Reporting Date: November. 27, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./BE/BE04.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="18" data-listing-file-modified-sort="1766424972201" data-listing-reading-time-sort="2" data-listing-word-count-sort="341">
+<div class="thumbnail"><a href="./BE/BE05.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./BE/BE05.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./BE/BE05.html" class="no-external">
+Reporting Date: December. 4, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./BE/BE05.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="19" data-listing-file-modified-sort="1765951048498" data-listing-reading-time-sort="2" data-listing-word-count-sort="293">
+<div class="thumbnail"><a href="./BE/BE06.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./BE/BE06.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./BE/BE06.html" class="no-external">
+Reporting Date: December. 11, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./BE/BE06.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="20" data-listing-file-modified-sort="1765949592705" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail"><a href="./CG&amp;HW.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./CG&amp;HW.html" class="no-external">CG &amp; HW</a>
+</h3>
+<div class="delink listing-description"><a href="./CG&amp;HW.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./CG&amp;HW.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="21" data-listing-file-modified-sort="1766494657608" data-listing-reading-time-sort="1" data-listing-word-count-sort="91">
+<div class="thumbnail"><a href="./CyberSec.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./CyberSec.html" class="no-external">Cyber Security</a>
+</h3>
+<div class="delink listing-description"><a href="./CyberSec.html" class="no-external">
+<button class="btn btn-custom" onclick="location.href='BE01'"> 01장 </button>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./CyberSec.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="22" data-listing-file-modified-sort="1765291030133" data-listing-reading-time-sort="17" data-listing-word-count-sort="3319">
+<div class="thumbnail"><a href="./DAP/DAP02.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./DAP/DAP02.html" class="no-external">Clustering</a>
+</h3>
+<div class="delink listing-description"><a href="./DAP/DAP02.html" class="no-external">
+Reporting Date: November. 18, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./DAP/DAP02.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="23" data-listing-file-modified-sort="1765334902679" data-listing-reading-time-sort="8" data-listing-word-count-sort="1422">
+<div class="thumbnail"><a href="./DAP/DAP03.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./DAP/DAP03.html" class="no-external">주성분 분석(PCA)</a>
+</h3>
+<div class="delink listing-description"><a href="./DAP/DAP03.html" class="no-external">
+Reporting Date: December. 02, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./DAP/DAP03.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="24" data-listing-file-modified-sort="1765263071846" data-listing-reading-time-sort="6" data-listing-word-count-sort="1006">
+<div class="thumbnail"><a href="./IDA/IDA03.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA03.html" class="no-external">3장: 수치를 통한 연속형 자료의 요약</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA03.html" class="no-external">
+Reporting Date: June. 30, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA03.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="25" data-listing-file-modified-sort="1765263071849" data-listing-reading-time-sort="3" data-listing-word-count-sort="537">
+<div class="thumbnail"><a href="./IDA/IDA04.html" class="no-external">
+
+<p class="card-img-top"><img data-src="IDA\IDA04_files\figure-html\cell-4-output-1.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA04.html" class="no-external">4장: 두 변수 자료의 요약</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA04.html" class="no-external">
+Reporting Date: July. 4, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA04.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="26" data-listing-file-modified-sort="1765263071851" data-listing-reading-time-sort="4" data-listing-word-count-sort="639">
+<div class="thumbnail"><a href="./IDA/IDA05.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA05.html" class="no-external">5장: 확률</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA05.html" class="no-external">
+Reporting Date: July. 8, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA05.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="27" data-listing-file-modified-sort="1765263071852" data-listing-reading-time-sort="4" data-listing-word-count-sort="755">
+<div class="thumbnail"><a href="./IDA/IDA06.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA06.html" class="no-external">6장: 확률분포</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA06.html" class="no-external">
+Reporting Date: July. 11, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA06.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="28" data-listing-file-modified-sort="1765263071853" data-listing-reading-time-sort="5" data-listing-word-count-sort="892">
+<div class="thumbnail"><a href="./IDA/IDA07.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA07.html" class="no-external">7장: 이항분포와 그에 관련된 분포들</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA07.html" class="no-external">
+Reporting Date: July. 15, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA07.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="29" data-listing-file-modified-sort="1765263071854" data-listing-reading-time-sort="8" data-listing-word-count-sort="1589">
+<div class="thumbnail"><a href="./IDA/IDA08.html" class="no-external">
+
+<p class="card-img-top"><img data-src="IDA\IDA08_files\figure-html\cell-5-output-2.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA08.html" class="no-external">8장: 정규분포</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA08.html" class="no-external">
+Reporting Date: July. 18, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA08.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="30" data-listing-file-modified-sort="1765263071859" data-listing-reading-time-sort="3" data-listing-word-count-sort="599">
+<div class="thumbnail"><a href="./IDA/IDA09.html" class="no-external">
+
+<p class="card-img-top"><img data-src="IDA\IDA09_files\figure-html\cell-5-output-2.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA09.html" class="no-external">9장: 표집분포</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA09.html" class="no-external">
+Reporting Date: July. 21, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA09.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="31" data-listing-file-modified-sort="1765263071863" data-listing-reading-time-sort="12" data-listing-word-count-sort="2286">
+<div class="thumbnail"><a href="./IDA/IDA10.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA10.html" class="no-external">10장: 통계적 추론</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA10.html" class="no-external">
+Reporting Date: July. 25, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA10.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="32" data-listing-file-modified-sort="1765263071864" data-listing-reading-time-sort="7" data-listing-word-count-sort="1325">
+<div class="thumbnail"><a href="./IDA/IDA11.html" class="no-external">
+
+<p class="card-img-top"><img data-src="IDA\IDA11_files\figure-html\cell-8-output-2.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA11.html" class="no-external">11장: 정규모집단에서의 추론</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA11.html" class="no-external">
+Reporting Date: July. 28, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA11.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="33" data-listing-file-modified-sort="1765263071866" data-listing-reading-time-sort="10" data-listing-word-count-sort="1974">
+<div class="thumbnail"><a href="./IDA/IDA12.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA12.html" class="no-external">12장: 두 모집단의 비교</a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA12.html" class="no-external">
+Reporting Date: July. 31, 2024
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA12.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="34" data-listing-file-modified-sort="1765263071866">
+<div class="thumbnail"><a href="./IDA/IDA13.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA13.html" class="no-external"></a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA13.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA13.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="35" data-listing-file-modified-sort="1765263071867">
+<div class="thumbnail"><a href="./IDA/IDA14.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA14.html" class="no-external"></a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA14.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA14.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="36" data-listing-file-modified-sort="1765263071868">
+<div class="thumbnail"><a href="./IDA/IDA15.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA15.html" class="no-external"></a>
+</h3>
+<div class="delink listing-description"><a href="./IDA/IDA15.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA15.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="37" data-listing-file-modified-sort="1767441975719" data-listing-reading-time-sort="1" data-listing-word-count-sort="170">
+<div class="thumbnail"><a href="./index.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./index.html" class="no-external"></a>
+</h3>
+<div class="delink listing-description"><a href="./index.html" class="no-external">
+
+<strong>StudyLog</strong>는 학습 과정을 규칙적으로 기록하고 체계화한다.
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./index.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="38" data-listing-file-modified-sort="1765949156961" data-listing-reading-time-sort="4" data-listing-word-count-sort="656">
+<div class="thumbnail"><a href="./ML/ML01.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ML/ML01.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./ML/ML01.html" class="no-external">
+Reporting Date: November. 5, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ML/ML01.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="39" data-listing-file-modified-sort="1765949155607" data-listing-reading-time-sort="16" data-listing-word-count-sort="3131">
+<div class="thumbnail"><a href="./ML/ML02.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ML/ML02.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./ML/ML02.html" class="no-external">
+Reporting Date: November. 12, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ML/ML02.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="40" data-listing-file-modified-sort="1765949153513" data-listing-reading-time-sort="3" data-listing-word-count-sort="402">
+<div class="thumbnail"><a href="./ML/ML03.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ML/ML03.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./ML/ML03.html" class="no-external">
+Reporting Date: November. 19, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ML/ML03.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="41" data-listing-file-modified-sort="1765408124699" data-listing-reading-time-sort="10" data-listing-word-count-sort="1843">
+<div class="thumbnail"><a href="./ML/ML04.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ML/ML04.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./ML/ML04.html" class="no-external">
+Reporting Date: December. 03, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ML/ML04.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="42" data-listing-file-modified-sort="1765408147660" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
+<div class="thumbnail"><a href="./ML/ML05.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./ML/ML05.html" class="no-external">제목</a>
+</h3>
+<div class="delink listing-description"><a href="./ML/ML05.html" class="no-external">
+Reporting Date: December. 10, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./ML/ML05.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="43" data-listing-file-modified-sort="1765336964547" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail"><a href="./Others.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./Others.html" class="no-external">Others</a>
+</h3>
+<div class="delink listing-description"><a href="./Others.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./Others.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="44" data-listing-file-modified-sort="1765337000500" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail"><a href="./Prog&amp;Dev.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./Prog&amp;Dev.html" class="no-external">프로그램 및 개발</a>
+</h3>
+<div class="delink listing-description"><a href="./Prog&amp;Dev.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./Prog&amp;Dev.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="45" data-listing-file-modified-sort="1765337022974" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail"><a href="./R&amp;D.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./R&amp;D.html" class="no-external">학업 및 랩실 연구 활동</a>
+</h3>
+<div class="delink listing-description"><a href="./R&amp;D.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="./R&amp;D.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="46" data-listing-file-modified-sort="1765263071871" data-listing-reading-time-sort="6" data-listing-word-count-sort="1170">
+<div class="thumbnail"><a href="./TM/TM02.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM02.html" class="no-external">2장: 네이버 뉴스 기사 제목 크롤링</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM02.html" class="no-external">
+Reporting Date: March. 11, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM02.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="47" data-listing-file-modified-sort="1765263071872" data-listing-reading-time-sort="10" data-listing-word-count-sort="1827">
+<div class="thumbnail"><a href="./TM/TM03.0.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM03.0.html" class="no-external">3장: 네이버 블로그 크롤링</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM03.0.html" class="no-external">
+Reporting Date: March. 18, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM03.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="48" data-listing-file-modified-sort="1765263071873" data-listing-reading-time-sort="7" data-listing-word-count-sort="1308">
+<div class="thumbnail"><a href="./TM/TM03.1.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM03.1.html" class="no-external">3장: 네이버 카페 크롤링</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM03.1.html" class="no-external">
+Reporting Date: April. 01, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM03.1.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="49" data-listing-file-modified-sort="1765263071874" data-listing-reading-time-sort="8" data-listing-word-count-sort="1537">
+<div class="thumbnail"><a href="./TM/TM04.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM04.html" class="no-external">4장: 크롤링 데이터 전처리</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM04.html" class="no-external">
+Reporting Date: April. 01, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM04.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="50" data-listing-file-modified-sort="1765263071875" data-listing-reading-time-sort="6" data-listing-word-count-sort="1142">
+<div class="thumbnail"><a href="./TM/TM05.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM05.html" class="no-external">5장: 텍스트 데이터 마이닝</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM05.html" class="no-external">
+Reporting Date: April. 15, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM05.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="51" data-listing-file-modified-sort="1765263071875" data-listing-reading-time-sort="2" data-listing-word-count-sort="307">
+<div class="thumbnail"><a href="./TM/TM06.0.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM06.0.html" class="no-external">6장: 감성 분석</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM06.0.html" class="no-external">
+Reporting Date: May. 13, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM06.0.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="52" data-listing-file-modified-sort="1765263071876" data-listing-reading-time-sort="10" data-listing-word-count-sort="2000">
+<div class="thumbnail"><a href="./TM/TM06.1.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./TM/TM06.1.html" class="no-external">6장: 감성 분석</a>
+</h3>
+<div class="delink listing-description"><a href="./TM/TM06.1.html" class="no-external">
+Reporting Date: May. 20, 2025
+</a></div>
+</div>
+<div class="metadata">
+<a href="./TM/TM06.1.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="53" data-categories="cHl0aG9u" data-listing-date-sort="1717858800000" data-listing-file-modified-sort="1767438508318" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1167">
+<div class="thumbnail"><a href="./IDA/IDA02.html" class="no-external">
+
+<p class="card-img-top"><img data-src="IDA\IDA02_files\figure-html\cell-4-output-2.png"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./IDA/IDA02.html" class="no-external">2장: 표와 그림을 통한 자료의 요약</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHl0aG9u'); return false;">python</div>
+
+</div>
+<div class="delink listing-description"><a href="./IDA/IDA02.html" class="no-external">
+자료를 효과적으로 요약하고 이해하기 위해 표나 그림을 사용하는 방법에 대해 다루고자 한다.<br> 자료 요약은 분석 대상인 자료의 형태와 특성에 따라 다양한 방법으로 이루어진다.
+</a></div>
+</div>
+<div class="metadata">
+<a href="./IDA/IDA02.html" class="no-external">
+<div class="listing-date">
+Jun 9, 2024
+</div>
+<div class="listing-author">
+파이썬을 이용한 분석
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -295,7 +1393,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/shinjihan\.github\.io\/studylog");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
